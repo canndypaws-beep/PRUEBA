@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Candy Paws - Snacks, gomitas, galletitas y tortas 100% naturales para tu mascota. Hechos con amor por Stefi.">
+    <title>Candy Paws • Snacks & Tortas para Mascotas</title>
+   
+    <!-- FAVICON -->
+    <link rel="icon" href="logoweb.png" type="image/png">
+    <link rel="shortcut icon" href="logoweb.png" type="image/png">
+    <link rel="apple-touch-icon" href="logoweb.png">
+    <link rel="icon" sizes="16x16" href="logoweb.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="logoweb.png" type="image/png">
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      
+        :root {
+            --primary: #E6B1B9;
+            --medium: #D38F98;
+            --soft: #F2D6DB;
+            --text: #222222;
+            --buy: #83d7a0;
+        }
+      
+        * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+      
+        body { font-family: 'Inter', system-ui, sans-serif; }
+      
+        .title-font {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+      
+        .hero-bg {
+            background-image: url('fondoweb.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+      
+        .overlay-dark {
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78));
+        }
+      
+        .sidebar { animation: slideIn 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+        .subpanel { animation: slideInRight 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+      
+        @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+        @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+      
+        .product-card {
+            border: 2px solid #222222;
+            box-shadow: 6px 6px 0 #222222;
+            border-radius: 16px;
+            background: white;
+        }
+      
+        .section-image {
+            width: 100% !important;
+            height: auto;
+            display: block;
+        }
+      
+        .portada-dos {
+            margin-top: 0 !important;
+        }
+      
+        .floating-arrow { animation: bounce 1.8s infinite ease-in-out; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+      
+        .whatsapp-float {
+            animation: float 3s ease-in-out infinite;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+      
+        .banner-white { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+      
+        .product-name {
+            font-size: 0.95rem;
+            line-height: 1.2;
+            font-weight: 600;
+            text-align: center;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+      
+        .custom-order {
+            font-size: 0.88rem;
+            color: #ff9f6b;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 2px;
+        }
+      
+        .buy-btn, .info-btn {
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 12px 16px;
+            border-radius: 9999px;
+            width: 100%;
+            margin-top: 8px;
+        }
+      
+        .buy-btn { background-color: var(--buy); color: #222222; }
+        .info-btn { background-color: white; color: #222222; border: 2px solid #222222; }
+      
+        .strikethrough {
+            color: #d1d5db !important;
+            text-decoration: line-through;
+        }
+      
+        .stock-text {
+            color: white !important;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+      
+        .close-float-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1rem;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+      
+        .modal-content {
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+      
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+            gap: 1.5rem;
+        }
+      
+        .stefi-section {
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78));
+            position: relative;
+        }
+
+        /* === ESTILOS PARA SECCIÓN DE OPINIONES === */
+        .comentarios-section {
+            background: #F7F6F7;
+            padding: 80px 20px;
+        }
+        .comentario-card {
+            border: 2px solid #222222;
+            box-shadow: 6px 6px 0 #222222;
+            border-radius: 16px;
+            background: white;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .estrellas {
+            font-size: 2rem;
+            color: #E6B1B9;
+            margin-bottom: 12px;
+        }
+        #rating {
+            font-size: 2.2rem;
+            padding: 10px 16px;
+            border: 3px solid #222222;
+            border-radius: 12px;
+            background: white;
+            width: 100%;
+        }
+        #comentario {
+            width: 100%;
+            min-height: 130px;
+            padding: 16px;
+            border: 3px solid #222222;
+            border-radius: 16px;
+            font-family: 'Inter', sans-serif;
+            resize: vertical;
+            font-size: 1.05rem;
+        }
+        .btn-enviar {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 9999px;
+            border: 3px solid #222222;
+            box-shadow: 6px 6px 0 #222222;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+        .btn-enviar:hover {
+            background-color: var(--medium);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="hero-bg bg-black text-white min-h-screen overflow-x-hidden">
+
+    <!-- BANNER SUPERIOR -->
+    <header class="banner-white bg-white text-black sticky top-0 z-50 border-b-4 border-[#E6B1B9]">
+        <div class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
+            <button onclick="toggleSidebar()" class="w-14 h-14 flex items-center justify-center text-4xl hover:scale-110 active:scale-95">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="flex-1 flex justify-center">
+                <h1 class="title-font text-4xl md:text-5xl text-black tracking-[-2px] text-center">CANDY PAWS</h1>
+            </div>
+            <img src="logoweb.png" alt="Logo Candy Paws" class="h-12 w-auto object-contain">
+        </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="hidden fixed inset-y-0 left-0 w-80 bg-white text-black shadow-2xl z-[100] sidebar flex flex-col overflow-y-auto">
+        <div class="px-6 pt-8 pb-6 border-b flex items-center justify-between sticky top-0 bg-white z-10">
+            <div class="flex items-center gap-3">
+                <img src="logoweb.png" alt="Logo" class="h-9 w-auto">
+                <h2 class="title-font text-2xl text-black">Candy Paws</h2>
+            </div>
+            <button onclick="toggleSidebar()" class="text-4xl text-[#E6B1B9] hover:text-black">✕</button>
+        </div>
+        <nav class="flex-1 px-6 py-10 space-y-3 text-xl font-medium">
+            <button onclick="openComoComprar()" class="menu-item w-full text-left py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Cómo Comprar</button>
+            <button onclick="openComoEncargo()" class="menu-item w-full text-left py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Cómo hacer un encargo</button>
+            <a href="#productos" onclick="toggleSidebar()" class="menu-item block py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Ir a la tienda</a>
+            <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" onclick="toggleSidebar()" class="menu-item block py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Contacto</a>
+            <a href="#redes" onclick="toggleSidebar()" class="menu-item block py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Seguinos en redes</a>
+        </nav>
+        <div class="p-6 text-xs text-center text-gray-500 border-t">
+            Candy Paws © 2025/2026 – Todos los derechos reservados.
+        </div>
+    </div>
+
+    <!-- SUBPANEL CÓMO COMPRAR -->
+    <div id="panel-comprar" class="hidden fixed inset-y-0 right-0 w-80 md:w-96 bg-white text-black shadow-2xl z-[110] subpanel flex flex-col">
+        <div class="px-6 py-6 border-b flex justify-between items-center sticky top-0 bg-white">
+            <h3 class="title-font text-3xl text-[#E6B1B9]">Cómo Comprar</h3>
+            <button onclick="closeSubPanels()" class="text-4xl">✕</button>
+        </div>
+        <div class="flex-1 p-6 overflow-y-auto text-base leading-relaxed">
+            <ol class="list-decimal pl-6 space-y-5">
+                <li>Entrá al catálogo de Snacks.</li>
+                <li>Elegí el producto que tu mascota necesita.</li>
+                <li>Hacé clic en el botón <strong>Comprar</strong>.</li>
+                <li>Realizá el pago de forma segura.</li>
+                <li>Completá tus datos en el formulario o enviáselos directamente a Stefy por WhatsApp.</li>
+                <li>¡Y listo! Nosotros nos encargamos del resto.</li>
+            </ol>
+            <button onclick="openCatalogPanel()" class="mt-10 block w-full text-center bg-[#E6B1B9] hover:bg-[#D38F98] text-white py-5 rounded-3xl text-xl font-semibold">
+                Ver productos
+            </button>
+        </div>
+    </div>
+
+    <!-- SUBPANEL CÓMO HACER UN ENCARGO -->
+    <div id="panel-encargo" class="hidden fixed inset-y-0 right-0 w-80 md:w-96 bg-white text-black shadow-2xl z-[110] subpanel flex flex-col">
+        <div class="px-6 py-6 border-b flex justify-between items-center sticky top-0 bg-white">
+            <h3 class="title-font text-3xl text-[#E6B1B9]">Cómo hacer un encargo</h3>
+            <button onclick="closeSubPanels()" class="text-4xl">✕</button>
+        </div>
+        <div class="flex-1 p-6 overflow-y-auto text-base leading-relaxed">
+            <ol class="list-decimal pl-6 space-y-5">
+                <li>Entrá al catálogo de Tortas por encargo.</li>
+                <li>Elegí el o los productos que tu mascota necesita.</li>
+                <li>Hacé clic en el botón <strong>Hacer pedido</strong>.</li>
+                <li>Realizá el pago de la seña 50% de forma segura.</li>
+                <li>Completá tus datos en el formulario o enviáselos directamente a Stefy por WhatsApp.</li>
+                <li>¡Y listo! Nosotros nos encargamos del resto.</li>
+            </ol>
+            <button onclick="openCatalogPanel()" class="mt-10 block w-full text-center bg-[#E6B1B9] hover:bg-[#D38F98] text-white py-5 rounded-3xl text-xl font-semibold">
+                Ver productos
+            </button>
+        </div>
+    </div>
+
+    <!-- CATÁLOGO FLOTANTE -->
+    <div id="catalog-panel" class="hidden fixed inset-0 bg-black/90 z-[120] flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white text-black max-w-5xl w-full rounded-3xl p-6 md:p-8 relative max-h-[88vh] overflow-y-auto pb-24">
+            <h2 class="title-font text-center mb-10 text-[#E6B1B9] text-3xl">Nuestros Productos</h2>
+            <div class="catalog-grid">
+                <!-- Gomitas -->
+                <div class="col-span-full"><h3 class="title-font text-3xl text-center text-[#E6B1B9] mb-8">100% natural, sin conservantes</h3></div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="gomitasuno.png" alt="Gomitas de colágeno x 1/2kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Gomitas de colágeno x 1/2kg</h4>
+                    <p class="stock-text text-center">Siempre en Stock</p>
+                    <p class="text-sm strikethrough text-center">$9.050</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$8.200</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Gomitas de colágeno x 1/2kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGomitas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="gomitasdos.png" alt="Gomitas de colágeno x 1kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Gomitas de colágeno x 1kg</h4>
+                    <p class="stock-text text-center">Siempre en Stock</p>
+                    <p class="text-sm strikethrough text-center">$16.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$16.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Gomitas de colágeno x 1kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGomitas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+
+                <!-- Galletas -->
+                <div class="col-span-full mt-12"><h3 class="title-font text-3xl text-center text-[#E6B1B9] mb-8">100% natural, sin conservantes</h3></div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="galletasuno.png" alt="Galletas Snacks x 1/2kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Galletas Snacks x 1/2kg</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$10.150</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$9.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Galletas Snacks x 1/2kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGalletitas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="galletasdos.png" alt="Galletas Snacks x 1kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Galletas Snacks x 1kg</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$17.800</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Galletas Snacks x 1kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGalletitas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+
+                <!-- Tortas -->
+                <div class="col-span-full mt-12"><h3 class="title-font text-3xl text-center text-[#E6B1B9] mb-8">100% natural, sin conservantes</h3></div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="tortasuno.png" alt="Torta nº10" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº10</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$12.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$12.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Torta nº10')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="tortasdos.png" alt="Torta nº12" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº12</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$17.800</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Torta nº12')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="tortastres.png" alt="Torta nº14" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº14</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$18.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Torta nº14')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="tortascuatro.png" alt="Torta nº17" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº17</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$21.790</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$21.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Torta nº17')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button onclick="closeCatalogPanel()" class="close-float-btn">Cerrar</button>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <img src="portadauno.png" alt="Portada 1" class="section-image">
+    <img src="portadados.png" alt="Portada 2" class="section-image portada-dos">
+
+    <!-- SECCIÓN STEFI -->
+    <section class="stefi-section py-12 relative">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+            <div onclick="showStefiModal()" class="relative cursor-pointer group mx-auto md:mx-0 flex-shrink-0">
+                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border-8 border-[#E6B1B9] overflow-hidden shadow-2xl">
+                    <img src="mensajeweb.png" alt="Stefi" class="w-full h-full object-cover group-active:scale-105">
+                </div>
+                <div class="absolute -bottom-4 -right-4 bg-white text-[#E6B1B9] px-6 py-3 rounded-3xl shadow-2xl flex items-center gap-3 text-sm font-medium">
+                    Tocá para conocerme <i class="fa-solid fa-arrow-right floating-arrow text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <img src="portadatres.png" alt="Portada 3" class="section-image">
+
+    <!-- SECCIÓN GOMITAS -->
+    <section id="productos" class="relative py-20 overlay-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="title-font text-3xl md:text-4xl text-center text-white mb-12">100% natural, sin conservantes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="gomitasuno.png" alt="Gomitas de colágeno x 1/2kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Gomitas de colágeno x 1/2kg</h4>
+                    <p class="stock-text text-center">Siempre en Stock</p>
+                    <p class="text-sm strikethrough text-center">$9.050</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$8.200</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Gomitas de colágeno x 1/2kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGomitas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="gomitasdos.png" alt="Gomitas de colágeno x 1kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Gomitas de colágeno x 1kg</h4>
+                    <p class="stock-text text-center">Siempre en Stock</p>
+                    <p class="text-sm strikethrough text-center">$16.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$16.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Gomitas de colágeno x 1kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGomitas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <img src="portadacuatro.png" alt="Portada 4" class="section-image">
+
+    <!-- SECCIÓN GALLETAS -->
+    <section class="relative py-20 overlay-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="title-font text-3xl md:text-4xl text-center text-white mb-12">100% natural, sin conservantes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="galletasuno.png" alt="Galletas Snacks x 1/2kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Galletas Snacks x 1/2kg</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$10.150</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$9.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Galletas Snacks x 1/2kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGalletitas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="galletasdos.png" alt="Galletas Snacks x 1kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Galletas Snacks x 1kg</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$17.800</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Galletas Snacks x 1kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGalletitas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <img src="portadacinco.png" alt="Portada 5" class="section-image">
+
+    <!-- SECCIÓN TORTAS -->
+    <section class="relative py-20 overlay-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="title-font text-3xl md:text-4xl text-center text-white mb-12">100% natural, sin conservantes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="tortasuno.png" alt="Torta nº10" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº10</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$12.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$12.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Torta nº10')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="tortasdos.png" alt="Torta nº12" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº12</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$17.800</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Torta nº12')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="tortastres.png" alt="Torta nº14" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº14</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$18.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Torta nº14')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="tortascuatro.png" alt="Torta nº17" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº17</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$21.790</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$21.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Torta nº17')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <img src="portadaseis.png" alt="Portada 6" class="section-image">
+
+    <!-- Stefi 2 -->
+    <section class="relative py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+            <div onclick="showStefiModal2()" class="relative cursor-pointer group mx-auto md:mx-0 flex-shrink-0">
+                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border-8 border-[#E6B1B9] overflow-hidden shadow-2xl">
+                    <img src="mensajeweb.png" alt="Stefi" class="w-full h-full object-cover group-active:scale-105">
+                </div>
+                <div class="absolute -bottom-4 -right-4 bg-white text-[#E6B1B9] px-7 py-4 rounded-3xl shadow-2xl flex items-center gap-3 text-sm">
+                    Tocá y descubrí más <i class="fa-solid fa-arrow-right floating-arrow text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <img src="portadasiete.png" alt="Portada 7" class="section-image">
+
+    <!-- SECCIÓN REDES -->
+    <section id="redes" class="relative py-12 overlay-dark text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="title-font text-2xl md:text-3xl text-white mb-6 leading-tight">Seguinos para no perderte<br>nuestras ofertas</h2>
+            <div class="flex justify-center gap-8 flex-wrap">
+                <a href="https://www.instagram.com/canndypaws/" target="_blank" class="group">
+                    <div class="w-16 h-16 rounded-3xl border-4 border-[#E6B1B9] overflow-hidden shadow-xl group-hover:scale-110">
+                        <img src="instagramweb.png" alt="Instagram" class="w-full h-full object-cover">
+                    </div>
+                </a>
+                <a href="#" target="_blank" class="group">
+                    <div class="w-16 h-16 rounded-3xl border-4 border-[#E6B1B9] overflow-hidden shadow-xl group-hover:scale-110">
+                        <img src="tiktokweb.png" alt="TikTok" class="w-full h-full object-cover">
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/stefi.bordenave" target="_blank" class="group">
+                    <div class="w-16 h-16 rounded-3xl border-4 border-[#E6B1B9] overflow-hidden shadow-xl group-hover:scale-110">
+                        <img src="facebookweb.png" alt="Facebook" class="w-full h-full object-cover">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- === SECCIÓN DE OPINIONES Y ESTRELLAS === -->
+    <section class="comentarios-section">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="title-font text-4xl text-center text-[#222222] mb-12">Opiniones de nuestras familias peludas</h2>
+            
+            <!-- Formulario -->
+            <div class="bg-white border-4 border-[#222222] rounded-3xl p-8 md:p-12 shadow-2xl mb-16">
+                <h3 class="title-font text-3xl text-[#E6B1B9] mb-8 text-center">¿Qué te pareció Candy Paws?</h3>
+                
+                <div class="space-y-8">
+                    <div>
+                        <label class="block text-[#222222] font-semibold mb-3 text-lg">Calificá con estrellas</label>
+                        <select id="rating" class="w-full">
+                            <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+                            <option value="4">⭐⭐⭐⭐ Muy bueno</option>
+                            <option value="3">⭐⭐⭐ Bueno</option>
+                            <option value="2">⭐⭐ Regular</option>
+                            <option value="1">⭐ Malo</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[#222222] font-semibold mb-3 text-lg">Tu opinión</label>
+                        <textarea id="comentario" placeholder="Escribí tu experiencia con los snacks, tortas o la atención de Stefi..." 
+                                  class="w-full"></textarea>
+                    </div>
+
+                    <button onclick="guardarComentario()" class="btn-enviar">
+                        Enviar mi opinión ❤️
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lista de comentarios -->
+            <div id="listaComentarios" class="space-y-8"></div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank"
+       class="whatsapp-float fixed bottom-6 right-6 w-20 h-20 flex items-center justify-center z-50">
+        <img src="whatsappweb.png" alt="WhatsApp" class="w-16 h-16 object-contain">
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="banner-white bg-white text-black py-10 border-t-4 border-[#E6B1B9]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-x-10 gap-y-5 text-base font-medium">
+                <a onclick="openComoComprar(); return false;" class="cursor-pointer hover:text-[#E6B1B9]">Cómo Comprar</a>
+                <a href="#productos" class="hover:text-[#E6B1B9]">Ir a la tienda</a>
+                <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="hover:text-[#E6B1B9]">Contacto</a>
+                <a href="#redes" class="hover:text-[#E6B1B9]">Seguinos en redes</a>
+            </div>
+            <div class="flex justify-center my-10">
+                <img src="logoweb.png" alt="Logo" class="h-14 opacity-90">
+            </div>
+            <p class="text-center text-xs text-gray-500">Candy Paws © 2025/2026 – Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- MODALES STEFI -->
+    <div id="modal-stefi" onclick="if(event.target.id === 'modal-stefi') hideStefiModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <h2 class="title-font text-4xl text-[#E6B1B9] mb-8">Hola, soy Stefi ❤️</h2>
+            <p class="text-lg leading-relaxed">
+                Hola, me presento para los que todavía no me conocen: soy Stefi, una apasionada de los animales.<br><br>
+                Siempre me pasa lo mismo… estoy tomando unos mates, comiendo galletitas y mi mascota se queda mirándome con esos ojitos que dicen “¿y yo qué?”.<br><br>
+                Quería comer las Oreos como yo, pero sé que le hacen súper mal al estómago.<br><br>
+                Por eso ideé todo esto: crear snacks ricos y saludables para que ella (y todos los peluditos) también puedan disfrutar del momento sin preocupaciones.<br><br>
+                Les quiero contar con mucho cariño todo lo que preparo para que nuestras mascotas disfruten sano y rico.<br><br>
+                Acá vas a encontrar gomitas de colágeno que ayudan a las articulaciones y al pelaje, y también tortas, budines y galletitas.<br>
+                Snack y golosinas siempre en stock.<br><br>
+                ¡Para que mientras vos tomás mate y comés galletitas, tu mascota también tenga su merienda especial y saludable!<br><br>
+                Y los budines/tortas hechas por encargo, todo 100% natural para que también tengan su fiesta.<br><br>
+                Escribime por WhatsApp y armamos tu pedido juntos ❤️
+            </p>
+            <button onclick="hideStefiModal()" class="close-float-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="modal-stefi2" onclick="if(event.target.id === 'modal-stefi2') hideStefiModal2()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <p class="text-lg leading-relaxed whitespace-pre-line">
+                Todo lo que preparo es hecho con amor en casa, con receta casera, usando solo ingredientes que yo misma le daría a mi propia mascota.<br><br>
+                Nada de colorantes, nada de conservantes, nada artificial. Solo cosas ricas y sanas que realmente les hacen bien: ayudan a las articulaciones, dejan el pelaje más brillante y les dan una merienda que pueden disfrutar sin culpa.<br><br>
+                ¿Cómo podés agasajarla todavía más?<br>
+                Te recomiendo las combinaciones que más me piden los clientes:<br>
+                • Una torta de cumpleaños + gomitas de topping para decorarla bien linda<br>
+                • Un budín + galletitas para compartir tranquilos en casa<br>
+                • O directamente el Pack “Fiesta Completa”: torta + gomitas de topping + galletitas surtidas<br><br>
+                Así tu mascota tiene su propia fiesta rica y saludable, y vos podés estar 100% tranquila.<br><br>
+                Y si no sabés qué sabor elegir o querés que te ayude a armar algo especial según la edad, el tamaño o las preferencias de tu peludito, te ofrezco una consulta personalizada gratuita. Solo escribime y charlamos con gusto para encontrar exactamente lo que mejor le va a tu mascota.<br><br>
+                Porque al final… nuestros peluditos nos dan tanto amor todos los días.<br>
+                ¿No se merecen ellos también un mimo especial, hecho con amor en casa y pensado solo para su bienestar?<br><br>
+                Yo lo hago con todo el cariño del mundo, y sé que a tu mascota le va a encantar.<br><br>
+                ¿Querés agasajarla hoy?<br>
+                Podés comprar directamente desde la web (yo me encargo de todo) o mandarme mensaje por WhatsApp y coordinamos tu pedido juntos.<br><br>
+                Estoy acá para ayudarte a hacer feliz a ese ser tan especial que tenés en casa ❤️
+            </p>
+            <button onclick="hideStefiModal2()" class="close-float-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- PANEL COMPRAR -->
+    <div id="panel-comprar-producto" onclick="if(event.target.id === 'panel-comprar-producto') hideComprarPanel()" class="hidden fixed inset-x-0 bottom-0 bg-black/80 z-[150] flex items-end">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-2xl mx-auto rounded-t-3xl p-8">
+            <h3 class="text-3xl font-semibold mb-6 text-center">Elegí cómo querés recibir tu pedido</h3>
+            <div class="grid grid-cols-2 gap-6">
+                <button onclick="sendToWhatsApp('Retiro en local')" class="bg-black text-white py-8 rounded-3xl text-xl font-medium flex flex-col items-center gap-3">
+                    <i class="fa-solid fa-store text-3xl"></i> Retiro en local
+                </button>
+                <button onclick="sendToWhatsApp('Recibir a domicilio')" class="bg-[#83d7a0] text-black py-8 rounded-3xl text-xl font-medium flex flex-col items-center gap-3">
+                    <i class="fa-solid fa-motorcycle text-3xl"></i> Recibir a domicilio
+                </button>
+            </div>
+            <button onclick="hideComprarPanel()" class="mt-10 w-full py-4 text-[#E6B1B9] font-medium">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- MODALES INFORMACIÓN -->
+    <div id="modal-info-gomitas" onclick="if(event.target.id === 'modal-info-gomitas') hideInfoModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <h3 class="title-font text-4xl text-[#E6B1B9] mb-6 text-center">Gomitas de Colágeno</h3>
+            <p class="text-lg leading-relaxed">
+                Les quiero contar sobre mis gomitas de colágeno, que son mis estrellas. Están elaboradas con colágeno natural y ayudan especialmente a las articulaciones y a dejar el pelaje más brillante y hermoso.<br><br>
+                Sabores que ya tengo:<br>
+                • Brócoli con pollo<br>
+                • Batata con pollo<br>
+                • Zanahoria con pollo<br><br>
+                ¡Todas mezcladitas y riquísimas!<br>
+                Se venden en bolsitas listas para llevar y son ideales para dar todos los días como premio o complemento. Todo 100% natural, sin colorantes, sin conservantes, sin sal y sin azúcar.
+            </p>
+            <button onclick="hideInfoModal()" class="close-float-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="modal-info-galletitas" onclick="if(event.target.id === 'modal-info-galletitas') hideInfoModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <h3 class="title-font text-4xl text-[#E6B1B9] mb-6 text-center">Galletitas Snack</h3>
+            <p class="text-lg leading-relaxed">
+                Les quiero hablar de mis galletitas, que también son muy especiales. Están hechas 100% con ingredientes naturales, sin colorantes, sin conservantes, sin sal y sin azúcar. Todo casero y pensado para nuestras mascotas.<br><br>
+                Sabores que ya tengo:<br>
+                • Pollo<br>
+                • Hígado<br><br>
+                Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
+                Son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.<br><br>
+                También las uso como topping en las tortas de cumpleaños y budines.<br><br>
+                ¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz!
+            </p>
+            <button onclick="hideInfoModal()" class="close-float-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="modal-info-tortas" onclick="if(event.target.id === 'modal-info-tortas') hideInfoModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <h3 class="title-font text-4xl text-[#E6B1B9] mb-6 text-center">Tortas de Cumpleaños</h3>
+            <p class="text-lg leading-relaxed">
+                Ahora les cuento sobre las tortas de cumpleaños que hago por encargo para sus peludos. Son 100% naturales, sin colorantes, sin conservantes, sin sal y sin azúcar. Todo hecho con ingredientes reales y mucho cariño.<br><br>
+                Puedo hacerlas del sabor que prefieran (pollo, hígado, o combinaciones con brócoli, zanahoria, batata, etc.). En el topping les pongo gomitas de colágeno y galletitas para que queden hermosas y ricas.<br><br>
+                Son ideales para celebrar el cumple de su mascota, una adopción o cualquier momento especial.<br><br>
+                Si querés una torta personalizada para tu peludo, me escribís por privado con la fecha y el sabor que te gustaría, y coordinamos todo por WhatsApp.<br><br>
+                ¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz!
+            </p>
+            <button onclick="hideInfoModal()" class="close-float-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('hidden');
+        }
+      
+        function openComoComprar() {
+            document.getElementById('panel-comprar').classList.remove('hidden');
+            document.getElementById('panel-encargo').classList.add('hidden');
+        }
+      
+        function openComoEncargo() {
+            document.getElementById('panel-encargo').classList.remove('hidden');
+            document.getElementById('panel-comprar').classList.add('hidden');
+        }
+      
+        function closeSubPanels() {
+            document.getElementById('panel-comprar').classList.add('hidden');
+            document.getElementById('panel-encargo').classList.add('hidden');
+        }
+      
+        function openCatalogPanel() {
+            closeSubPanels();
+            document.getElementById('catalog-panel').classList.remove('hidden');
+        }
+      
+        function closeCatalogPanel() {
+            document.getElementById('catalog-panel').classList.add('hidden');
+        }
+      
+        function showStefiModal() {
+            document.getElementById('modal-stefi').classList.remove('hidden');
+            document.getElementById('modal-stefi').classList.add('flex');
+        }
+      
+        function hideStefiModal() {
+            const modal = document.getElementById('modal-stefi');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+      
+        function showStefiModal2() {
+            document.getElementById('modal-stefi2').classList.remove('hidden');
+            document.getElementById('modal-stefi2').classList.add('flex');
+        }
+      
+        function hideStefiModal2() {
+            const modal = document.getElementById('modal-stefi2');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+      
+        function hideComprarPanel() {
+            const panel = document.getElementById('panel-comprar-producto');
+            panel.classList.add('hidden');
+            panel.classList.remove('flex');
+        }
+      
+        function buyWithOption(productName) {
+            window.selectedProduct = productName;
+            document.getElementById('panel-comprar-producto').classList.remove('hidden');
+            document.getElementById('panel-comprar-producto').classList.add('flex');
+        }
+      
+        function sendToWhatsApp(option) {
+            const product = window.selectedProduct || "Producto";
+            const message = `Hola Stefy! Quiero comprar: ${product} - ${option}. ¿Me podés ayudar con el pedido?`;
+            const whatsappUrl = `https://wa.me/5492396512544?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            hideComprarPanel();
+        }
+      
+        function openInfoGomitas() {
+            document.getElementById('modal-info-gomitas').classList.remove('hidden');
+            document.getElementById('modal-info-gomitas').classList.add('flex');
+        }
+      
+        function openInfoGalletitas() {
+            document.getElementById('modal-info-galletitas').classList.remove('hidden');
+            document.getElementById('modal-info-galletitas').classList.add('flex');
+        }
+      
+        function openInfoTortas() {
+            document.getElementById('modal-info-tortas').classList.remove('hidden');
+            document.getElementById('modal-info-tortas').classList.add('flex');
+        }
+      
+        function hideInfoModal() {
+            document.querySelectorAll('#modal-info-gomitas, #modal-info-galletitas, #modal-info-tortas').forEach(modal => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            });
+        }
+      
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                document.getElementById('sidebar').classList.add('hidden');
+                closeSubPanels();
+                hideComprarPanel();
+                closeCatalogPanel();
+                hideStefiModal();
+                hideStefiModal2();
+                hideInfoModal();
+            }
+        });
+    </script>
+
+    <!-- === SCRIPT FIREBASE PARA OPINIONES === -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyB6Ew3Iqjsu3Ry7YxYuzq5BuwiLriaoT0U",
+          authDomain: "estrella-opiniones.firebaseapp.com",
+          projectId: "estrella-opiniones",
+          storageBucket: "estrella-opiniones.firebasestorage.app",
+          messagingSenderId: "1020784892646",
+          appId: "1:1020784892646:web:b1432dc740bd20ed27f927",
+          measurementId: "G-251RMXQCHE"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.guardarComentario = async function () {
+          const estrellas = parseInt(document.getElementById("rating").value);
+          const comentario = document.getElementById("comentario").value.trim();
+
+          if (!comentario) {
+            alert("Por favor escribí un comentario");
+            return;
+          }
+
+          try {
+            await addDoc(collection(db, "comentarios"), {
+              estrellas: estrellas,
+              comentario: comentario,
+              fecha: new Date().toISOString()
+            });
+
+            alert("¡Gracias! Tu opinión se guardó correctamente ❤️");
+            document.getElementById("comentario").value = "";
+            cargarComentarios();
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Hubo un problema al enviar el comentario. Intentalo de nuevo.");
+          }
+        };
+
+        async function cargarComentarios() {
+          const contenedor = document.getElementById("listaComentarios");
+          contenedor.innerHTML = "<p class='text-center text-gray-500 py-8'>Cargando opiniones...</p>";
+
+          try {
+            const querySnapshot = await getDocs(collection(db, "comentarios"));
+            contenedor.innerHTML = "";
+
+            if (querySnapshot.empty) {
+              contenedor.innerHTML = "<p class='text-center text-gray-500 py-12'>Aún no hay opiniones. ¡Sé el primero en dejar tu comentario!</p>";
+              return;
+            }
+
+            querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              const fecha = new Date(data.fecha).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+              contenedor.innerHTML += `
+                <div class="comentario-card">
+                  <div class="estrellas">${"⭐".repeat(data.estrellas)}</div>
+                  <p class="text-[#222222] leading-relaxed text-lg">${data.comentario}</p>
+                  <p class="text-xs text-gray-400 mt-6 text-right">${fecha}</p>
+                </div>
+              `;
+            });
+          } catch (error) {
+            console.error("Error al cargar comentarios:", error);
+            contenedor.innerHTML = "<p class='text-center text-red-500 py-8'>Error al cargar los comentarios. Intenta recargar la página.</p>";
+          }
+        }
+
+        // Cargar comentarios al iniciar la página
+        window.addEventListener('load', () => {
+            console.log('%c✅ Candy Paws - Sistema de opiniones con Firebase cargado correctamente', 'color:#E6B1B9; font-weight:700;');
+            cargarComentarios();
+        });
+    </script>
+
+</body>
+</html>
