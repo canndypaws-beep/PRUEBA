@@ -315,6 +315,113 @@
             font-family: 'Luckiest Guy', cursive;
             letter-spacing: 0.02em;
         }
+
+        /* === ESTRELLAS ELEGANTES === */
+        .star-compacto {
+            color: #FFD700 !important;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.3));
+        }
+        
+        .star-compacto:hover {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        .star {
+            color: #FFD700;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.3));
+        }
+        
+        .star:hover {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        .star.active {
+            color: #FFD700 !important;
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+        }
+
+        /* === CUADRO COMPACTO === */
+        .comentarios-section {
+            background: white;
+            margin-top: 0;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .comentarios-section .max-w-6xl {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* === MODAL ANIMACIÓN === */
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* === AVATAR SELECTOR === */
+        .avatar-option {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .avatar-option.selected img {
+            border-color: #0097b2 !important;
+            box-shadow: 0 0 12px rgba(0, 151, 178, 0.4);
+        }
+
+        .avatar-option:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 12px rgba(0, 151, 178, 0.3);
+        }
+
+        /* === CLOSEBUTTON === */
+        .close-float-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #E6B1B9;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .close-float-btn:hover {
+            background: #D38F98;
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* === SPACING === */
+        .h-8 { height: 2rem; }
+        .h-12 { height: 3rem; }
+
+        @media (max-width: 768px) {
+            .h-8 { height: 1rem; }
+            .h-12 { height: 1.5rem; }
+        }
     </style>
 </head>
 <body class="hero-bg bg-black text-white min-h-screen overflow-x-hidden">
@@ -690,23 +797,46 @@
         </div>
     </section>
 
-    <!-- === SECCIÓN DE OPINIONES Y ESTRELLAS === -->
-    <section class="comentarios-section">
-        <div class="max-w-4xl mx-auto px-4">
+    <!-- === SECCIÓN DE OPINIONES COMPACTA === -->
+    <section class="comentarios-section py-16">
+        <div class="max-w-6xl mx-auto px-4">
             <h2 class="lucky-font text-5xl md:text-6xl text-center text-[#222222] mb-16">Opiniones de nuestras familias peludas</h2>
 
-            <!-- Input compacto -->
-            <div class="text-center mb-12">
-                <div class="inline-block bg-white rounded-full shadow-lg border-2 border-gray-200 hover:border-[#0097b2] transition-all duration-300 cursor-pointer px-8 py-4" onclick="abrirModalComentario()">
-                    <div class="flex items-center gap-3">
-                        <span class="text-[#222222] font-medium text-lg">Dejanos un mensaje ♥</span>
-                        <i class="fa-solid fa-plus text-[#0097b2] text-xl"></i>
+            <!-- CUADRO COMPACTO ESTILO MERCADO LIBRE -->
+            <div onclick="abrirModalComentario()" class="mx-auto mb-16 max-w-2xl cursor-pointer">
+                <div class="bg-white border-2 border-gray-200 rounded-3xl p-6 md:p-8 shadow-md hover:shadow-2xl hover:border-[#0097b2] transition-all duration-300 transform hover:-translate-y-1" style="font-family: 'Inter', sans-serif;">
+                    <h3 class="text-lg md:text-xl font-semibold text-[#222222] mb-6 text-center">¿Qué te pareció Candy Paws?</h3>
+
+                    <div class="space-y-4">
+                        <!-- Nombre pequeño (solo display) -->
+                        <div class="text-center">
+                            <p class="text-sm font-medium text-[#666]">Tu nombre (opcional)</p>
+                            <p class="text-xs text-[#999] mt-1">Se rellenará en el formulario</p>
+                        </div>
+
+                        <!-- Estrellas inline -->
+                        <div class="flex items-center justify-center gap-3">
+                            <span class="text-sm font-medium text-[#666]">Calificación:</span>
+                            <div class="flex gap-1.5">
+                                <i class="fa-solid fa-star text-2xl" style="color: #FFD700;"></i>
+                                <i class="fa-solid fa-star text-2xl" style="color: #FFD700;"></i>
+                                <i class="fa-solid fa-star text-2xl" style="color: #FFD700;"></i>
+                                <i class="fa-solid fa-star text-2xl" style="color: #FFD700;"></i>
+                                <i class="fa-solid fa-star text-2xl" style="color: #FFD700;"></i>
+                            </div>
+                        </div>
+
+                        <!-- Campo opinión bajo (abre modal) -->
+                        <div class="flex items-center gap-2 mt-6 pt-4 border-t border-gray-200">
+                            <i class="fa-solid fa-plus text-[#0097b2] text-lg"></i>
+                            <span class="text-[#222222] font-medium text-sm">Dejanos un mensaje ♥</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Comentario Destacado (TOP) -->
-            <div id="comentarioDestacado" class="mt-12"></div>
+            <div id="comentarioDestacado" class="mt-12 max-w-2xl mx-auto"></div>
 
             <!-- Ver más comentarios -->
             <div class="text-center mt-8">
@@ -717,83 +847,11 @@
             </div>
         </div>
     </section>
+
+    <!-- ESPACIO ELEGANTE -->
+    <div class="h-8 md:h-12"></div>
 
     <img src="portadasiete.png" alt="Portada 7" class="section-image">
-            <div class="bg-white w-full md:max-w-2xl mx-auto border border-gray-200 rounded-2xl p-6 md:p-8 shadow-lg" style="font-family: 'Inter', sans-serif; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);">
-                <h3 class="text-2xl font-light text-[#222222] mb-8 text-center tracking-wide">¿Qué te pareció Candy Paws?</h3>
-
-                <div class="space-y-6">
-                    <!-- Campo de Nombre -->
-                    <div>
-                        <label class="block text-[#222222] font-medium mb-3 text-base">Tu nombre</label>
-                        <input type="text" id="nombre" placeholder="Tu nombre (opcional)"
-                               class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#E6B1B9] focus:border-transparent transition-all duration-300">
-                    </div>
-
-                    <!-- Selector de Avatar -->
-                    <div>
-                        <label class="block text-[#222222] font-medium mb-4 text-base">Elegí el avatar de tu mascota</label>
-                        <div id="avatar-selector" class="flex justify-center gap-4">
-                            <div class="avatar-option" data-avatar="perro.png">
-                                <img src="perro.png" alt="Perro" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#E6B1B9] cursor-pointer transition-all duration-300">
-                            </div>
-                            <div class="avatar-option" data-avatar="gato.png">
-                                <img src="gato.png" alt="Gato" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#E6B1B9] cursor-pointer transition-all duration-300">
-                            </div>
-                            <div class="avatar-option" data-avatar="conejo.png">
-                                <img src="conejo.png" alt="Conejo" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#E6B1B9] cursor-pointer transition-all duration-300">
-                            </div>
-                            <div class="avatar-option selected" data-avatar="hamster.png">
-                                <img src="hamster.png" alt="Hamster" class="w-16 h-16 rounded-full border-3 border-[#E6B1B9] cursor-pointer transition-all duration-300">
-                            </div>
-                        </div>
-                        <input type="hidden" id="avatar" value="hamster.png">
-                    </div>
-
-                    <!-- Estrellas Clickeables -->
-                    <div>
-                        <label class="block text-[#222222] font-medium mb-4 text-base">Calificá la experiencia de tu mascota</label>
-                        <div id="star-rating" class="flex justify-center gap-3">
-                            <i class="star fa-solid fa-star" data-value="1"></i>
-                            <i class="star fa-solid fa-star" data-value="2"></i>
-                            <i class="star fa-solid fa-star" data-value="3"></i>
-                            <i class="star fa-solid fa-star" data-value="4"></i>
-                            <i class="star fa-solid fa-star" data-value="5"></i>
-                        </div>
-                        <input type="hidden" id="rating" value="5">
-                    </div>
-
-                    <!-- Campo de Comentario -->
-                    <div>
-                        <label class="block text-[#222222] font-medium mb-3 text-base">Dejanos un mensaje ♥</label>
-                        <textarea id="comentario" placeholder="Compartí tu experiencia con los snacks, tortas o la atención de Stefi..."
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#E6B1B9] focus:border-transparent resize-vertical min-h-[120px] transition-all duration-300"></textarea>
-                    </div>
-
-                    <!-- reCAPTCHA -->
-                    <div class="flex justify-center">
-                        <div class="g-recaptcha" data-sitekey="6LcWAsQsAAAAAE77NP8tHGW3DwknCVnEC_z9bTAe"></div>
-                    </div>
-
-                    <!-- Botón Enviar -->
-                    <button onclick="guardarComentario()" class="w-full bg-gradient-to-r from-[#7FD8BE] to-[#6BC8AA] hover:from-[#6BC8AA] hover:to-[#5AB894] text-[#222222] font-semibold text-lg py-4 rounded-xl border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] tracking-wide">
-                        Enviar mi opinión ❤️
-                    </button>
-                </div>
-            </div>
-
-            <!-- Comentario Destacado (TOP) -->
-            <div id="comentarioDestacado" class="mt-12"></div>
-
-            <!-- Ver más comentarios -->
-            <div class="text-center mt-8">
-                <button onclick="abrirPanelComentarios()" class="inline-flex items-center gap-3 bg-white hover:bg-gray-50 text-[#222222] font-semibold py-4 px-8 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 group">
-                    <span>Ver más comentarios</span>
-                    <i class="fa-solid fa-chevron-down text-xl animate-bounce group-hover:animate-pulse"></i>
-                </button>
-            </div>
-        </div>
-    </section>
 
     <!-- SECCIÓN REDES -->
     <section id="redes" class="relative py-12 overlay-dark text-center">
@@ -864,67 +922,65 @@
         </div>
     </div>
 
-    <!-- MODAL FLOTANTE DE COMENTARIO -->
-    <div id="modal-comentario" onclick="cerrarModalComentario()" class="hidden fixed inset-0 bg-black/70 z-[160] flex items-center justify-center p-4">
-        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-8 animate-fadeInUp">
-            <h3 class="text-2xl font-light text-[#222222] text-center mb-8 tracking-wide">Dejanos tu experiencia</h3>
+    <!-- MODAL FLOTANTE DE COMENTARIO - NUEVO DISEÑO -->
+    <div id="modal-comentario" onclick="if(event.target.id === 'modal-comentario') cerrarModalComentario()" class="hidden fixed inset-0 bg-black/70 z-[160] flex items-center justify-center p-4 overflow-y-auto">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-fadeInUp my-auto">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-[#0097b2] to-[#0078a0] p-6 flex justify-between items-center">
+                <h3 class="text-2xl font-semibold text-white">Dejanos tu opinión ❤️</h3>
+                <button onclick="cerrarModalComentario()" class="bg-white/20 hover:bg-white/30 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold transition-all duration-300">
+                    ✕
+                </button>
+            </div>
 
-            <div class="space-y-6">
-                <!-- Campo nombre -->
+            <!-- Contenido del modal -->
+            <div class="p-8 space-y-6">
+                <!-- Nombre -->
                 <div>
-                    <label class="block text-[#222222] font-medium mb-3 text-base">Tu nombre</label>
-                    <input type="text" id="nombre" placeholder="Tu nombre (opcional)"
-                           class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#0097b2] focus:border-transparent transition-all duration-300">
+                    <label class="block text-[#222222] font-semibold mb-2 text-sm">Tu nombre (opcional)</label>
+                    <input type="text" id="nombre" placeholder="Tu nombre"
+                           class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#0097b2] focus:border-[#0097b2] transition-all duration-300">
                 </div>
 
-                <!-- Selector de avatar -->
+                <!-- Avatar selector -->
                 <div>
-                    <label class="block text-[#222222] font-medium mb-4 text-base">Elegí el avatar de tu mascota</label>
+                    <label class="block text-[#222222] font-semibold mb-3 text-sm">Avatar de tu mascota</label>
                     <div id="avatar-selector" class="flex justify-center gap-4">
                         <div class="avatar-option" data-avatar="avataruno.png">
-                            <img src="avataruno.png" alt="Avatar 1" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
+                            <img src="avataruno.png" alt="Avatar 1" class="w-14 h-14 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
                         </div>
                         <div class="avatar-option" data-avatar="avatardos.png">
-                            <img src="avatardos.png" alt="Avatar 2" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
+                            <img src="avatardos.png" alt="Avatar 2" class="w-14 h-14 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
                         </div>
                         <div class="avatar-option" data-avatar="avatartres.png">
-                            <img src="avatartres.png" alt="Avatar 3" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
+                            <img src="avatartres.png" alt="Avatar 3" class="w-14 h-14 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
                         </div>
                         <div class="avatar-option selected" data-avatar="avatarcuatro.png">
-                            <img src="avatarcuatro.png" alt="Avatar 4" class="w-16 h-16 rounded-full border-3 border-[#0097b2] cursor-pointer transition-all duration-300">
+                            <img src="avatarcuatro.png" alt="Avatar 4" class="w-14 h-14 rounded-full border-3 border-[#0097b2] cursor-pointer transition-all duration-300">
                         </div>
                     </div>
                     <input type="hidden" id="avatar" value="avatarcuatro.png">
                 </div>
 
-                <!-- Estrellas con SVG -->
+                <!-- Estrellas -->
                 <div>
-                    <label class="block text-[#222222] font-medium mb-4 text-base">Calificá la experiencia de tu mascota</label>
-                    <div id="star-rating" class="flex justify-center gap-3">
-                        <svg class="star w-8 h-8 cursor-pointer transition-all duration-300" data-value="1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                        </svg>
-                        <svg class="star w-8 h-8 cursor-pointer transition-all duration-300" data-value="2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                        </svg>
-                        <svg class="star w-8 h-8 cursor-pointer transition-all duration-300" data-value="3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                        </svg>
-                        <svg class="star w-8 h-8 cursor-pointer transition-all duration-300" data-value="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                        </svg>
-                        <svg class="star w-8 h-8 cursor-pointer transition-all duration-300" data-value="5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-                        </svg>
+                    <label class="block text-[#222222] font-semibold mb-3 text-sm">Tu calificación</label>
+                    <div id="star-rating" class="flex justify-center gap-2">
+                        <i class="star fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="1" style="color: #FFD700;"></i>
+                        <i class="star fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="2" style="color: #FFD700;"></i>
+                        <i class="star fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="3" style="color: #FFD700;"></i>
+                        <i class="star fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="4" style="color: #FFD700;"></i>
+                        <i class="star fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="5" style="color: #FFD700;"></i>
                     </div>
                     <input type="hidden" id="rating" value="5">
                 </div>
 
-                <!-- Campo de comentario -->
+                <!-- Textarea grande -->
                 <div>
-                    <label class="block text-[#222222] font-medium mb-3 text-base">Tu mensaje</label>
-                    <textarea id="comentario" placeholder="Compartí tu experiencia con los snacks, tortas o la atención de Stefi..."
-                              class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#0097b2] focus:border-transparent resize-vertical min-h-[120px] transition-all duration-300"></textarea>
+                    <label class="block text-[#222222] font-semibold mb-2 text-sm">Tu mensaje</label>
+                    <textarea id="comentario" placeholder="Compartí tu experiencia con Candy Paws..."
+                              class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#0097b2] focus:border-[#0097b2] resize-none min-h-[160px] transition-all duration-300"></textarea>
+                    <p class="text-xs text-gray-500 mt-1">Mínimo 10 caracteres, máximo 500</p>
                 </div>
 
                 <!-- reCAPTCHA -->
@@ -933,7 +989,7 @@
                 </div>
 
                 <!-- Botón enviar -->
-                <button onclick="guardarComentario()" class="w-full bg-[#0097b2] hover:bg-[#007a9a] text-white font-semibold text-lg py-4 rounded-xl border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] tracking-wide">
+                <button onclick="guardarComentario()" class="w-full bg-[#0097b2] hover:bg-[#007a9a] active:bg-[#005f7a] text-white font-semibold text-lg py-4 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] tracking-wide">
                     Enviar comentario
                 </button>
             </div>
@@ -1098,6 +1154,41 @@
             modal.classList.remove('flex');
         }
       
+        // === FUNCIONES DEL MODAL DE COMENTARIOS ===
+        function abrirModalComentario() {
+            document.getElementById('modal-comentario').classList.remove('hidden');
+            document.getElementById('modal-comentario').classList.add('flex');
+            // Establecer foco en el campo de nombre
+            setTimeout(() => document.getElementById('nombre').focus(), 100);
+        }
+      
+        function cerrarModalComentario() {
+            document.getElementById('modal-comentario').classList.add('hidden');
+            document.getElementById('modal-comentario').classList.remove('flex');
+        }
+
+        // === PANEL DE COMENTARIOS ===
+        function abrirPanelComentarios() {
+            const panel = document.getElementById('panel-comentarios');
+            panel.classList.remove('hidden');
+            panel.classList.add('flex');
+            cargarComentariosCompletos();
+        }
+
+        function cerrarPanelComentarios() {
+            const panel = document.getElementById('panel-comentarios');
+            panel.classList.add('hidden');
+            panel.classList.remove('flex');
+        }
+
+        // === CERRAR CON TECLA ESC ===
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                cerrarModalComentario();
+                cerrarPanelComentarios();
+            }
+        });
+      
         function hideComprarPanel() {
             const panel = document.getElementById('panel-comprar-producto');
             panel.classList.add('hidden');
@@ -1151,19 +1242,6 @@
                 hideInfoModal();
                 closeLoginModal();
             }
-        });
-
-        // === FUNCIONES DE AVATAR ===
-        const avatarOptions = document.querySelectorAll('.avatar-option');
-        avatarOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                // Remover selección anterior
-                avatarOptions.forEach(opt => opt.classList.remove('selected'));
-                // Agregar selección nueva
-                option.classList.add('selected');
-                // Actualizar valor oculto
-                document.getElementById('avatar').value = option.dataset.avatar;
-            });
         });
 
         // === FUNCIONES DEL PANEL DE COMENTARIOS ===
@@ -1346,7 +1424,7 @@
                 // Limpiar formulario
                 document.getElementById("nombre").value = "";
                 // Resetear avatar al primero (avatarcuatro)
-                avatarOptions.forEach(opt => opt.classList.remove('selected'));
+                document.querySelectorAll('.avatar-option').forEach(opt => opt.classList.remove('selected'));
                 document.querySelector('[data-avatar="avatarcuatro.png"]').classList.add('selected');
                 document.getElementById('avatar').value = "avatarcuatro.png";
                 document.getElementById("comentario").value = "";
@@ -1648,6 +1726,17 @@
         window.loginUser = function() {
             // Login eliminado
         };
+
+        // === SELECTOR DE AVATARES ===
+        const avatarOptions = document.querySelectorAll('.avatar-option');
+        avatarOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                avatarOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                document.getElementById('avatar').value = option.dataset.avatar;
+            });
+        });
 
         // === CARGAR AL INICIAR ===
         window.addEventListener('load', () => {
