@@ -96,6 +96,7 @@
             white-space: normal;
             display: -webkit-box;
             -webkit-line-clamp: 2;
+            line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -225,10 +226,25 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(230, 177, 185, 0.3);
         }
-        .likes-count {
-            font-weight: 500;
-            color: #666;
-            font-size: 0.9rem;
+        .avatar-option.selected img {
+            border-color: #E6B1B9 !important;
+            transform: scale(1.1);
+            box-shadow: 0 0 0 3px rgba(230, 177, 185, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.4s ease-out;
         }
         .star {
             font-size: 2.2rem;
@@ -292,7 +308,6 @@
             border-color: #E6B1B9;
             background: white;
         }
-        }
         #comentario::placeholder {
             color: #999;
         }
@@ -315,35 +330,9 @@
             </div>
             <div class="flex items-center gap-3">
                 <img src="logoweb.png" alt="Logo Candy Paws" class="h-12 w-auto object-contain">
-                <button onclick="openLoginModal()" class="px-6 py-3 bg-[#E6B1B9] text-black font-semibold rounded-3xl hover:bg-[#D38F98] transition-colors">
-                    <i class="fa-solid fa-user"></i> Login
-                </button>
             </div>
         </div>
     </header>
-
-    <!-- MODAL LOGIN -->
-    <div id="modal-login" onclick="if(event.target.id === 'modal-login') closeLoginModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center p-4">
-        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-md w-full rounded-3xl p-10 shadow-2xl">
-            <h2 class="title-font text-3xl text-[#E6B1B9] mb-8 text-center">Acceder</h2>
-            <div class="space-y-6">
-                <div>
-                    <label class="block text-[#222222] font-semibold mb-2">Email</label>
-                    <input type="email" id="login-email" class="w-full px-4 py-3 border-3 border-[#222222] rounded-lg focus:outline-none" placeholder="tu@email.com">
-                </div>
-                <div>
-                    <label class="block text-[#222222] font-semibold mb-2">Contraseña</label>
-                    <input type="password" id="login-password" class="w-full px-4 py-3 border-3 border-[#222222] rounded-lg focus:outline-none" placeholder="••••••••">
-                </div>
-                <button onclick="loginUser()" class="w-full bg-[#E6B1B9] hover:bg-[#D38F98] text-white font-bold py-3 rounded-3xl">
-                    Acceder
-                </button>
-                <button onclick="closeLoginModal()" class="w-full text-[#E6B1B9] font-semibold py-2">
-                    Cancelar
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- SIDEBAR -->
     <div id="sidebar" class="hidden fixed inset-y-0 left-0 w-80 bg-white text-black shadow-2xl z-[100] sidebar flex flex-col overflow-y-auto">
@@ -707,7 +696,7 @@
     <section class="comentarios-section">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="lucky-font text-5xl md:text-6xl text-center text-[#222222] mb-16">Opiniones de nuestras familias peludas</h2>
-            
+
             <!-- Formulario -->
             <div class="bg-white w-full md:max-w-2xl mx-auto border border-gray-200 rounded-2xl p-6 md:p-8 shadow-lg" style="font-family: 'Inter', sans-serif; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);">
                 <h3 class="text-2xl font-light text-[#222222] mb-8 text-center tracking-wide">¿Qué te pareció Candy Paws?</h3>
@@ -718,6 +707,26 @@
                         <label class="block text-[#222222] font-medium mb-3 text-base">Tu nombre</label>
                         <input type="text" id="nombre" placeholder="Tu nombre (opcional)"
                                class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#E6B1B9] focus:border-transparent transition-all duration-300">
+                    </div>
+
+                    <!-- Selector de Avatar -->
+                    <div>
+                        <label class="block text-[#222222] font-medium mb-4 text-base">Elegí el avatar de tu mascota</label>
+                        <div id="avatar-selector" class="flex justify-center gap-4">
+                            <div class="avatar-option" data-avatar="perro.png">
+                                <img src="perro.png" alt="Perro" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#E6B1B9] cursor-pointer transition-all duration-300">
+                            </div>
+                            <div class="avatar-option" data-avatar="gato.png">
+                                <img src="gato.png" alt="Gato" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#E6B1B9] cursor-pointer transition-all duration-300">
+                            </div>
+                            <div class="avatar-option" data-avatar="conejo.png">
+                                <img src="conejo.png" alt="Conejo" class="w-16 h-16 rounded-full border-3 border-gray-300 hover:border-[#E6B1B9] cursor-pointer transition-all duration-300">
+                            </div>
+                            <div class="avatar-option selected" data-avatar="hamster.png">
+                                <img src="hamster.png" alt="Hamster" class="w-16 h-16 rounded-full border-3 border-[#E6B1B9] cursor-pointer transition-all duration-300">
+                            </div>
+                        </div>
+                        <input type="hidden" id="avatar" value="hamster.png">
                     </div>
 
                     <!-- Estrellas Clickeables -->
@@ -752,8 +761,16 @@
                 </div>
             </div>
 
-            <!-- Lista de comentarios -->
-            <div id="listaComentarios" class="space-y-8"></div>
+            <!-- Comentario Destacado (TOP) -->
+            <div id="comentarioDestacado" class="mt-12"></div>
+
+            <!-- Ver más comentarios -->
+            <div class="text-center mt-8">
+                <button onclick="abrirPanelComentarios()" class="inline-flex items-center gap-3 bg-white hover:bg-gray-50 text-[#222222] font-semibold py-4 px-8 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 group">
+                    <span>Ver más comentarios</span>
+                    <i class="fa-solid fa-chevron-down text-xl animate-bounce group-hover:animate-pulse"></i>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -802,6 +819,29 @@
             <p class="text-center text-xs text-gray-500">Candy Paws © 2025/2026 – Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- PANEL FLOTANTE DE COMENTARIOS -->
+    <div id="panel-comentarios" onclick="cerrarPanelComentarios()" class="hidden fixed inset-0 bg-black/70 z-[150] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden animate-fadeInUp">
+            <!-- Header con imagen -->
+            <div class="relative">
+                <img src="portadaocho.png" alt="Portada Comentarios" class="w-full h-48 object-cover">
+                <button onclick="cerrarPanelComentarios()" class="absolute top-4 right-4 bg-white/90 hover:bg-white text-[#222222] w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-lg transition-all duration-300">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-8 max-h-[60vh] overflow-y-auto">
+                <h3 class="text-3xl font-light text-[#222222] text-center mb-8 tracking-wide">Todas las opiniones</h3>
+
+                <!-- Lista completa de comentarios -->
+                <div id="listaComentariosCompleta" class="space-y-6">
+                    <!-- Los comentarios se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- MODALES STEFI -->
     <div id="modal-stefi" onclick="if(event.target.id === 'modal-stefi') hideStefiModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
@@ -1016,27 +1056,37 @@
             }
         });
 
-        // Funciones de login
-        function openLoginModal() {
-            document.getElementById('modal-login').classList.remove('hidden');
+        // === FUNCIONES DE AVATAR ===
+        const avatarOptions = document.querySelectorAll('.avatar-option');
+        avatarOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remover selección anterior
+                avatarOptions.forEach(opt => opt.classList.remove('selected'));
+                // Agregar selección nueva
+                option.classList.add('selected');
+                // Actualizar valor oculto
+                document.getElementById('avatar').value = option.dataset.avatar;
+            });
+        });
+
+        // === FUNCIONES DEL PANEL DE COMENTARIOS ===
+        function abrirPanelComentarios() {
+            document.getElementById('panel-comentarios').classList.remove('hidden');
+            document.getElementById('panel-comentarios').classList.add('flex');
+            cargarComentariosCompletos();
         }
 
-        function closeLoginModal() {
-            document.getElementById('modal-login').classList.add('hidden');
+        function cerrarPanelComentarios() {
+            document.getElementById('panel-comentarios').classList.add('hidden');
+            document.getElementById('panel-comentarios').classList.remove('flex');
         }
 
-        function loginUser() {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            if (!email || !password) {
-                alert("Por favor completa los campos");
-                return;
+        // Cerrar con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                cerrarPanelComentarios();
             }
-            
-            alert("Función de login en desarrollo");
-            closeLoginModal();
-        }
+        });
     </script>
 
     <!-- === SCRIPT FIREBASE ACTUALIZADO === -->
@@ -1133,13 +1183,14 @@
 
         // === GUARDAR COMENTARIO ===
         window.guardarComentario = async function () {
-            console.log('🔥 guardarComentario() llamado');
-            
+            console.log('🔥 guardarComentario() iniciado');
+
             const nombre = document.getElementById("nombre").value.trim() || "Anónimo";
+            const avatar = document.getElementById("avatar").value;
             const estrellas = parseInt(document.getElementById("rating").value);
             const comentario = document.getElementById("comentario").value.trim();
-            
-            console.log('📝 Datos del formulario:', { nombre, estrellas, comentario: comentario.substring(0, 50) + '...' });
+
+            console.log('📝 Datos del formulario:', { nombre, avatar, estrellas, comentario: comentario.substring(0, 50) + '...' });
 
             // Validaciones
             if (!isValidText(comentario)) {
@@ -1171,6 +1222,7 @@
                 console.log('📤 Enviando a Firebase...');
                 await addDoc(collection(db, "comentarios"), {
                     nombre: nombre.substring(0, 50),
+                    avatar: avatar,
                     estrellas: estrellas,
                     comentario: comentario.substring(0, 500),
                     likes: 0,
@@ -1185,6 +1237,10 @@
                 
                 // Limpiar formulario
                 document.getElementById("nombre").value = "";
+                // Resetear avatar al primero (hamster)
+                avatarOptions.forEach(opt => opt.classList.remove('selected'));
+                document.querySelector('[data-avatar="hamster.png"]').classList.add('selected');
+                document.getElementById('avatar').value = "hamster.png";
                 document.getElementById("comentario").value = "";
                 currentRating = 5;
                 updateStars();
@@ -1265,45 +1321,52 @@
                     return b.fecha - a.fecha;
                 });
 
-                comentariosArray.forEach((data, index) => {
-                    const fecha = new Date(data.fecha).toLocaleDateString('es-AR', { 
-                        day: 'numeric', 
-                        month: 'long', 
-                        year: 'numeric' 
+                // Mostrar solo el comentario TOP
+                if (comentariosArray.length > 0) {
+                    const comentarioTop = comentariosArray[0];
+                    const fecha = new Date(comentarioTop.fecha).toLocaleDateString('es-AR', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
                     });
 
-                    const destacado = index === 0 && data.likes > 0 ? 
-                        '<span class="absolute top-3 right-3 bg-[#FFD700] text-[#222222] px-3 py-1 rounded-full text-xs font-bold">⭐ TOP</span>' : '';
-
-                    contenedor.innerHTML += `
-                        <div class="comentario-card bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ${index === 0 && data.likes > 0 ? 'border-[#FFD700] border-2 shadow-lg' : ''}" style="margin-bottom: 20px;">
-                            ${destacado}
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 bg-[#E6B1B9] rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                                    ${data.nombre.charAt(0).toUpperCase()}
+                    const contenedorDestacado = document.getElementById("comentarioDestacado");
+                    contenedorDestacado.innerHTML = `
+                        <div class="bg-gradient-to-r from-[#E6B1B9] to-[#D38F98] rounded-2xl p-8 shadow-xl text-white">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="relative">
+                                    <img src="${comentarioTop.avatar}" alt="Avatar" class="w-16 h-16 rounded-full border-4 border-white shadow-lg">
+                                    <div class="absolute -top-2 -right-2 bg-[#FFD700] text-[#222222] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+                                        ⭐
+                                    </div>
                                 </div>
                                 <div>
-                                    <div class="font-semibold text-[#222222] text-base">${data.nombre}</div>
-                                    <div class="flex items-center gap-1">
-                                        ${Array.from({length: 5}, (_, i) => i < data.estrellas ?
-                                            '<i class="fa-solid fa-star text-[#FFD700] text-sm"></i>' :
-                                            '<i class="fa-regular fa-star text-gray-300 text-sm"></i>').join('')}
+                                    <h4 class="text-2xl font-bold">${comentarioTop.nombre}</h4>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <div class="flex gap-1">
+                                            ${Array.from({length: 5}, (_, i) => i < comentarioTop.estrellas ?
+                                                '<i class="fa-solid fa-star text-[#FFD700]"></i>' :
+                                                '<i class="fa-regular fa-star text-white/70"></i>').join('')}
+                                        </div>
+                                        <span class="text-white/90 font-medium">TOP comentario</span>
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-[#555] leading-relaxed text-base mb-4 font-light" style="line-height: 1.6;">${data.comentario}</p>
+                            <blockquote class="text-lg leading-relaxed italic mb-4">
+                                "${comentarioTop.comentario}"
+                            </blockquote>
                             <div class="flex items-center justify-between">
-                                <div class="likes-section flex items-center gap-3">
-                                    <button onclick="darLike('${data.id}')" class="btn-like bg-[#f8f9fa] hover:bg-[#E6B1B9] text-[#666] hover:text-white px-4 py-2 rounded-lg border border-gray-200 hover:border-[#E6B1B9] transition-all duration-300 font-medium text-sm">
-                                        <i class="fa-solid fa-heart mr-2"></i>Me gusta
+                                <div class="flex items-center gap-2">
+                                    <button onclick="darLike('${comentarioTop.id}')" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2">
+                                        <i class="fa-solid fa-heart"></i>
+                                        <span>${comentarioTop.likes} likes</span>
                                     </button>
-                                    <span class="likes-count text-[#666] font-medium text-sm">${data.likes} likes</span>
                                 </div>
-                                <p class="fecha-comentario text-[#999] text-sm font-light">${fecha}</p>
+                                <span class="text-white/80 text-sm">${fecha}</span>
                             </div>
                         </div>
                     `;
-                });
+                }
             } catch (error) {
                 console.error("❌ Error al cargar comentarios:", error);
                 console.error("Código de error:", error.code);
@@ -1369,6 +1432,88 @@
             }
         }
 
+        // === CARGAR COMENTARIOS COMPLETOS (PANEL FLOTANTE) ===
+        window.cargarComentariosCompletos = async function() {
+            console.log('🔥 cargarComentariosCompletos() iniciado');
+            
+            try {
+                const q = query(collection(db, "comentarios"), orderBy("fecha", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                const contenedor = document.getElementById("listaComentariosCompleta");
+                contenedor.innerHTML = "";
+                
+                if (querySnapshot.empty) {
+                    contenedor.innerHTML = `
+                        <div class="text-center py-12">
+                            <i class="fa-solid fa-comments text-6xl text-gray-300 mb-4"></i>
+                            <p class="text-gray-500 text-lg">Aún no hay comentarios. ¡Sé el primero en opinar!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let comentariosArray = [];
+                querySnapshot.forEach((docSnap) => {
+                    comentariosArray.push({
+                        id: docSnap.id,
+                        ...docSnap.data()
+                    });
+                });
+                
+                // Ordenar por likes descendente, luego por fecha descendente
+                comentariosArray.sort((a, b) => {
+                    if (b.likes !== a.likes) return b.likes - a.likes;
+                    return b.fecha - a.fecha;
+                });
+                
+                comentariosArray.forEach((data) => {
+                    const fecha = new Date(data.fecha).toLocaleDateString('es-AR', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+                    
+                    contenedor.innerHTML += `
+                        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 mb-4">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="${data.avatar || 'hamster.png'}" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-[#E6B1B9]">
+                                <div>
+                                    <div class="font-semibold text-[#222222] text-base">${data.nombre}</div>
+                                    <div class="flex items-center gap-1">
+                                        ${Array.from({length: 5}, (_, i) => i < data.estrellas ?
+                                            '<i class="fa-solid fa-star text-[#FFD700] text-sm"></i>' :
+                                            '<i class="fa-regular fa-star text-gray-300 text-sm"></i>').join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[#555] leading-relaxed text-base mb-4 font-light" style="line-height: 1.6;">${data.comentario}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="likes-section flex items-center gap-3">
+                                    <button onclick="darLike('${data.id}')" class="btn-like bg-[#f8f9fa] hover:bg-[#E6B1B9] text-[#666] hover:text-white px-4 py-2 rounded-lg border border-gray-200 hover:border-[#E6B1B9] transition-all duration-300 font-medium text-sm">
+                                        <i class="fa-solid fa-heart mr-2"></i>Me gusta
+                                    </button>
+                                    <span class="likes-count text-[#666] font-medium text-sm">${data.likes} likes</span>
+                                </div>
+                                <p class="fecha-comentario text-[#999] text-sm font-light">${fecha}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                console.log('✅ Comentarios completos cargados:', querySnapshot.size);
+                
+            } catch (error) {
+                console.error('❌ Error cargando comentarios completos:', error);
+                document.getElementById("listaComentariosCompleta").innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fa-solid fa-exclamation-triangle text-6xl text-red-300 mb-4"></i>
+                        <p class="text-red-500 text-lg">Error al cargar comentarios</p>
+                    </div>
+                `;
+            }
+        };
+
         // === SISTEMA DE LIKES ===
         window.darLike = async function (commentId) {
             try {
@@ -1385,24 +1530,15 @@
 
         // === FUNCIONES DE LOGIN (placeholder) ===
         window.openLoginModal = function() {
-            document.getElementById('modal-login').classList.remove('hidden');
+            // Login eliminado
         };
 
         window.closeLoginModal = function() {
-            document.getElementById('modal-login').classList.add('hidden');
+            // Login eliminado
         };
 
         window.loginUser = function() {
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            if (!email || !password) {
-                alert("Por favor completa los campos");
-                return;
-            }
-            
-            alert("Función de login en desarrollo");
-            closeLoginModal();
+            // Login eliminado
         };
 
         // === CARGAR AL INICIAR ===
