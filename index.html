@@ -168,28 +168,36 @@
             padding: 80px 20px;
         }
         .comentario-card {
-            border: 3px solid #222222;
-            box-shadow: 6px 6px 0 #222222;
-            border-radius: 16px;
-            background: white;
-            padding: 24px;
-            margin-bottom: 24px;
-            position: relative;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .comentario-card:nth-child(1) { animation-delay: 0.1s; }
+        .comentario-card:nth-child(2) { animation-delay: 0.2s; }
+        .comentario-card:nth-child(3) { animation-delay: 0.3s; }
+        .comentario-card:nth-child(4) { animation-delay: 0.4s; }
+        .comentario-card:nth-child(5) { animation-delay: 0.5s; }
+
         .estrellas {
-            font-size: 2rem;
+            font-size: 1.2rem;
             color: #FFD700;
             margin-bottom: 12px;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
         }
         .nombre-comentario {
-            font-weight: 700;
+            font-weight: 600;
             color: #222222;
             font-size: 1.1rem;
             margin-bottom: 8px;
         }
         .fecha-comentario {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #888;
             margin-top: 8px;
         }
@@ -200,76 +208,89 @@
             margin-top: 12px;
         }
         .btn-like {
-            background: #E6B1B9;
-            border: 2px solid #222222;
-            color: white;
-            padding: 6px 12px;
+            background: #f8f9fa;
+            border: 1px solid #e1e5e9;
+            color: #666;
+            padding: 8px 16px;
             border-radius: 20px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.9rem;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .btn-like:hover {
-            background: #D38F98;
-            transform: scale(1.05);
+            background: #E6B1B9;
+            color: white;
+            border-color: #E6B1B9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(230, 177, 185, 0.3);
         }
         .likes-count {
-            font-weight: 700;
-            color: #222222;
-            font-size: 0.95rem;
+            font-weight: 500;
+            color: #666;
+            font-size: 0.9rem;
         }
         .star {
-            font-size: 2rem;
-            color: white;
+            font-size: 2.2rem;
+            color: #e0e0e0;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 0 #cccccc, 2px 2px 0 #aaaaaa;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #cccccc;
+            border-radius: 4px;
+            padding: 4px;
+            background: white;
         }
         .star:hover {
-            transform: scale(1.1);
-            text-shadow: 1px 1px 0 #cccccc, 2px 2px 0 #aaaaaa, 0 0 8px rgba(255, 215, 0, 0.5);
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
         }
-        .star.inactive {
-            color: white;
-            text-shadow: 1px 1px 0 #cccccc, 2px 2px 0 #aaaaaa;
+        .star.active {
+            color: #FFD700;
+            border-color: #FFD700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
         }
         #comentario {
             width: 100%;
             padding: 16px;
-            border: 2px solid #222222;
+            border: 1px solid #e1e5e9;
             border-radius: 12px;
             font-family: 'Inter', sans-serif;
             resize: vertical;
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: #222222 !important;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fafbfc;
         }
         #comentario:focus {
             border-color: #E6B1B9;
             box-shadow: 0 0 0 3px rgba(230, 177, 185, 0.1);
-            transform: scale(1.01);
+            background: white;
+            transform: translateY(-1px);
         }
         #comentario:hover {
             border-color: #E6B1B9;
+            background: white;
         }
         #nombre {
             width: 100%;
             padding: 12px 16px;
-            border: 2px solid #222222;
+            border: 1px solid #e1e5e9;
             border-radius: 12px;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             color: #222222 !important;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fafbfc;
         }
         #nombre:focus {
             border-color: #E6B1B9;
             box-shadow: 0 0 0 3px rgba(230, 177, 185, 0.1);
-            transform: scale(1.01);
+            background: white;
+            transform: translateY(-1px);
         }
         #nombre:hover {
             border-color: #E6B1B9;
+            background: white;
         }
         }
         #comentario::placeholder {
@@ -688,42 +709,44 @@
             <h2 class="lucky-font text-5xl md:text-6xl text-center text-[#222222] mb-16">Opiniones de nuestras familias peludas</h2>
             
             <!-- Formulario -->
-            <div class="bg-white w-full md:w-auto border-2 border-[#222222] rounded-lg p-6 md:p-8 shadow-xl mb-16 mx-auto max-w-full md:max-w-none" style="font-family: 'Inter', sans-serif; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);">
-                <h3 class="title-font text-2xl text-[#222222] mb-8 text-center">¿Qué te pareció Candy Paws?</h3>
-                
-                <div class="space-y-8">
+            <div class="bg-white w-full md:max-w-2xl mx-auto border border-gray-200 rounded-2xl p-6 md:p-8 shadow-lg" style="font-family: 'Inter', sans-serif; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);">
+                <h3 class="text-2xl font-light text-[#222222] mb-8 text-center tracking-wide">¿Qué te pareció Candy Paws?</h3>
+
+                <div class="space-y-6">
                     <!-- Campo de Nombre -->
                     <div>
-                        <label class="block text-[#222222] font-semibold mb-3 text-lg">Tu nombre</label>
-                        <input type="text" id="nombre" placeholder="Tu nombre (opcional)" 
-                               class="w-full px-4 py-3 border-2 border-[#222222] rounded-lg text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#E6B1B9]">
+                        <label class="block text-[#222222] font-medium mb-3 text-base">Tu nombre</label>
+                        <input type="text" id="nombre" placeholder="Tu nombre (opcional)"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#E6B1B9] focus:border-transparent transition-all duration-300">
                     </div>
 
                     <!-- Estrellas Clickeables -->
                     <div>
-                        <label class="block text-[#222222] font-semibold mb-4 text-lg">Calificá la experiencia de tu mascota</label>
-                        <div id="star-rating" class="flex justify-center gap-2">
-                            <i class="star fa-regular fa-star" data-value="1"></i>
-                            <i class="star fa-regular fa-star" data-value="2"></i>
-                            <i class="star fa-regular fa-star" data-value="3"></i>
-                            <i class="star fa-regular fa-star" data-value="4"></i>
-                            <i class="star fa-regular fa-star" data-value="5"></i>
+                        <label class="block text-[#222222] font-medium mb-4 text-base">Calificá la experiencia de tu mascota</label>
+                        <div id="star-rating" class="flex justify-center gap-3">
+                            <i class="star fa-solid fa-star" data-value="1"></i>
+                            <i class="star fa-solid fa-star" data-value="2"></i>
+                            <i class="star fa-solid fa-star" data-value="3"></i>
+                            <i class="star fa-solid fa-star" data-value="4"></i>
+                            <i class="star fa-solid fa-star" data-value="5"></i>
                         </div>
                         <input type="hidden" id="rating" value="5">
                     </div>
 
                     <!-- Campo de Comentario -->
                     <div>
-                        <label class="block text-[#222222] font-semibold mb-3 text-lg">Dejanos un mensaje ♥</label>
-                        <textarea id="comentario" placeholder="Escribí tu experiencia con los snacks, tortas o la atención de Stefi..." 
-                                  class="w-full px-4 py-3 border-2 border-[#222222] rounded-lg text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#E6B1B9] resize-vertical min-h-[120px]"></textarea>
+                        <label class="block text-[#222222] font-medium mb-3 text-base">Dejanos un mensaje ♥</label>
+                        <textarea id="comentario" placeholder="Compartí tu experiencia con los snacks, tortas o la atención de Stefi..."
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#E6B1B9] focus:border-transparent resize-vertical min-h-[120px] transition-all duration-300"></textarea>
                     </div>
 
                     <!-- reCAPTCHA -->
-                    <div class="g-recaptcha" data-sitekey="6LcWAsQsAAAAAE77NP8tHGW3DwknCVnEC_z9bTAe"></div>
+                    <div class="flex justify-center">
+                        <div class="g-recaptcha" data-sitekey="6LcWAsQsAAAAAE77NP8tHGW3DwknCVnEC_z9bTAe"></div>
+                    </div>
 
                     <!-- Botón Enviar -->
-                    <button onclick="guardarComentario()" class="w-full bg-[#7FD8BE] hover:bg-[#6BC8AA] text-[#222222] font-bold text-xl py-4 rounded-3xl border-2 border-[#222222] shadow-[4px_4px_0_#222222] transition-all duration-300 hover:shadow-[6px_6px_0_#222222] hover:scale-[1.02] active:scale-[0.98]">
+                    <button onclick="guardarComentario()" class="w-full bg-gradient-to-r from-[#7FD8BE] to-[#6BC8AA] hover:from-[#6BC8AA] hover:to-[#5AB894] text-[#222222] font-semibold text-lg py-4 rounded-xl border border-gray-200 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] tracking-wide">
                         Enviar mi opinión ❤️
                     </button>
                 </div>
@@ -1061,11 +1084,11 @@
                 const hoverValue = parseInt(star.dataset.value);
                 stars.forEach(s => {
                     if (parseInt(s.dataset.value) <= hoverValue) {
-                        s.style.color = '#FFD700';
-                        s.style.textShadow = '1px 1px 0 #222222, 2px 2px 0 #444444';
+                        s.classList.add('active');
+                        s.classList.remove('inactive');
                     } else {
-                        s.style.color = 'white';
-                        s.style.textShadow = '1px 1px 0 #cccccc, 2px 2px 0 #aaaaaa';
+                        s.classList.remove('active');
+                        s.classList.add('inactive');
                     }
                 });
             });
@@ -1076,13 +1099,11 @@
         function updateStars() {
             stars.forEach(star => {
                 if (parseInt(star.dataset.value) <= currentRating) {
+                    star.classList.add('active');
                     star.classList.remove('inactive');
-                    star.style.color = '#FFD700';
-                    star.style.textShadow = '1px 1px 0 #222222, 2px 2px 0 #444444';
                 } else {
+                    star.classList.remove('active');
                     star.classList.add('inactive');
-                    star.style.color = 'white';
-                    star.style.textShadow = '1px 1px 0 #cccccc, 2px 2px 0 #aaaaaa';
                 }
             });
         }
@@ -1173,8 +1194,20 @@
                 cargarComentarios();
                 
             } catch (error) {
-                console.error("❌ Error al guardar:", error);
-                alert("Hubo un problema al guardar tu comentario. Intenta de nuevo.");
+                console.error("❌ Error al guardar comentario:", error);
+                console.error("Código de error:", error.code);
+                console.error("Mensaje de error:", error.message);
+                console.error("Detalles completos:", error);
+
+                // Mostrar error más específico al usuario
+                let mensajeError = "Hubo un problema al guardar tu comentario.";
+                if (error.code === 'permission-denied') {
+                    mensajeError = "Error de permisos. Verifica la configuración de Firebase.";
+                } else if (error.code === 'unavailable') {
+                    mensajeError = "Servicio no disponible. Revisa tu conexión a internet.";
+                }
+
+                alert(mensajeError + " Revisa la consola para más detalles.");
             } finally {
                 // Restaurar botón
                 btn.innerHTML = originalText;
@@ -1206,7 +1239,10 @@
             contenedor.innerHTML = "<p class='text-center text-gray-500 py-8'>Cargando opiniones...</p>";
 
             try {
-                const q = query(collection(db, "comentarios"), orderBy("likes", "desc"), orderBy("fecha", "desc"));
+                // 🔥 SOLUCIÓN: Cambiar query para evitar índice compuesto
+                // Antes: orderBy("likes", "desc"), orderBy("fecha", "desc") - requiere índice
+                // Ahora: solo orderBy("fecha", "desc") - funciona sin índice
+                const q = query(collection(db, "comentarios"), orderBy("fecha", "desc"));
                 const querySnapshot = await getDocs(q);
                 contenedor.innerHTML = "";
 
@@ -1240,24 +1276,96 @@
                         '<span class="absolute top-3 right-3 bg-[#FFD700] text-[#222222] px-3 py-1 rounded-full text-xs font-bold">⭐ TOP</span>' : '';
 
                     contenedor.innerHTML += `
-                        <div class="comentario-card ${index === 0 && data.likes > 0 ? 'border-[#FFD700] border-4 shadow-[8px_8px_0_#FFD700]' : ''}">
+                        <div class="comentario-card bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ${index === 0 && data.likes > 0 ? 'border-[#FFD700] border-2 shadow-lg' : ''}" style="margin-bottom: 20px;">
                             ${destacado}
-                            <div class="nombre-comentario">👤 ${data.nombre}</div>
-                            <div class="estrellas">${"⭐".repeat(data.estrellas)}</div>
-                            <p class="text-[#222222] leading-relaxed text-lg">${data.comentario}</p>
-                            <div class="likes-section">
-                                <button onclick="darLike('${data.id}')" class="btn-like">
-                                    👍 Me gusta
-                                </button>
-                                <span class="likes-count">${data.likes} likes</span>
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-[#E6B1B9] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                    ${data.nombre.charAt(0).toUpperCase()}
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-[#222222] text-base">${data.nombre}</div>
+                                    <div class="flex items-center gap-1">
+                                        ${Array.from({length: 5}, (_, i) => i < data.estrellas ?
+                                            '<i class="fa-solid fa-star text-[#FFD700] text-sm"></i>' :
+                                            '<i class="fa-regular fa-star text-gray-300 text-sm"></i>').join('')}
+                                    </div>
+                                </div>
                             </div>
-                            <p class="fecha-comentario">${fecha}</p>
+                            <p class="text-[#555] leading-relaxed text-base mb-4 font-light" style="line-height: 1.6;">${data.comentario}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="likes-section flex items-center gap-3">
+                                    <button onclick="darLike('${data.id}')" class="btn-like bg-[#f8f9fa] hover:bg-[#E6B1B9] text-[#666] hover:text-white px-4 py-2 rounded-lg border border-gray-200 hover:border-[#E6B1B9] transition-all duration-300 font-medium text-sm">
+                                        <i class="fa-solid fa-heart mr-2"></i>Me gusta
+                                    </button>
+                                    <span class="likes-count text-[#666] font-medium text-sm">${data.likes} likes</span>
+                                </div>
+                                <p class="fecha-comentario text-[#999] text-sm font-light">${fecha}</p>
+                            </div>
                         </div>
                     `;
                 });
             } catch (error) {
-                console.error("Error al cargar comentarios:", error);
-                contenedor.innerHTML = "<p class='text-center text-red-500 py-8'>Error al cargar los comentarios.</p>";
+                console.error("❌ Error al cargar comentarios:", error);
+                console.error("Código de error:", error.code);
+                console.error("Mensaje:", error.message);
+
+                // 🔥 SOLUCIÓN: Fallback si falla la query ordenada
+                console.log("🔄 Intentando cargar sin ordenar como fallback...");
+                contenedor.innerHTML = "<p class='text-center text-orange-500 py-8'>Error al ordenar comentarios. Cargando sin ordenar...</p>";
+
+                try {
+                    // Intentar cargar sin orderBy como fallback
+                    const querySnapshot = await getDocs(collection(db, "comentarios"));
+                    contenedor.innerHTML = "";
+
+                    if (querySnapshot.empty) {
+                        contenedor.innerHTML = "<p class='text-center text-gray-500 py-12'>Aún no hay opiniones. ¡Sé el primero en dejar tu comentario!</p>";
+                        return;
+                    }
+
+                    // Mostrar comentarios sin ordenar
+                    querySnapshot.forEach((docSnap) => {
+                        const data = docSnap.data();
+                        const fecha = new Date(data.fecha).toLocaleDateString('es-AR', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        });
+
+                        contenedor.innerHTML += `
+                            <div class="comentario-card bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300" style="margin-bottom: 20px;">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-10 h-10 bg-[#E6B1B9] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                        ${data.nombre.charAt(0).toUpperCase()}
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-[#222222] text-base">${data.nombre}</div>
+                                        <div class="flex items-center gap-1">
+                                            ${Array.from({length: 5}, (_, i) => i < data.estrellas ?
+                                                '<i class="fa-solid fa-star text-[#FFD700] text-sm"></i>' :
+                                                '<i class="fa-regular fa-star text-gray-300 text-sm"></i>').join('')}
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-[#555] leading-relaxed text-base mb-4 font-light" style="line-height: 1.6;">${data.comentario}</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="likes-section flex items-center gap-3">
+                                        <button onclick="darLike('${docSnap.id}')" class="btn-like bg-[#f8f9fa] hover:bg-[#E6B1B9] text-[#666] hover:text-white px-4 py-2 rounded-lg border border-gray-200 hover:border-[#E6B1B9] transition-all duration-300 font-medium text-sm">
+                                            <i class="fa-solid fa-heart mr-2"></i>Me gusta
+                                        </button>
+                                        <span class="likes-count text-[#666] font-medium text-sm">${data.likes || 0} likes</span>
+                                    </div>
+                                    <p class="fecha-comentario text-[#999] text-sm font-light">${fecha}</p>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    console.log("✅ Comentarios cargados exitosamente con fallback");
+                } catch (fallbackError) {
+                    console.error("❌ Error incluso en fallback:", fallbackError);
+                    contenedor.innerHTML = "<p class='text-center text-red-500 py-8'>Error crítico al cargar comentarios. Revisa la configuración de Firebase.</p>";
+                }
             }
         }
 
