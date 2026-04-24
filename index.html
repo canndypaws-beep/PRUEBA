@@ -1,14 +1,15 @@
+
+Copiar
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Candy Paws - Snacks, gomitas, galletitas y tortas 100% naturales para tu mascota. Hechos con amor por Stefi.">
     <title>Candy Paws • Snacks & Tortas para Mascotas</title>
-    <!-- FAVICON -->
     <link rel="icon" href="logoweb.png" type="image/png">
-    <!-- FUENTES -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Antonio:wght@400;500;700&family=Glacial+Indifference:wght@400;700&display=swap" rel="stylesheet">
-    <!-- FONT AWESOME -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Luckiest+Guy&family=Antonio:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -17,17 +18,10 @@
             --soft-pink: #F2D6DB;
             --dark: #222222;
             --light: #F7F6F7;
+            --green-btn: #83d7a0;
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; overflow-x: hidden; }
         body {
             font-family: 'Inter', sans-serif;
             background-image: url('fondoweb.png');
@@ -41,230 +35,149 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.35);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.35);
             pointer-events: none;
             z-index: 1;
         }
-        /* BANNER */
+ 
+        /* ── BANNER ── */
         .banner {
             background: var(--light);
             padding: 12px 20px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             position: sticky;
             top: 0;
             z-index: 100;
             border-bottom: 3px solid var(--primary);
         }
+        .banner-left {
+            position: absolute;
+            left: 20px;
+        }
         .banner-title {
             font-family: 'Luckiest Guy', cursive;
-            font-size: 24px;
-            color: var(--primary-dark);
-            flex: 1;
-            text-align: center;
+            font-size: 26px;
+            color: #222222;
             font-weight: 700;
             letter-spacing: 1px;
+            text-align: center;
         }
         .banner-logo {
-            width: 45px;
-            height: 45px;
+            width: 45px; height: 45px;
             border-radius: 50%;
             object-fit: cover;
-            background: var(--light);
             border: 2px solid var(--primary);
-        }
-        .banner-login {
-            background: var(--primary);
-            color: var(--dark);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .banner-login:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+            position: absolute;
+            right: 20px;
         }
         @media (max-width: 480px) {
-            .banner {
-                padding: 10px 15px;
-            }
-            .banner-title {
-                font-size: 20px;
-            }
-            .banner-login {
-                padding: 8px 15px;
-                font-size: 13px;
-            }
+            .banner { padding: 10px 15px; }
+            .banner-title { font-size: 20px; }
         }
-        /* MENÚ LATERAL */
+ 
+        /* ── SIDEBAR ── */
         .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            z-index: 99;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none; z-index: 99;
         }
-        .overlay.active {
-            display: block;
-        }
+        .overlay.active { display: block; }
         .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 280px;
-            height: 100vh;
+            position: fixed; left: 0; top: 0;
+            width: 280px; height: 100vh;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--dark);
-            padding: 20px;
-            z-index: 100;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px; z-index: 100;
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
             overflow-y: auto;
-            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 2px 0 20px rgba(0,0,0,0.3);
             transform: translateX(-100%);
         }
-        .sidebar.active {
-            transform: translateX(0);
-        }
+        .sidebar.active { transform: translateX(0); }
         .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; padding-bottom: 20px;
             border-bottom: 1px solid rgba(34,34,34,0.2);
         }
-        .sidebar-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Luckiest Guy', cursive;
-            font-size: 18px;
-            font-weight: 700;
-        }
-        .sidebar-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .sidebar-menu {
-            list-style: none;
-        }
-        .sidebar-menu li {
-            margin-bottom: 15px;
-        }
+        .sidebar-title { display: flex; align-items: center; gap: 10px; font-family: 'Luckiest Guy', cursive; font-size: 18px; font-weight: 700; }
+        .sidebar-logo { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { margin-bottom: 15px; }
         .sidebar-menu button, .sidebar-menu a {
-            width: 100%;
-            background: rgba(255,255,255,0.25);
-            color: var(--dark);
-            border: none;
-            padding: 12px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: left;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            text-decoration: none;
-            display: block;
+            width: 100%; background: rgba(255,255,255,0.25); color: var(--dark);
+            border: none; padding: 12px 15px; border-radius: 8px; cursor: pointer;
+            text-align: left; font-size: 15px; transition: all 0.3s ease;
+            font-weight: 500; text-decoration: none; display: block;
         }
         .sidebar-menu button:hover, .sidebar-menu a:hover {
-            background: rgba(255,255,255,0.4);
-            transform: translateX(5px);
+            background: rgba(255,255,255,0.4); transform: translateX(5px);
         }
-        /* CURTAINS & MODALS */
+ 
+        /* ── CURTAINS ── */
         .curtain {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            max-width: 420px;
-            height: 100vh;
+            position: fixed; top: 0; right: -100%;
+            width: 100%; max-width: 420px; height: 100vh;
             background: var(--light);
-            padding: 30px 20px;
-            overflow-y: auto;
+            padding: 30px 20px 80px; overflow-y: auto;
             z-index: 110;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: right 0.4s cubic-bezier(0.4,0,0.2,1);
             box-shadow: -5px 0 25px rgba(0,0,0,0.25);
         }
-        .curtain.active {
-            right: 0;
+        .curtain.active { right: 0; }
+        .curtain-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid var(--primary); }
+        .curtain-title { font-family: 'Luckiest Guy', cursive; color: var(--primary-dark); font-size: 22px; }
+        .curtain-close { background: none; border: none; font-size: 32px; cursor: pointer; color: var(--dark); }
+ 
+        /* ── PORTADAS FULL WIDTH ── */
+        .portada-full-wrap {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            line-height: 0;
         }
-        .curtain-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--primary);
+        .portada-full-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
-        .curtain-title {
-            font-family: 'Luckiest Guy', cursive;
-            color: var(--primary-dark);
-            font-size: 22px;
-        }
-        .curtain-close {
-            background: none;
-            border: none;
-            font-size: 32px;
-            cursor: pointer;
-            color: var(--dark);
-        }
-        /* CONTAINER */
+        /* Portadas 1 y 2 sin margen entre sí */
+        .portada-no-margin { margin: 0 !important; }
+        .portada-spacer { margin: 30px 0; }
+ 
+        /* ── CONTAINER ── */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
             position: relative;
             z-index: 2;
         }
-        .portada-full {
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            height: auto;
-            margin-top: 25px;
-            margin-bottom: 25px;
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-        }
-        /* PRESENTACIÓN */
+ 
+        /* ── PRESENTACIÓN STEFI ── */
         .presentation-section {
             position: relative;
             margin: 50px 0;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
         }
-        .presentation-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid var(--light);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        /* Clickable hint area above image */
+        .presentation-hint-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
-            transition: transform 0.4s ease;
+            margin-bottom: 0;
         }
-        .presentation-image:hover {
-            transform: scale(1.06);
-        }
-        .presentation-hint {
-            position: absolute;
-            bottom: 18px;
-            left: 50%;
-            transform: translateX(-50%);
+        .presentation-hint-text {
             background: rgba(247,246,247,0.95);
             color: var(--dark);
             padding: 6px 18px;
@@ -273,12 +186,93 @@
             font-weight: 600;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             white-space: nowrap;
-            z-index: 5;
+            margin-bottom: 4px;
         }
-        /* TÍTULOS SECCIÓN */
+        .presentation-arrows {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .presentation-arrows span {
+            font-size: 22px;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            animation: bounce 1.6s infinite;
+            line-height: 1;
+        }
+        .presentation-arrows span:nth-child(2) { animation-delay: 0.2s; }
+        .presentation-arrows span:nth-child(3) { animation-delay: 0.4s; }
+        .presentation-image {
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--light);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.4s ease;
+            display: block;
+        }
+        .presentation-image:hover { transform: scale(1.06); }
+ 
+        /* ── STEFI TEXT MODAL (floating bottom-close) ── */
+        .stefi-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .stefi-overlay.active { display: flex; }
+        .stefi-modal-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 28px 80px;
+            max-width: 560px;
+            width: 92%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            font-family: 'Antonio', sans-serif;
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--dark);
+            margin: 20px;
+        }
+        .stefi-modal-box h2 {
+            font-family: 'Luckiest Guy', cursive;
+            color: var(--primary-dark);
+            font-size: 22px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 3px solid var(--primary);
+        }
+        .stefi-close-btn {
+            position: sticky;
+            bottom: -80px;
+            left: 0; right: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .stefi-close-btn button {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .stefi-close-btn button:hover { background: #444; }
+ 
+        /* ── SECTION TITLES ── */
         .section-title {
-            font-family: 'Anton', sans-serif;
-            font-size: 34px;
+            font-family: 'Luckiest Guy', cursive;
+            font-size: clamp(18px, 4vw, 34px);
             color: #ffffff !important;
             text-align: center;
             margin: 60px 0 35px;
@@ -287,453 +281,370 @@
             white-space: nowrap;
         }
         .section-subtitle {
-            font-family: 'Anton', sans-serif;
-            font-size: 22px;
+            font-family: 'Luckiest Guy', cursive;
+            font-size: clamp(16px, 3vw, 22px);
             color: #ffffff;
             text-align: center;
-            margin: 20px 0 45px;
+            margin: 20px 0 10px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
             white-space: nowrap;
         }
-        /* GRID PRODUCTOS */
+ 
+        /* ── PRODUCTS GRID — always 2 columns ── */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin: 40px 0;
+            gap: 24px;
+            margin: 30px 0 50px;
         }
-        .catalog-modal .products-grid {
+        @media (max-width: 560px) {
+            .products-grid { grid-template-columns: 1fr; gap: 20px; }
+        }
+ 
+        /* ── CATALOG MODAL grid also 2 cols ── */
+        #catalog-content .products-grid {
             grid-template-columns: repeat(2, 1fr);
         }
-        @media (max-width: 768px) {
-            .products-grid, .catalog-modal .products-grid {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
+        @media (max-width: 560px) {
+            #catalog-content .products-grid { grid-template-columns: 1fr; }
         }
-        /* TARJETA PRODUCTO */
+ 
+        /* ── PRODUCT CARD ── */
         .product-card {
             background: rgba(255,255,255,0.98);
             border-radius: 16px;
-            padding: 22px;
+            padding: 20px;
             box-shadow: 0 12px 35px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
             border: 3px solid var(--dark);
             text-align: center;
         }
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.3);
-        }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 45px rgba(0,0,0,0.3); }
         .product-image {
-            width: 100%;
-            height: 240px;
+            width: 100%; height: 200px;
             object-fit: cover;
             border: 3px solid var(--dark);
             border-radius: 12px;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             transition: transform 0.4s ease;
         }
-        .product-card:hover .product-image {
-            transform: scale(1.04);
-        }
-        .product-name {
-            font-family: 'Antonio', sans-serif;
-            font-size: 20px;
-            color: var(--dark) !important;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-        .product-status {
-            font-size: 13.5px;
-            color: #666;
-            margin-bottom: 14px;
-            font-style: italic;
-        }
-        .product-price {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .price-original {
-            text-decoration: line-through;
-            color: #888;
-            font-size: 15px;
-        }
-        .price-sale {
-            font-family: 'Luckiest Guy', cursive;
-            font-size: 24px;
-            color: var(--dark) !important;
-            font-weight: 700;
-        }
-        .product-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .btn {
-            padding: 12px 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-buy {
-            background: #83d7a0;
-            color: var(--dark);
-        }
-        .btn-buy:hover {
-            background: #6bc48a;
-            transform: translateY(-2px);
-        }
-        .btn-info {
-            background: var(--dark);
-            color: white;
-        }
-        .btn-info:hover {
-            background: #444;
-            transform: translateY(-2px);
-        }
-        .buy-options {
-            display: none;
-            margin-top: 14px;
-            gap: 12px;
-            grid-template-columns: 1fr 1fr;
-        }
-        .buy-options.active {
-            display: grid;
-        }
-        /* COMENTARIOS */
-        .comments-section {
-            background: rgba(255,255,255,0.98);
-            border-radius: 16px;
-            padding: 45px 30px;
-            margin: 60px 0;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-        }
-        .comments-title {
-            font-family: 'Luckiest Guy', cursive;
-            font-size: 30px;
-            color: var(--dark);
-            text-align: center;
-            margin-bottom: 35px;
-        }
-        .avatars-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 22px;
-            margin-bottom: 30px;
-            justify-items: center;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        @media (max-width: 768px) {
-            .avatars-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        .avatar-option {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .avatar-img {
-            width: 82px;
-            height: 82px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid transparent;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .avatar-option.selected .avatar-img {
-            border-color: var(--primary);
-            transform: scale(1.1);
-            box-shadow: 0 0 0 8px rgba(230,177,185,0.4);
-        }
-        .stars-rating {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .star {
-            font-size: 44px;
-            cursor: pointer;
-            color: #ddd;
-            transition: all 0.25s ease;
-        }
-        .star:hover, .star.active {
-            color: #FFD700;
-            transform: scale(1.2);
-        }
-        .featured-comment {
-            background: var(--soft-pink);
-            padding: 25px;
-            border-radius: 14px;
-            margin: 35px 0;
-            border-left: 6px solid var(--primary);
-        }
-        /* SOCIAL */
-        .social-section {
-            background: rgba(255,255,255,0.98);
-            padding: 45px 30px;
-            border-radius: 16px;
-            margin: 60px 0;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-        }
-        .social-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: scale(1.12);
-        }
-        /* FOOTER */
-        .footer-menu {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            margin-top: 25px;
-        }
-        .footer-btn {
-            background: var(--primary);
-            color: var(--dark);
-            border: none;
-            padding: 11px 18px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .footer-btn:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-        /* WHATSAPP */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 62px;
-            height: 62px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 20px rgba(37,211,102,0.5);
-            z-index: 500;
-            transition: all 0.3s ease;
-        }
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-        }
-        /* ANIMACIÓN FLECHA */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        .bounce {
-            animation: bounce 1.6s infinite;
-        }
-        /* MODAL TEXT RESPONSIVE */
-        #stefy-modal div[style*="font-family"], #stefy-modal-2 div[style*="font-family"] {
-            font-family: 'Glacial Indifference', sans-serif !important;
-            font-size: 16px;
-            line-height: 1.75;
-        }
-        @media (max-width: 480px) {
-            #stefy-modal div[style*="font-family"], #stefy-modal-2 div[style*="font-family"] {
-                font-size: 15.5px;
-            }
-        }
-        /* SOCIAL TITLE */
-        .social-section h2 {
-            font-size: 22px;
-            line-height: 1.3;
-            margin-bottom: 30px;
-        }
-        /* FOOTER BANNER BLANCO */
-        footer.footer {
-            background: #ffffff;
-            position: relative;
-            z-index: 10;
-        }
+        .product-card:hover .product-image { transform: scale(1.03); }
+        .product-name { font-family: 'Antonio', sans-serif; font-size: 18px; color: var(--dark) !important; margin-bottom: 6px; font-weight: 700; }
+        .product-status { font-size: 13px; color: #666; margin-bottom: 10px; font-style: italic; }
+        .product-price { display: flex; gap: 12px; justify-content: center; align-items: center; margin-bottom: 16px; }
+        .price-original { text-decoration: line-through; color: #888; font-size: 14px; }
+        .price-sale { font-family: 'Luckiest Guy', cursive; font-size: 22px; color: var(--dark) !important; }
+        .product-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn { padding: 10px 12px; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.3s ease; }
+        .btn-buy { background: var(--green-btn); color: #222; }
+        .btn-buy:hover { background: #6bc98a; transform: translateY(-2px); }
+        .btn-info { background: var(--dark); color: white; }
+        .btn-info:hover { background: #444; transform: translateY(-2px); }
+        .buy-options { display: none; margin-top: 12px; gap: 10px; grid-template-columns: 1fr 1fr; }
+        .buy-options.active { display: grid; }
+        .btn-retirar { background: var(--dark); color: white; border: none; border-radius: 8px; padding: 10px 12px; cursor: pointer; font-size: 13px; font-weight: 400; letter-spacing: 0.3px; transition: all 0.3s; }
+        .btn-retirar:hover { background: #444; }
+        .btn-domicilio { background: var(--green-btn); color: #222; border: none; border-radius: 8px; padding: 10px 12px; cursor: pointer; font-size: 13px; font-weight: 400; letter-spacing: 0.3px; transition: all 0.3s; }
+        .btn-domicilio:hover { background: #6bc98a; }
+ 
+        /* ── COMMENTS ── */
+        .comments-section { background: rgba(255,255,255,0.98); border-radius: 16px; padding: 45px 30px; margin: 60px 0; box-shadow: 0 15px 40px rgba(0,0,0,0.25); }
+        .comments-title { font-family: 'Luckiest Guy', cursive; font-size: 28px; color: var(--dark); text-align: center; margin-bottom: 35px; }
+        .avatars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-bottom: 30px; justify-items: center; max-width: 400px; margin-left: auto; margin-right: auto; }
+        .avatar-option { cursor: pointer; transition: all 0.3s ease; }
+        .avatar-img { width: 78px; height: 78px; border-radius: 50%; object-fit: cover; border: 4px solid transparent; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .avatar-option.selected .avatar-img { border-color: var(--primary); transform: scale(1.1); box-shadow: 0 0 0 8px rgba(230,177,185,0.4); }
+        .stars-rating { display: flex; gap: 14px; justify-content: center; margin: 20px 0; }
+        .star { font-size: 40px; cursor: pointer; color: #ddd; transition: all 0.25s ease; }
+        .star:hover, .star.active { color: #FFD700; transform: scale(1.2); }
+        .featured-comment { background: var(--soft-pink); padding: 25px; border-radius: 14px; margin: 35px 0; border-left: 6px solid var(--primary); }
+ 
+        /* ── SOCIAL ── */
+        .social-icons { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        .social-icon { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; border: 4px solid var(--primary); transition: all 0.3s ease; }
+        .social-icon:hover { transform: scale(1.12); }
+ 
+        /* ── FOOTER ── */
+        .footer-menu { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 25px; }
+        .footer-btn { background: var(--primary); color: var(--dark); border: none; padding: 11px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .footer-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+ 
+        /* ── WHATSAPP ── */
+        .whatsapp-btn { position: fixed; bottom: 25px; right: 25px; width: 62px; height: 62px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(37,211,102,0.5); z-index: 500; transition: all 0.3s ease; }
+        .whatsapp-btn:hover { transform: scale(1.1); }
+ 
+        /* ── INFO MODAL ── */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); display: none; z-index: 119; }
+        .modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: white; border-radius: 16px; max-width: 520px; width: 92%; display: none; z-index: 120; max-height: 85vh; overflow-y: auto; }
+        .modal-inner { padding: 30px 28px 80px; position: relative; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 3px solid var(--primary); padding-bottom: 15px; }
+        .modal-title { font-family: 'Luckiest Guy', cursive; color: var(--primary-dark); font-size: 20px; }
+        .modal-close-top { background: none; border: none; font-size: 32px; cursor: pointer; color: var(--dark); }
+        .modal-close-bottom { display: flex; justify-content: center; margin-top: 24px; position: sticky; bottom: 0; }
+        .modal-close-bottom button { background: var(--dark); color: white; border: none; padding: 12px 40px; border-radius: 30px; font-size: 15px; font-weight: 600; cursor: pointer; }
+ 
+        /* ── CATALOG MODAL ── */
+        #catalog-modal { max-width: 1100px; }
+ 
+        /* ── ANIMATIONS ── */
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+        .bounce { animation: bounce 1.6s infinite; }
     </style>
 </head>
 <body>
-    <!-- BANNER -->
-    <header class="banner">
-        <button class="menu-toggle" id="menuToggle" style="background:none;border:none;font-size:30px;cursor:pointer;">
+ 
+<!-- BANNER -->
+<header class="banner">
+    <div class="banner-left">
+        <button class="menu-toggle" id="menuToggle" style="background:none;border:none;font-size:30px;cursor:pointer;color:var(--dark);">
             <i class="fas fa-bars"></i>
         </button>
-        <h1 class="banner-title">CANDY PAWS</h1>
-        <div style="display:flex;gap:15px;align-items:center;">
-            <button class="banner-login" onclick="alert('Login functionality coming soon!')">Login</button>
-            <img src="logoweb.png" alt="Logo" class="banner-logo">
-        </div>
-    </header>
-    <!-- SIDEBAR -->
-    <div class="overlay" id="overlay"></div>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="sidebar-title">
-                <img src="logoweb.png" alt="Logo" class="sidebar-logo">
-                <span>Candy Paws</span>
-            </div>
-            <button class="close-sidebar" id="closeSidebar" style="background:none;border:none;font-size:28px;">←</button>
-        </div>
-        <ul class="sidebar-menu">
-            <li><button onclick="openCurtain('como-comprar')">Cómo Comprar</button></li>
-            <li><button onclick="openCurtain('hacer-encargo')">Cómo hacer un encargue</button></li>
-            <li><button onclick="openCatalogModal()">Ir a la tienda</button></li>
-            <li><a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank">Contacto</a></li>
-            <li><button onclick="scrollToSection('social')">Seguinos en redes</button></li>
-        </ul>
     </div>
-    <!-- CORTINAS -->
-    <div class="curtain" id="curtain-como-comprar">
-        <div class="curtain-header">
-            <h3 class="curtain-title">Cómo Comprar</h3>
-            <button class="curtain-close" onclick="closeCurtain()">×</button>
+    <h1 class="banner-title">CANDY PAWS</h1>
+    <img src="logoweb.png" alt="Logo" class="banner-logo">
+</header>
+ 
+<!-- SIDEBAR -->
+<div class="overlay" id="overlay"></div>
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            <img src="logoweb.png" alt="Logo" class="sidebar-logo">
+            <span>Candy Paws</span>
         </div>
-        <ol style="margin-left:20px;line-height:1.9;">
-            <li>Entrá al catálogo.</li>
-            <li>Elegí el producto que tu mascota necesita.</li>
-            <li>Hacé clic en <strong>Comprar</strong>.</li>
-            <li>Realizá el pago de forma segura.</li>
-            <li>Completá tus datos o mandá mensaje por WhatsApp.</li>
-            <li>¡Listo! Nosotros nos encargamos del resto.</li>
-        </ol>
-        <button onclick="openCatalogModal()" style="width:100%;margin-top:25px;padding:14px;background:var(--primary);color:var(--dark);border:none;border-radius:10px;font-weight:700;">Ver todos los productos</button>
+        <button class="close-sidebar" id="closeSidebar" style="background:none;border:none;font-size:28px;">←</button>
     </div>
-    <div class="curtain" id="curtain-hacer-encargo">
-        <div class="curtain-header">
-            <h3 class="curtain-title">Cómo hacer un encargue</h3>
-            <button class="curtain-close" onclick="closeCurtain()">×</button>
-        </div>
-        <ol style="margin-left:20px;line-height:1.9;">
-            <li>Entrá al catálogo de Tortas.</li>
-            <li>Elegí el producto.</li>
-            <li>Hacé clic en <strong>Hacer pedido</strong>.</li>
-            <li>Pagá la seña del 50%.</li>
-            <li>Completá tus datos o por WhatsApp.</li>
-            <li>¡Listo!</li>
-        </ol>
-        <button onclick="openCatalogModal()" style="width:100%;margin-top:25px;padding:14px;background:var(--primary);color:var(--dark);border:none;border-radius:10px;font-weight:700;">Ver todos los productos</button>
+    <ul class="sidebar-menu">
+        <li><button onclick="openCurtain('como-comprar')">Cómo Comprar</button></li>
+        <li><button onclick="openCurtain('hacer-encargo')">Cómo hacer un encargue</button></li>
+        <li><button onclick="openCatalogModal()">Ir a la tienda</button></li>
+        <li><a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank">Contacto</a></li>
+        <li><button onclick="scrollToSection('social')">Seguinos en redes</button></li>
+    </ul>
+</div>
+ 
+<!-- CORTINAS -->
+<div class="curtain" id="curtain-como-comprar">
+    <div class="curtain-header">
+        <h3 class="curtain-title">Cómo Comprar</h3>
+        <button class="curtain-close" onclick="closeCurtain()">×</button>
     </div>
-    <!-- MODAL OVERLAY -->
-    <div class="modal-overlay" id="modalOverlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);display:none;z-index:119;"></div>
-    <!-- CATÁLOGO MODAL -->
-    <div class="modal" id="catalog-modal" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:30px;border-radius:16px;max-width:1100px;width:92%;max-height:90vh;overflow-y:auto;display:none;z-index:120;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-            <h2 style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);font-size:28px;">Nuestros Productos</h2>
-            <button onclick="closeCatalogModal()" style="background:none;border:none;font-size:32px;cursor:pointer;">×</button>
+    <ol style="margin-left:20px;line-height:1.9;">
+        <li>Entrá al catálogo.</li>
+        <li>Elegí el producto que tu mascota necesita.</li>
+        <li>Hacé clic en <strong>Comprar</strong>.</li>
+        <li>Realizá el pago de forma segura.</li>
+        <li>Completá tus datos o mandá mensaje por WhatsApp.</li>
+        <li>¡Listo! Nosotros nos encargamos del resto.</li>
+    </ol>
+    <button onclick="openCatalogModal()" style="width:100%;margin-top:25px;padding:14px;background:var(--primary);color:var(--dark);border:none;border-radius:10px;font-weight:700;cursor:pointer;">Ver todos los productos</button>
+</div>
+<div class="curtain" id="curtain-hacer-encargo">
+    <div class="curtain-header">
+        <h3 class="curtain-title">Cómo hacer un encargue</h3>
+        <button class="curtain-close" onclick="closeCurtain()">×</button>
+    </div>
+    <ol style="margin-left:20px;line-height:1.9;">
+        <li>Entrá al catálogo de Tortas.</li>
+        <li>Elegí el producto.</li>
+        <li>Hacé clic en <strong>Hacer pedido</strong>.</li>
+        <li>Pagá la seña del 50%.</li>
+        <li>Completá tus datos o por WhatsApp.</li>
+        <li>¡Listo!</li>
+    </ol>
+    <button onclick="openCatalogModal()" style="width:100%;margin-top:25px;padding:14px;background:var(--primary);color:var(--dark);border:none;border-radius:10px;font-weight:700;cursor:pointer;">Ver todos los productos</button>
+</div>
+ 
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="modalOverlay"></div>
+ 
+<!-- CATALOG MODAL -->
+<div class="modal" id="catalog-modal">
+    <div class="modal-inner">
+        <div class="modal-header">
+            <h2 class="modal-title">Nuestros Productos</h2>
+            <button class="modal-close-top" onclick="closeCatalogModal()">×</button>
         </div>
         <div id="catalog-content"></div>
-    </div>
-    <!-- MODAL INFO PRODUCTO -->
-    <div class="modal" id="info-modal" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:35px;border-radius:16px;max-width:520px;width:92%;display:none;z-index:120;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:3px solid var(--primary);padding-bottom:15px;">
-            <h2 id="info-title" style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);"></h2>
-            <button onclick="closeModal()" style="background:none;border:none;font-size:32px;cursor:pointer;">×</button>
-        </div>
-        <div id="info-content" style="line-height:1.7;"></div>
-    </div>
-    <!-- MODALES STEFI -->
-    <div class="modal" id="stefy-modal" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:35px;border-radius:16px;max-width:520px;width:92%;display:none;z-index:120;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:3px solid var(--primary);padding-bottom:15px;">
-            <h2 style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);">¡Hola! Soy Stefi</h2>
-            <button onclick="closeModal()" style="background:none;border:none;font-size:32px;cursor:pointer;">×</button>
-        </div>
-        <div style="line-height:1.75; font-family: 'Glacial Indifference', sans-serif;">
-            <p>Hola, me presento para los que todavía no me conocen: soy Stefi, una apasionada de los animales.</p>
-            <p>Siempre me pasa lo mismo… estoy tomando unos mates, comiendo galletitas y mi mascota se queda mirándome con esos ojitos que dicen “¿y yo qué?”.</p>
-            <p>Quería comer las Oreos como yo, pero sé que le hacen súper mal al estómago.</p>
-            <p>Por eso ideé todo esto: crear snacks ricos y saludables para que ella (y todos los peluditos) también puedan disfrutar del momento sin preocupaciones.</p>
-            <p>Les quiero contar con mucho cariño todo lo que preparo para que nuestras mascotas disfruten sano y rico.</p>
-            <p>Acá vas a encontrar gomitas de colágeno que ayudan a las articulaciones y al pelaje, y también tortas, budines y galletitas.</p>
-            <p>Snack y golosinas siempre en stock.</p>
-            <p>¡Para que mientras vos tomás mate y comés galletitas, tu mascota también tenga su merienda especial y saludable!</p>
-            <p>Y los budines/tortas hechas por encargo, todo 100% natural para que también tengan su fiesta.</p>
-            <p>Escribime por WhatsApp y armamos tu pedido juntos ❤️</p>
+        <div class="modal-close-bottom">
+            <button onclick="closeCatalogModal()">Cerrar tienda</button>
         </div>
     </div>
-    <div class="modal" id="stefy-modal-2" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:35px;border-radius:16px;max-width:520px;width:92%;display:none;z-index:120;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:3px solid var(--primary);padding-bottom:15px;">
-            <h2 style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);">Acerca de nuestros productos</h2>
-            <button onclick="closeModal()" style="background:none;border:none;font-size:32px;cursor:pointer;">×</button>
+</div>
+ 
+<!-- MODAL INFO PRODUCTO -->
+<div class="modal" id="info-modal">
+    <div class="modal-inner">
+        <div class="modal-header">
+            <h2 class="modal-title" id="info-title"></h2>
+            <button class="modal-close-top" onclick="closeModal()">×</button>
         </div>
-        <div style="line-height:1.75; font-family: 'Glacial Indifference', sans-serif;">
-            <p>Todo lo que preparo es hecho con amor en casa, con receta casera, usando solo ingredientes que yo misma le daría a mi propia mascota.</p>
-            <p>Nada de colorantes, nada de conservantes, nada artificial. Solo cosas ricas y sanas que realmente les hacen bien: ayudan a las articulaciones, dejan el pelaje más brillante y les dan una merienda que pueden disfrutar sin culpa.</p>
-            <p>¿Cómo podés agasajarla todavía más?</p>
-            <p>Te recomiendo las combinaciones que más me piden los clientes:</p>
-            <ul style="margin:15px 0 15px 20px;">
-                <li>Una torta de cumpleaños + gomitas de topping para decorarla bien linda</li>
-                <li>Un budín + galletitas para compartir tranquilos en casa</li>
-                <li>O directamente el Pack "Fiesta Completa": torta + gomitas de topping + galletitas surtidas</li>
-            </ul>
-            <p>Así tu mascota tiene su propia fiesta rica y saludable, y vos podés estar 100% tranquila.</p>
-            <p>Y si no sabés qué sabor elegir o querés que te ayude a armar algo especial según la edad, el tamaño o las preferencias de tu peludito, te ofrezco una consulta personalizada gratuita. Solo escribime y charlamos con gusto para encontrar exactamente lo que mejor le va a tu mascota.</p>
-            <p>Porque al final... nuestros peluditos nos dan tanto amor todos los días. ¿No se merecen ellos también un mimo especial, hecho con amor en casa y pensado solo para su bienestar?</p>
-            <p>Yo lo hago con todo el cariño del mundo, y sé que a tu mascota le va a encantar.</p>
-            <p>¿Querés agasajarla hoy?</p>
-            <p>Podés comprar directamente desde la web (yo me encargo de todo) o mandarme mensaje por WhatsApp y coordinamos tu pedido juntos.</p>
-            <p>Estoy acá para ayudarte a hacer feliz a ese ser tan especial que tenés en casa❤️</p>
+        <div id="info-content" style="font-family:'Antonio',sans-serif;font-size:15px;line-height:1.75;"></div>
+        <div class="modal-close-bottom">
+            <button onclick="closeModal()">Cerrar</button>
         </div>
     </div>
+</div>
+ 
+<!-- STEFI MODAL 1 -->
+<div class="stefi-overlay" id="stefi-overlay-1">
+    <div class="stefi-modal-box">
+        <h2>¡Hola! Soy Stefi 🐾</h2>
+        <p>Hola, me presento para los que todavía no me conocen: soy Stefi, una apasionada de los animales.</p>
+        <br>
+        <p>Siempre me pasa lo mismo… estoy tomando unos mates, comiendo galletitas y mi mascota se queda mirándome con esos ojitos que dicen "¿y yo qué?".</p>
+        <br>
+        <p>Quería comer las Oreos como yo, pero sé que le hacen súper mal al estómago.</p>
+        <br>
+        <p>Por eso ideé todo esto: crear snacks ricos y saludables para que ella (y todos los peluditos) también puedan disfrutar del momento sin preocupaciones.</p>
+        <br>
+        <p>Les quiero contar con mucho cariño todo lo que preparo para que nuestras mascotas disfruten sano y rico.</p>
+        <br>
+        <p>Acá vas a encontrar gomitas de colágeno que ayudan a las articulaciones y al pelaje, y también tortas, budines y galletitas.</p>
+        <br>
+        <p>Snack y golosinas siempre en stock.</p>
+        <br>
+        <p>¡Para que mientras vos tomás mate y comés galletitas, tu mascota también tenga su merienda especial y saludable!</p>
+        <br>
+        <p>Y los budines/tortas hechas por encargo, todo 100% natural para que también tengan su fiesta.</p>
+        <br>
+        <p>Escribime por WhatsApp y armamos tu pedido juntos ❤️</p>
+        <div class="stefi-close-btn">
+            <button onclick="closestefiOverlay(1)">Cerrar</button>
+        </div>
+    </div>
+</div>
+ 
+<!-- STEFI MODAL 2 -->
+<div class="stefi-overlay" id="stefi-overlay-2">
+    <div class="stefi-modal-box">
+        <h2>Acerca de nuestros productos 💛</h2>
+        <p>Todo lo que preparo es hecho con amor en casa, con receta casera, usando solo ingredientes que yo misma le daría a mi propia mascota.</p>
+        <br>
+        <p>Nada de colorantes, nada de conservantes, nada artificial. Solo cosas ricas y sanas que realmente les hacen bien: ayudan a las articulaciones, dejan el pelaje más brillante y les dan una merienda que pueden disfrutar sin culpa.</p>
+        <br>
+        <p>¿Cómo podés agasajarla todavía más?<br>
+        Te recomiendo las combinaciones que más me piden los clientes:</p>
+        <br>
+        <p>• Una torta de cumpleaños + gomitas de topping para decorarla bien linda</p>
+        <p>• Un budín + galletitas para compartir tranquilos en casa</p>
+        <p>• O directamente el Pack "Fiesta Completa": torta + gomitas de topping + galletitas surtidas</p>
+        <br>
+        <p>Así tu mascota tiene su propia fiesta rica y saludable, y vos podés estar 100% tranquila.</p>
+        <br>
+        <p>Y si no sabés qué sabor elegir o querés que te ayude a armar algo especial según la edad, el tamaño o las preferencias de tu peludito, te ofrezco una consulta personalizada gratuita. Solo escribime y charlamos con gusto para encontrar exactamente lo que mejor le va a tu mascota.</p>
+        <br>
+        <p>Porque al final... nuestros peluditos nos dan tanto amor todos los días. ¿No se merecen ellos también un mimo especial, hecho con amor en casa y pensado solo para su bienestar?</p>
+        <br>
+        <p>Yo lo hago con todo el cariño del mundo, y sé que a tu mascota le va a encantar.</p>
+        <br>
+        <p>¿Querés agasajarla hoy? Podés comprar directamente desde la web (yo me encargo de todo) o mandarme mensaje por WhatsApp y coordinamos tu pedido juntos.</p>
+        <br>
+        <p>Estoy acá para ayudarte a hacer feliz a ese ser tan especial que tenés en casa ❤️</p>
+        <div class="stefi-close-btn">
+            <button onclick="closestefiOverlay(2)">Cerrar</button>
+        </div>
+    </div>
+</div>
+ 
+<!-- MAIN CONTENT -->
+<div style="position:relative;z-index:2;">
+ 
+    <!-- PORTADA 1 & 2 pegadas al banner y entre sí -->
+    <div class="portada-full-wrap portada-no-margin" style="margin-top:0;">
+        <img src="portadauno.png" alt="Portada 1">
+    </div>
+    <div class="portada-full-wrap portada-no-margin">
+        <img src="portadados.png" alt="Portada 2">
+    </div>
+ 
+    <!-- PRESENTACIÓN STEFI 1 -->
     <div class="container">
-        <!-- PORTADAS -->
-        <img src="portadauno.png" alt="Portada 1" class="portada-full">
-        <img src="portadados.png" alt="Portada 2" class="portada-full">
-        <!-- PRESENTACIÓN 1 -->
         <div class="presentation-section">
-            <div style="position:relative;display:inline-block;">
-                <img src="mensajeweb.png" alt="Stefi" class="presentation-image" onclick="openModal('stefy-modal')">
-                <div class="presentation-hint bounce">↓ Toca para conocerme ↓</div>
+            <div class="presentation-hint-area" onclick="openStefiOverlay(1)">
+                <div class="presentation-hint-text">✨ Toca para conocerme ✨</div>
+                <div class="presentation-arrows">
+                    <span>▼</span>
+                    <span>▼</span>
+                    <span>▼</span>
+                </div>
             </div>
+            <img src="mensajeweb.png" alt="Stefi" class="presentation-image" onclick="openStefiOverlay(1)">
         </div>
-        <img src="portadatres.png" alt="Portada 3" class="portada-full">
+    </div>
+ 
+    <!-- PORTADA 3 -->
+    <div class="portada-full-wrap portada-spacer">
+        <img src="portadatres.png" alt="Portada 3">
+    </div>
+ 
+    <!-- SECCIÓN GOMITAS -->
+    <div class="container">
         <h2 class="section-title">GOMITAS DE COLÁGENO 100% NATURAL</h2>
         <div class="products-grid" id="gomitas-grid"></div>
-        <img src="portadacuatro.png" alt="Portada 4" class="portada-full">
-        <h2 class="section-subtitle">LO MEJOR PARA TU MASCOTA</h2>
-        <h2 class="section-title">SNACKS SALUDABLES</h2>
+    </div>
+ 
+    <!-- PORTADA 4 -->
+    <div class="portada-full-wrap">
+        <img src="portadacuatro.png" alt="Portada 4">
+    </div>
+ 
+    <!-- SECCIÓN GALLETITAS -->
+    <div class="container">
+        <h2 class="section-subtitle" style="margin-top:40px;">LO MEJOR PARA TU MASCOTA</h2>
+        <h2 class="section-title" style="margin-top:10px;">SNACKS SALUDABLES</h2>
         <div class="products-grid" id="galletitas-grid"></div>
-        <img src="portadacinco.png" alt="Portada 5" class="portada-full">
-        <h2 class="section-title">TORTAS 100% NATURAL</h2>
+    </div>
+ 
+    <!-- PORTADA 5 -->
+    <div class="portada-full-wrap">
+        <img src="portadacinco.png" alt="Portada 5">
+    </div>
+ 
+    <!-- SECCIÓN TORTAS -->
+    <div class="container">
+        <h2 class="section-title">TORTAS 100% NATURAL, SIN CONSERVANTES</h2>
         <div class="products-grid" id="tortas-grid"></div>
-        <img src="portadaseis.png" alt="Portada 6" class="portada-full">
-        <h2 class="section-title">CUP CAKE & BUDÍN 100% NATURAL</h2>
+    </div>
+ 
+    <!-- PORTADA 6 -->
+    <div class="portada-full-wrap">
+        <img src="portadaseis.png" alt="Portada 6">
+    </div>
+ 
+    <!-- SECCIÓN BUDINES -->
+    <div class="container">
+        <h2 class="section-title">CUP CAKE &amp; BUDÍN 100% NATURAL</h2>
         <div class="products-grid" id="budines-grid"></div>
-        <img src="portadasiete.png" alt="Portada 7" class="portada-full">
-        <!-- PRESENTACIÓN 2 -->
+    </div>
+ 
+    <!-- PORTADA 7 -->
+    <div class="portada-full-wrap portada-spacer">
+        <img src="portadasiete.png" alt="Portada 7">
+    </div>
+ 
+    <!-- PRESENTACIÓN STEFI 2 -->
+    <div class="container">
         <div class="presentation-section">
-            <div style="position:relative;display:inline-block;">
-                <img src="mensajeweb.png" alt="Stefi" class="presentation-image" onclick="openModal('stefy-modal-2')">
-                <div class="presentation-hint bounce">↓ Toca para más info ↓</div>
+            <div class="presentation-hint-area" onclick="openStefiOverlay(2)">
+                <div class="presentation-hint-text">✨ Toca para más información ✨</div>
+                <div class="presentation-arrows">
+                    <span>▼</span>
+                    <span>▼</span>
+                    <span>▼</span>
+                </div>
             </div>
+            <img src="mensajeweb.png" alt="Stefi" class="presentation-image" onclick="openStefiOverlay(2)">
         </div>
-        <img src="portadanueve.png" alt="Portada 9" class="portada-full">
-        <!-- COMENTARIOS -->
+    </div>
+ 
+    <!-- PORTADA 9 -->
+    <div class="portada-full-wrap portada-spacer">
+        <img src="portadanueve.png" alt="Portada 9">
+    </div>
+ 
+    <!-- COMENTARIOS -->
+    <div class="container">
         <div class="comments-section">
             <h2 class="comments-title">CONTANOS TU EXPERIENCIA</h2>
             <h3 style="text-align:center;margin-bottom:18px;color:var(--dark);">Elegí tu Avatar</h3>
@@ -752,13 +663,14 @@
                     <span class="star" data-value="5">★</span>
                 </div>
             </div>
-            <button onclick="openCommentModal()" style="width:100%;padding:16px;background:var(--primary);color:var(--dark);border:none;border-radius:10px;font-size:17px;font-weight:700;">Escribir comentario</button>
+            <button onclick="openCommentModal()" style="width:100%;padding:16px;background:var(--primary);color:var(--dark);border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;">Escribir comentario</button>
             <div id="featured-comment" class="featured-comment" style="display:none;"></div>
             <div onclick="openAllCommentsCurtain()" style="text-align:center;margin:35px 0;cursor:pointer;font-size:17px;font-weight:700;color:var(--dark);">
                 Ver todos los comentarios <span class="bounce" style="display:inline-block;">↓ ↓</span>
             </div>
         </div>
-        <!-- CORTINA TODOS LOS COMENTARIOS -->
+ 
+        <!-- CORTINA COMENTARIOS -->
         <div class="curtain" id="all-comments-curtain" style="background:var(--light);max-width:100%;width:100%;">
             <div class="curtain-header">
                 <h3 class="curtain-title" style="color:var(--dark);">Todos los comentarios</h3>
@@ -766,10 +678,17 @@
             </div>
             <div id="all-comments-list" style="padding:10px 20px 40px;"></div>
         </div>
-        <img src="portadaocho.png" alt="Portada 8" class="portada-full">
-        <!-- REDES -->
+    </div>
+ 
+    <!-- PORTADA 8 -->
+    <div class="portada-full-wrap portada-spacer">
+        <img src="portadaocho.png" alt="Portada 8">
+    </div>
+ 
+    <!-- REDES -->
+    <div class="container">
         <div class="social-section" id="social" style="background:rgba(255,255,255,0.98);padding:45px 30px;border-radius:16px;margin:60px 0;box-shadow:0 15px 40px rgba(0,0,0,0.2);text-align:center;">
-            <h2 style="font-family:'Luckiest Guy',cursive;font-size:22px;color:var(--dark);margin-bottom:25px;line-height:1.3;">Seguinos para no perderte<br>nuestras ofertas</h2>
+            <h2 style="font-family:'Luckiest Guy',cursive;font-size:28px;color:var(--dark);margin-bottom:35px;">Seguinos para no perderte nuestras Ofertas</h2>
             <div class="social-icons">
                 <a href="https://www.facebook.com/stefi.bordenave" target="_blank" class="social-icon"><img src="facebookweb.png" alt="Facebook" style="width:100%;height:100%;object-fit:cover;"></a>
                 <a href="https://www.instagram.com/canndypaws/" target="_blank" class="social-icon"><img src="instagramweb.png" alt="Instagram" style="width:100%;height:100%;object-fit:cover;"></a>
@@ -777,263 +696,422 @@
             </div>
         </div>
     </div>
-    <!-- FOOTER -->
-    <footer class="footer" style="background:var(--light);padding:50px 20px;text-align:center;border-top:4px solid var(--primary);">
-        <img src="logoweb.png" alt="Logo" style="width:90px;height:90px;border-radius:50%;border:4px solid var(--primary);margin-bottom:20px;">
-        <div class="footer-menu">
-            <button class="footer-btn" onclick="openCurtain('como-comprar')">Cómo Comprar</button>
-            <button class="footer-btn" onclick="openCatalogModal()">Ir a la tienda</button>
-            <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="footer-btn" style="text-decoration:none;display:inline-block;">Contacto</a>
-            <button class="footer-btn" onclick="scrollToSection('social')">Seguinos en redes</button>
-        </div>
-        <p style="margin-top:40px;font-size:14px;color:#555;">Candy Paws © 2025/2026 – Todos los derechos reservados.</p>
-    </footer>
-    <!-- WHATSAPP -->
-    <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="whatsapp-btn">
-        <img src="whatsappweb.png" alt="WhatsApp" style="width:38px;height:38px;">
-    </a>
-    <script type="module">
-        // FIREBASE (mantengo igual)
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        const firebaseConfig = {
-            apiKey: "AIzaSyDxX70OyFYiQcw1SwX51Mv6fCt_jloYddk",
-            authDomain: "estrellas-y-comentarios.firebaseapp.com",
-            projectId: "estrellas-y-comentarios",
-            storageBucket: "estrellas-y-comentarios.firebasestorage.app",
-            messagingSenderId: "593954229438",
-            appId: "1:593954229438:web:2d5c4f9ea6aa13ea9d62ef"
-        };
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        let currentRating = 5;
-        let selectedAvatar = 1;
-        let selectedAvatarImg = "avataruno.png";
-        let allCommentsData = [];
-        // ==================== PRODUCTOS ====================
-        const productos = {
-            gomitas: [
-                {
-                    imagen: "gomitasuno.png",
-                    nombre: "Gomitas x 1/2kg",
-                    estado: "Siempre en Stock",
-                    precioOriginal: "$9.050",
-                    precioOferta: "$8.200",
-                    info: `Les quiero contar sobre mis Gomitas de colágeno, que son mis estrellas. Están elaboradas con colágeno natural y ayudan especialmente a las articulaciones y a dejar el pelaje más brillante y hermoso.<br><br>
-Sabores que tengo siempre:<br>
-• Pollo<br>
-• Hígado<br><br>
-Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-Son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.<br><br>
-¡Todo 100% natural, sin colorantes, sin conservantes, sin sal y sin azúcar! 🐾💛`
-                },
-                {
-                    imagen: "gomitasdos.png",
-                    nombre: "Gomitas x 1kg",
-                    estado: "Por encargue personalizado",
-                    precioOriginal: "$16.950",
-                    precioOferta: "$16.000",
-                    info: `Les quiero contar sobre mis Gomitas de colágeno, que son mis estrellas. Están elaboradas con colágeno natural y ayudan especialmente a las articulaciones y a dejar el pelaje más brillante y hermoso.<br><br>
-Sabores que tengo siempre:<br>
-• Pollo<br>
-• Hígado<br><br>
-Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-Son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.<br><br>
-¡Todo 100% natural, sin colorantes, sin conservantes, sin sal y sin azúcar! 🐾💛`
-                }
-            ],
-            galletitas: [
-                {
-                    imagen: "galletasuno.png",
-                    nombre: "Snak saludables 1/2kg",
-                    estado: "Por encargue del sabor que me pidas",
-                    precioOriginal: "$9.970",
-                    precioOferta: "$9.000",
-                    info: `Les quiero contar sobre mis galletitas, que son mis estrellas. Están elaboradas con ingredientes naturales y pensadas para cuidar a nuestras mascotas, ayudando a que estén sanas, felices y con toda la energía.<br><br>
-Sabores que ya tengo:<br>
-• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br><br>
-Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz! 🐾💛`
-                },
-                {
-                    imagen: "galletasdos.png",
-                    nombre: "Snak saludables 1kg",
-                    estado: "Por encargue personalizado",
-                    precioOriginal: "$18.750",
-                    precioOferta: "$17.800",
-                    info: `Les quiero contar sobre mis galletitas, que son mis estrellas. Están elaboradas con ingredientes naturales y pensadas para cuidar a nuestras mascotas, ayudando a que estén sanas, felices y con toda la energía.<br><br>
-Sabores que ya tengo:<br>
-• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br><br>
-Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz! 🐾💛`
-                }
-            ],
-            tortas: [
-                {
-                    imagen: "tortasuno.png",
-                    nombre: "Torta nº10",
-                    estado: "Por encargue del sabor que me pidas",
-                    precioOriginal: "$12.750",
-                    precioOferta: "$12.000",
-                    info: `Les cuento sobre mis tortas para mascotas, que son mis estrellas para esos momentos especiales. Están elaboradas con ingredientes naturales y pensadas para que puedan festejar sin dejar de cuidarse, disfrutando algo rico y saludable.<br><br>
-Sabores que ya tengo:<br>
-• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br><br>
-Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-¡Todo natural y hecho con amor para que tu mascota se sienta más que nunca consentida y feliz en su día especial! 🐾🎂💛`
-                },
-                {
-                    imagen: "tortasdos.png",
-                    nombre: "Torta nº12",
-                    estado: "Por encargue personalizado",
-                    precioOriginal: "$18.750",
-                    precioOferta: "$17.800",
-                    info: `Les cuento sobre mis tortas para mascotas, que son mis estrellas para esos momentos especiales. Están elaboradas con ingredientes naturales y pensadas para que puedan festejar sin dejar de cuidarse, disfrutando algo rico y saludable.<br><br>
-Sabores que ya tengo:<br>
-• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br><br>
-Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-¡Todo natural y hecho con amor para que tu mascota se sienta más que nunca consentida y feliz en su día especial! 🐾🎂💛`
-                },
-                {
-                    imagen: "tortastres.png",
-                    nombre: "Torta nº14",
-                    estado: "Por encargue personalizado",
-                    precioOriginal: "$18.750",
-                    precioOferta: "$18.000",
-                    info: `Les cuento sobre mis tortas para mascotas, que son mis estrellas para esos momentos especiales. Están elaboradas con ingredientes naturales y pensadas para que puedan festejar sin dejar de cuidarse, disfrutando algo rico y saludable.<br><br>
-Sabores que ya tengo:<br>
-• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br><br>
-Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-¡Todo natural y hecho con amor para que tu mascota se sienta más que nunca consentida y feliz en su día especial! 🐾🎂💛`
-                },
-                {
-                    imagen: "tortascuatro.png",
-                    nombre: "Torta nº17",
-                    estado: "Por encargue personalizado",
-                    precioOriginal: "$21.790",
-                    precioOferta: "$21.000",
-                    info: `Les cuento sobre mis tortas para mascotas, que son mis estrellas para esos momentos especiales. Están elaboradas con ingredientes naturales y pensadas para que puedan festejar sin dejar de cuidarse, disfrutando algo rico y saludable.<br><br>
-Sabores que ya tengo:<br>
-• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br><br>
-Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-¡Todo natural y hecho con amor para que tu mascota se sienta más que nunca consentida y feliz en su día especial! 🐾🎂💛`
-                }
-            ],
-            budines: [
-                {
-                    imagen: "budinuno.png",
-                    nombre: "Budín Saludable",
-                    estado: "Por encargue del sabor que me pidas",
-                    precioOriginal: "$10.890",
-                    precioOferta: "$10.000",
-                    info: `Les cuento sobre mis tortas para mascotas, que son mis estrellas para esos momentos especiales. Están elaboradas con ingredientes naturales y pensadas para que puedan festejar sin dejar de cuidarse, disfrutando algo rico y saludable.<br><br>
-¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz! 🐾💛`
-                },
-                {
-                    imagen: "cupcakeuno.png",
-                    nombre: "Cup Cake",
-                    estado: "Por encargue personalizado",
-                    precioOriginal: "$2.100",
-                    precioOferta: "$1.500 c/u",
-                    info: `Les cuento sobre mis tortas para mascotas, que son mis estrellas para esos momentos especiales. Están elaboradas con ingredientes naturales y pensadas para que puedan festejar sin dejar de cuidarse, disfrutando algo rico y saludable.<br><br>
-¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz! 🐾💛`
-                }
-            ]
-        };
-        function crearProducto(p, tipo) {
-            return `
-                <div class="product-card">
-                    <img src="${p.imagen}" alt="${p.nombre}" class="product-image">
-                    <h3 class="product-name">${p.nombre}</h3>
-                    <p class="product-status">${p.estado}</p>
-                    <div class="product-price">
-                        <span class="price-original">${p.precioOriginal}</span>
-                        <span class="price-sale">${p.precioOferta}</span>
-                    </div>
-                    <div class="product-buttons">
-                        <button class="btn btn-buy" onclick="toggleBuyOptions(this)">Comprar</button>
-                        <button class="btn btn-info" onclick="showProductInfo('${tipo}', '${p.nombre}', \`${p.info}\`)">Información del producto</button>
-                    </div>
-                    <div class="buy-options">
-                        <button class="btn" style="background:var(--dark);color:white;" onclick="whatsappMessage('${p.nombre} - Retiro en local')">Paso a Retirar</button>
-                        <button class="btn" style="background:#83d7a0;color:var(--dark);" onclick="whatsappMessage('${p.nombre} - Recibir a Domicilio')">Recibir a Domicilio</button>
-                    </div>
+</div>
+ 
+<!-- FOOTER -->
+<footer style="background:var(--light);padding:50px 20px;text-align:center;border-top:4px solid var(--primary);">
+    <img src="logoweb.png" alt="Logo" style="width:90px;height:90px;border-radius:50%;border:4px solid var(--primary);margin-bottom:20px;">
+    <div class="footer-menu">
+        <button class="footer-btn" onclick="openCurtain('como-comprar')">Cómo Comprar</button>
+        <button class="footer-btn" onclick="openCatalogModal()">Ir a la tienda</button>
+        <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="footer-btn" style="text-decoration:none;display:inline-block;">Contacto</a>
+        <button class="footer-btn" onclick="scrollToSection('social')">Seguinos en redes</button>
+    </div>
+</footer>
+ 
+<!-- WHATSAPP -->
+<a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="whatsapp-btn">
+    <img src="whatsappweb.png" alt="WhatsApp" style="width:38px;height:38px;">
+</a>
+ 
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+ 
+    const firebaseConfig = {
+        apiKey: "AIzaSyDxX70OyFYiQcw1SwX51Mv6fCt_jloYddk",
+        authDomain: "estrellas-y-comentarios.firebaseapp.com",
+        projectId: "estrellas-y-comentarios",
+        storageBucket: "estrellas-y-comentarios.firebasestorage.app",
+        messagingSenderId: "593954229438",
+        appId: "1:593954229438:web:2d5c4f9ea6aa13ea9d62ef"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+ 
+    let currentRating = 5;
+    let selectedAvatar = 1;
+    let selectedAvatarImg = "avataruno.png";
+    let allCommentsData = [];
+ 
+    // ── PRODUCTOS ──
+    const productos = {
+        gomitas: [
+            {
+                imagen: "gomitasuno.png",
+                nombre: "Gomitas x 1/2kg",
+                estado: "Siempre en Stock",
+                precioOriginal: "$9.050",
+                precioOferta: "$8.200",
+                info: `<p>Les quiero contar sobre mis Gomitas de colágeno, que son mis estrellas. Están elaboradas con colágeno natural y ayudan especialmente a las articulaciones y a dejar el pelaje más brillante y hermoso.</p><br>
+                <p><strong>Sabores que tengo siempre:</strong><br>• Pollo<br>• Hígado<br>Y por encargo puedo hacerlas del sabor que ustedes me pidan.</p><br>
+                <p>Son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.</p><br>
+                <p>Se venden en bolsitas listas para llevar y son ideales para dar todos los días como premio o complemento. Todo 100% natural, sin colorantes, sin conservantes, sin sal y sin azúcar.</p><br>
+                <p>También las uso como topping en las tortas de cumpleaños y budines.</p><br>
+                <p>¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz! 🐾💛</p>`
+            },
+            {
+                imagen: "gomitasdos.png",
+                nombre: "Gomitas x 1kg",
+                estado: "Por encargue personalizado",
+                precioOriginal: "$16.950",
+                precioOferta: "$16.000",
+                info: `<p>Les quiero contar sobre mis Gomitas de colágeno, que son mis estrellas. Están elaboradas con colágeno natural y ayudan especialmente a las articulaciones y a dejar el pelaje más brillante y hermoso.</p><br>
+                <p><strong>Sabores que tengo siempre:</strong><br>• Pollo<br>• Hígado<br>Y por encargo puedo hacerlas del sabor que ustedes me pidan.</p><br>
+                <p>Son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.</p><br>
+                <p>Se venden en bolsitas listas para llevar y son ideales para dar todos los días como premio o complemento. Todo 100% natural, sin colorantes, sin conservantes, sin sal y sin azúcar.</p><br>
+                <p>También las uso como topping en las tortas de cumpleaños y budines.</p><br>
+                <p>¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz! 🐾💛</p>`
+            }
+        ],
+        galletitas: [
+            {
+                imagen: "galletasuno.png",
+                nombre: "Snack saludables 1/2kg",
+                estado: "Por encargue del sabor que me pidas",
+                precioOriginal: "$9.970",
+                precioOferta: "$9.000",
+                info: `<p>Les quiero contar sobre mis galletitas, que son mis estrellas. Están elaboradas con ingredientes naturales y pensadas para cuidar a nuestras mascotas.</p><br>
+                <p><strong>Sabores que ya tengo:</strong><br>• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br>Y por encargo puedo hacerlas del sabor que ustedes me pidan.</p><br>
+                <p>Se venden en bolsitas listas para llevar y son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.</p><br>
+                <p>También las uso como topping en las tortas de cumpleaños y budines.</p><br>
+                <p>¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz! 🐾💛</p>`
+            },
+            {
+                imagen: "galletasdos.png",
+                nombre: "Snack saludables 1kg",
+                estado: "Por encargue personalizado",
+                precioOriginal: "$18.750",
+                precioOferta: "$17.800",
+                info: `<p>Les quiero contar sobre mis galletitas, que son mis estrellas. Están elaboradas con ingredientes naturales y pensadas para cuidar a nuestras mascotas.</p><br>
+                <p><strong>Sabores que ya tengo:</strong><br>• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br>Y por encargo puedo hacerlas del sabor que ustedes me pidan.</p><br>
+                <p>Se venden en bolsitas listas para llevar y son perfectas para premiar todos los días.</p><br>
+                <p>¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz! 🐾💛</p>`
+            }
+        ],
+        tortas: [
+            {
+                imagen: "tortasuno.png",
+                nombre: "Torta nº10",
+                estado: "Por encargue del sabor que me pidas",
+                precioOriginal: "$12.750",
+                precioOferta: "$12.000",
+                info: `<p>Les cuento sobre mis tortas para mascotas. Están elaboradas con ingredientes naturales para que puedan festejar sin dejar de cuidarse.</p><br>
+                <p><strong>Sabores:</strong><br>• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún<br>Y por encargo puedo hacerlas del sabor que ustedes me pidan.</p><br>
+                <p>Son perfectas para celebrar cumpleaños, adopciones o cualquier fecha especial.</p><br>
+                <p>También puedo decorarlas con toppings naturales y galletitas.</p><br>
+                <p>¡Todo natural y hecho con amor! 🐾🎂💛</p>`
+            },
+            {
+                imagen: "tortasdos.png",
+                nombre: "Torta nº12",
+                estado: "Por encargue personalizado",
+                precioOriginal: "$18.750",
+                precioOferta: "$17.800",
+                info: `<p>Les cuento sobre mis tortas para mascotas. Están elaboradas con ingredientes naturales para que puedan festejar sin dejar de cuidarse.</p><br>
+                <p><strong>Sabores:</strong><br>• Pollo • Carnes rojas • Hígado • Zanahoria • Calabaza • Brócoli • Papa • Atún</p><br>
+                <p>Son perfectas para celebrar cumpleaños, adopciones o cualquier fecha especial.</p><br>
+                <p>¡Todo natural y hecho con amor! 🐾🎂💛</p>`
+            },
+            {
+                imagen: "tortastres.png",
+                nombre: "Torta nº14",
+                estado: "Por encargue personalizado",
+                precioOriginal: "$18.750",
+                precioOferta: "$18.000",
+                info: `<p>Torta especial para ocasiones especiales. Elaborada 100% con ingredientes naturales, sin conservantes ni colorantes.</p><br>
+                <p><strong>Sabores disponibles a pedido.</strong></p><br>
+                <p>¡Todo natural y hecho con amor! 🐾🎂💛</p>`
+            },
+            {
+                imagen: "tortascuatro.png",
+                nombre: "Torta nº17",
+                estado: "Por encargue personalizado",
+                precioOriginal: "$21.790",
+                precioOferta: "$21.000",
+                info: `<p>Nuestra torta más grande para la fiesta más especial de tu peludito. 100% natural, sin conservantes.</p><br>
+                <p><strong>Sabores disponibles a pedido.</strong></p><br>
+                <p>¡Todo natural y hecho con amor! 🐾🎂💛</p>`
+            }
+        ],
+        budines: [
+            {
+                imagen: "budinuno.png",
+                nombre: "Budín Saludable",
+                estado: "Por encargue del sabor que me pidas",
+                precioOriginal: "$10.890",
+                precioOferta: "$10.000",
+                info: `<p>Budín 100% natural, sin conservantes, hecho con amor para que tu mascota disfrute cada mordida.</p><br>
+                <p>Perfecto para compartir en casa o como regalo especial.</p><br>
+                <p>¡Todo natural y hecho con amor! 🐾💛</p>`
+            },
+            {
+                imagen: "cupcakeuno.png",
+                nombre: "Cup Cake",
+                estado: "Por encargue personalizado",
+                precioOriginal: "$2.100",
+                precioOferta: "$1.500 c/u",
+                info: `<p>Cup cakes individuales 100% naturales, perfectos para celebrar o premiar a tu mascota.</p><br>
+                <p>Sin colorantes, sin conservantes, sin sal y sin azúcar.</p><br>
+                <p>¡Todo natural y hecho con amor! 🐾💛</p>`
+            }
+        ]
+    };
+ 
+    // ── CREAR TARJETA PRODUCTO ──
+    function crearProducto(p) {
+        const id = Math.random().toString(36).substr(2,9);
+        return `
+            <div class="product-card">
+                <img src="${p.imagen}" alt="${p.nombre}" class="product-image">
+                <h3 class="product-name">${p.nombre}</h3>
+                <p class="product-status">${p.estado}</p>
+                <div class="product-price">
+                    <span class="price-original">${p.precioOriginal}</span>
+                    <span class="price-sale">${p.precioOferta}</span>
                 </div>
-            `;
-        }
-        function renderizarProductos() {
-            document.getElementById('gomitas-grid').innerHTML = productos.gomitas.map(p => crearProducto(p, 'gomitas')).join('');
-            document.getElementById('galletitas-grid').innerHTML = productos.galletitas.map(p => crearProducto(p, 'galletitas')).join('');
-            document.getElementById('tortas-grid').innerHTML = productos.tortas.map(p => crearProducto(p, 'tortas')).join('');
-            document.getElementById('budines-grid').innerHTML = productos.budines.map(p => crearProducto(p, 'budines')).join('');
-            // Catálogo flotante completo
-            const catalogHTML = `
-                <div class="products-grid">
-                    ${productos.gomitas.map(p => crearProducto(p, 'gomitas')).join('')}
-                    ${productos.galletitas.map(p => crearProducto(p, 'galletitas')).join('')}
-                    ${productos.tortas.map(p => crearProducto(p, 'tortas')).join('')}
-                    ${productos.budines.map(p => crearProducto(p, 'budines')).join('')}
+                <div class="product-buttons">
+                    <button class="btn btn-buy" onclick="toggleBuyOptions(this)">Comprar</button>
+                    <button class="btn btn-info" onclick="showProductInfo('${p.nombre}', \`${p.info.replace(/`/g,"'")}\`)">Información</button>
                 </div>
-            `;
-            document.getElementById('catalog-content').innerHTML = catalogHTML;
-        }
-        // ==================== FUNCIONES WHATSAPP ====================
-        window.whatsappMessage = function(text) {
-            const msg = encodeURIComponent(`Hola Stefi! Me interesa: ${text}`);
-            window.open(`https://wa.me/5492396512544?text=${msg}`, '_blank');
-        };
-        window.toggleBuyOptions = function(btn) {
-            const options = btn.parentElement.nextElementSibling;
-            if (options) options.classList.toggle('active');
-        };
-        window.showProductInfo = function(tipo, nombre, info) {
-            document.getElementById('info-title').textContent = nombre;
-            document.getElementById('info-content').innerHTML = info;
-            document.getElementById('info-modal').style.display = 'block';
-            document.getElementById('modalOverlay').style.display = 'block';
-        };
-        // ==================== OTRAS FUNCIONES (mantengo las existentes) ====================
-        window.closeModal = function() {
-            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
-            document.getElementById('modalOverlay').style.display = 'none';
-        };
-        window.openCatalogModal = function() {
-            document.getElementById('catalog-modal').style.display = 'block';
-            document.getElementById('modalOverlay').style.display = 'block';
-        };
-        window.closeCatalogModal = function() {
-            document.getElementById('catalog-modal').style.display = 'none';
-            document.getElementById('modalOverlay').style.display = 'none';
-        };
-        window.openModal = function(id) {
-            document.getElementById(id).style.display = 'block';
-            document.getElementById('modalOverlay').style.display = 'block';
-        };
-        window.openCurtain = function(id) {
-            document.getElementById(`curtain-${id}`).classList.add('active');
-        };
-        window.closeCurtain = function() {
-            document.querySelectorAll('.curtain').forEach(c => c.classList.remove('active'));
-        };
-        window.scrollToSection = function(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        };
-        // Inicialización
-        window.addEventListener('load', () => {
-            renderizarProductos();
-            // Sidebar
-            document.getElementById('menuToggle').addEventListener('click', () => {
-                document.getElementById('sidebar').classList.add('active');
-                document.getElementById('overlay').classList.add('active');
-            });
-            document.getElementById('closeSidebar').addEventListener('click', () => {
-                document.getElementById('sidebar').classList.remove('active');
-                document.getElementById('overlay').classList.remove('active');
-            });
-            document.getElementById('overlay').addEventListener('click', () => {
-                document.getElementById('sidebar').classList.remove('active');
-                document.getElementById('overlay').classList.remove('active');
+                <div class="buy-options" id="buy-${id}">
+                    <button class="btn-retirar" onclick="whatsappMessage('${p.nombre}', 'Paso a Retirar')">Paso a Retirar</button>
+                    <button class="btn-domicilio" onclick="whatsappMessage('${p.nombre}', 'Recibir a Domicilio')">Recibir a Domicilio</button>
+                </div>
+            </div>
+        `;
+    }
+ 
+    function renderizarProductos() {
+        document.getElementById('gomitas-grid').innerHTML = productos.gomitas.map(crearProducto).join('');
+        document.getElementById('galletitas-grid').innerHTML = productos.galletitas.map(crearProducto).join('');
+        document.getElementById('tortas-grid').innerHTML = productos.tortas.map(crearProducto).join('');
+        document.getElementById('budines-grid').innerHTML = productos.budines.map(crearProducto).join('');
+ 
+        // Catálogo modal con secciones
+        document.getElementById('catalog-content').innerHTML = `
+            <h3 style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);margin:20px 0 10px;font-size:18px;">🌿 Gomitas de Colágeno</h3>
+            <div class="products-grid">${productos.gomitas.map(crearProducto).join('')}</div>
+            <h3 style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);margin:20px 0 10px;font-size:18px;">🦴 Snacks Saludables</h3>
+            <div class="products-grid">${productos.galletitas.map(crearProducto).join('')}</div>
+            <h3 style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);margin:20px 0 10px;font-size:18px;">🎂 Tortas</h3>
+            <div class="products-grid">${productos.tortas.map(crearProducto).join('')}</div>
+            <h3 style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);margin:20px 0 10px;font-size:18px;">🧁 Cup Cake & Budín</h3>
+            <div class="products-grid">${productos.budines.map(crearProducto).join('')}</div>
+        `;
+    }
+ 
+    // ── AVATARES ──
+    function renderAvatars() {
+        const html = [
+            {n:1,img:"avataruno.png"},
+            {n:2,img:"avatardos.png"},
+            {n:3,img:"avatartres.png"},
+            {n:4,img:"avatarcuatro.png"}
+        ].map(a => `
+            <div class="avatar-option" data-avatar="${a.n}" data-img="${a.img}">
+                <img src="${a.img}" class="avatar-img" alt="Avatar ${a.n}">
+            </div>
+        `).join('');
+        document.getElementById('avatars-grid').innerHTML = html;
+        document.querySelectorAll('.avatar-option').forEach(el => {
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.avatar-option').forEach(e => e.classList.remove('selected'));
+                el.classList.add('selected');
+                selectedAvatar = parseInt(el.dataset.avatar);
+                selectedAvatarImg = el.dataset.img;
             });
         });
-    </script>
+        document.querySelector('.avatar-option').classList.add('selected');
+    }
+ 
+    function initStars() {
+        const stars = document.querySelectorAll('#stars-rating .star');
+        stars.forEach(s => {
+            s.addEventListener('click', () => {
+                currentRating = parseInt(s.dataset.value);
+                updateStars();
+            });
+        });
+        updateStars();
+    }
+    function updateStars() {
+        document.querySelectorAll('#stars-rating .star').forEach(s => {
+            s.classList.toggle('active', parseInt(s.dataset.value) <= currentRating);
+        });
+    }
+ 
+    // ── GUARDAR COMENTARIO ──
+    window.guardarComentario = async function() {
+        const nombre = (document.getElementById('nombre').value || "Anónimo").trim();
+        const comentario = document.getElementById('comentario-text') ? document.getElementById('comentario-text').value.trim() : "";
+        if (comentario.length < 5) { alert("Por favor escribe un comentario más largo"); return; }
+        try {
+            await addDoc(collection(db, "comentarios"), {
+                nombre, comentario, estrellas: currentRating,
+                avatar: selectedAvatar, avatarImg: selectedAvatarImg,
+                fecha: Date.now(), likes: 0
+            });
+            alert("¡Gracias! Tu comentario se guardó con éxito ❤️");
+            closeCommentModal();
+            cargarComentarios();
+        } catch(e) { alert("Error al guardar. Intenta de nuevo."); console.error(e); }
+    };
+ 
+    async function cargarComentarios() {
+        try {
+            const q = query(collection(db, "comentarios"), orderBy("likes","desc"), orderBy("fecha","desc"));
+            const snapshot = await getDocs(q);
+            allCommentsData = [];
+            snapshot.forEach(doc => allCommentsData.push({id: doc.id, ...doc.data()}));
+            const featured = document.getElementById('featured-comment');
+            if (allCommentsData.length > 0) {
+                const top = allCommentsData[0];
+                featured.innerHTML = `
+                    <div style="display:flex;gap:18px;align-items:start;">
+                        <img src="${top.avatarImg}" style="width:68px;height:68px;border-radius:50%;border:4px solid var(--primary);flex-shrink:0;">
+                        <div>
+                            <div style="font-weight:700;color:var(--dark);">${top.nombre} <span style="color:#FFD700;">${'★'.repeat(top.estrellas)}</span></div>
+                            <p style="margin:10px 0 8px;">${top.comentario}</p>
+                            <small style="color:#666;">${top.likes || 0} Me gusta</small>
+                        </div>
+                    </div>`;
+                featured.style.display = 'block';
+            }
+        } catch(e) { console.error(e); }
+    }
+ 
+    window.openAllCommentsCurtain = function() {
+        const curtain = document.getElementById('all-comments-curtain');
+        const container = document.getElementById('all-comments-list');
+        container.innerHTML = '';
+        if (allCommentsData.length === 0) {
+            container.innerHTML = `<p style="text-align:center;padding:60px;color:#666;">Todavía no hay comentarios. ¡Sé el primero!</p>`;
+        } else {
+            allCommentsData.forEach(c => {
+                container.innerHTML += `
+                    <div style="background:white;margin:18px 0;padding:22px;border-radius:12px;border-left:6px solid var(--primary);">
+                        <div style="display:flex;gap:16px;">
+                            <img src="${c.avatarImg}" style="width:55px;height:55px;border-radius:50%;flex-shrink:0;">
+                            <div style="flex:1;">
+                                <strong>${c.nombre}</strong> <span style="color:#FFD700;">${'★'.repeat(c.estrellas)}</span>
+                                <p style="margin:12px 0;">${c.comentario}</p>
+                                <small style="color:#666;">${c.likes || 0} Me gusta</small>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        }
+        curtain.classList.add('active');
+    };
+    window.closeAllCommentsCurtain = function() {
+        document.getElementById('all-comments-curtain').classList.remove('active');
+    };
+ 
+    window.openCommentModal = function() {
+        const div = document.createElement('div');
+        div.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:30px 28px 80px;border-radius:16px;max-width:480px;width:92%;z-index:130;max-height:85vh;overflow-y:auto;';
+        div.innerHTML = `
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:3px solid var(--primary);padding-bottom:15px;">
+                <h2 style="font-family:'Luckiest Guy',cursive;color:var(--primary-dark);">Escribir comentario</h2>
+                <button onclick="this.closest('div[style]').remove()" style="background:none;border:none;font-size:30px;cursor:pointer;">×</button>
+            </div>
+            <textarea id="comentario-text" placeholder="Cuéntanos tu experiencia con Candy Paws..." style="width:100%;height:150px;padding:14px;border:3px solid var(--dark);border-radius:10px;font-size:16px;resize:vertical;"></textarea>
+            <div style="position:sticky;bottom:0;display:flex;justify-content:center;margin-top:20px;">
+                <button onclick="guardarComentario()" style="padding:14px 40px;background:var(--primary);color:var(--dark);border:none;border-radius:30px;font-size:16px;font-weight:700;cursor:pointer;">Enviar comentario</button>
+            </div>`;
+        document.body.appendChild(div);
+        // overlay
+        const ov = document.createElement('div');
+        ov.id = 'comment-modal-ov';
+        ov.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:129;';
+        ov.onclick = () => { div.remove(); ov.remove(); };
+        document.body.appendChild(ov);
+    };
+    window.closeCommentModal = function() {
+        document.querySelectorAll('[id="comment-modal-ov"]').forEach(e => e.remove());
+    };
+ 
+    // ── FUNCIONES GLOBALES ──
+    window.toggleBuyOptions = function(btn) {
+        const card = btn.closest('.product-card');
+        const opts = card.querySelector('.buy-options');
+        if (opts) opts.classList.toggle('active');
+    };
+    window.whatsappMessage = function(producto, modo) {
+        const msg = encodeURIComponent(`Hola Stefi! Me interesa:\n📦 Producto: ${producto}\n🚚 Modalidad: ${modo}`);
+        window.open(`https://wa.me/5492396512544?text=${msg}`, '_blank');
+    };
+    window.showProductInfo = function(nombre, info) {
+        document.getElementById('info-title').textContent = nombre;
+        document.getElementById('info-content').innerHTML = info;
+        document.getElementById('info-modal').style.display = 'block';
+        document.getElementById('modalOverlay').style.display = 'block';
+    };
+    window.closeModal = function() {
+        document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        document.getElementById('modalOverlay').style.display = 'none';
+    };
+    window.openCatalogModal = function() {
+        document.getElementById('catalog-modal').style.display = 'block';
+        document.getElementById('modalOverlay').style.display = 'block';
+        closeSidebarFn();
+    };
+    window.closeCatalogModal = function() {
+        document.getElementById('catalog-modal').style.display = 'none';
+        document.getElementById('modalOverlay').style.display = 'none';
+    };
+    window.openCurtain = function(id) {
+        document.getElementById(`curtain-${id}`).classList.add('active');
+        closeSidebarFn();
+    };
+    window.closeCurtain = function() {
+        document.querySelectorAll('.curtain').forEach(c => c.classList.remove('active'));
+    };
+    window.scrollToSection = function(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    };
+ 
+    // Stefi overlays
+    window.openStefiOverlay = function(n) {
+        document.getElementById(`stefi-overlay-${n}`).classList.add('active');
+    };
+    window.closestefiOverlay = function(n) {
+        document.getElementById(`stefi-overlay-${n}`).classList.remove('active');
+    };
+    // Close stefi overlay clicking outside box
+    document.querySelectorAll('.stefi-overlay').forEach(ov => {
+        ov.addEventListener('click', function(e) {
+            if (e.target === ov) ov.classList.remove('active');
+        });
+    });
+ 
+    // Modal overlay click closes modals
+    document.getElementById('modalOverlay').addEventListener('click', () => {
+        window.closeModal();
+        window.closeCatalogModal();
+    });
+ 
+    function closeSidebarFn() {
+        document.getElementById('sidebar').classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+    }
+ 
+    // ── INIT ──
+    window.addEventListener('load', () => {
+        renderAvatars();
+        initStars();
+        renderizarProductos();
+        cargarComentarios();
+ 
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        });
+        document.getElementById('closeSidebar').addEventListener('click', closeSidebarFn);
+        document.getElementById('overlay').addEventListener('click', closeSidebarFn);
+    });
+</script>
 </body>
 </html>
+ 
