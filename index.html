@@ -5,95 +5,400 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Candy Paws - Snacks, gomitas, galletitas y tortas 100% naturales para tu mascota. Hechos con amor por Stefi.">
     <title>Candy Paws • Snacks & Tortas para Mascotas</title>
+   
+    <!-- FAVICON -->
+    <link rel="icon" href="logoweb.png" type="image/png">
+    <link rel="shortcut icon" href="logoweb.png" type="image/png">
+    <link rel="apple-touch-icon" href="logoweb.png">
+    <link rel="icon" sizes="16x16" href="logoweb.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="logoweb.png" type="image/png">
+   
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+      
         :root {
-            --primary: #92185d;
-            --accent: #5ce1e6;
+            --primary: #E6B1B9;
+            --medium: #D38F98;
+            --soft: #F2D6DB;
+            --text: #222222;
             --buy: #83d7a0;
-            --dark: #000000;
-            --light: #ffffff;
         }
-        
-        * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
-        }
-        
-        .tail-container * {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
-        
+      
+        * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+      
+        body { font-family: 'Inter', system-ui, sans-serif; }
+      
         .title-font {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 700;
             letter-spacing: -0.02em;
         }
-        
+      
         .hero-bg {
             background-image: url('fondoweb.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
-        
+      
         .overlay-dark {
-            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65));
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78));
         }
-        
-        .sidebar {
-            animation: slideInLeft 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      
+        .sidebar { animation: slideIn 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+        .subpanel { animation: slideInRight 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards; }
+      
+        @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+        @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+        /* === SIDEBAR Y SUBPANELS - MEJOR ESPACIADO === */
+        #sidebar {
+            width: 320px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         }
-        
-        .subpanel {
-            animation: slideInRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+        #sidebar .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
         }
-        
-        .modal {
-            animation: fadeInScale 0.3s ease both;
+
+        #sidebar nav {
+            padding: 2.5rem 1.5rem;
+            gap: 0.75rem;
         }
-        
-        @keyframes slideInLeft {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(0); }
+
+        #sidebar .menu-item {
+            padding: 1rem 1.5rem;
+            border-radius: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
         }
-        
-        @keyframes slideInRight {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(0); }
+
+        #sidebar .menu-item:hover {
+            background: #F2D6DB;
+            transform: translateX(4px);
         }
-        
-        @keyframes fadeInScale {
-            0% { opacity: 0; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1); }
+
+        /* === SUBPANELS - MEJOR PRESENTACIÓN === */
+        #panel-comprar,
+        #panel-encargo {
+            width: 320px;
+            max-width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         }
-        
-        .product-card {
-            border: 2px solid #000000;
-            border-radius: 4px;
-            box-shadow: 8px 8px 0 #000000;
+
+        #panel-comprar .px-6,
+        #panel-encargo .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
         }
-        
+
+        #panel-comprar h3,
+        #panel-encargo h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #E6B1B9;
+            margin: 0;
+        }
+
+        #panel-comprar .flex-1,
+        #panel-encargo .flex-1 {
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        #panel-comprar ol,
+        #panel-encargo ol {
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        #panel-comprar li,
+        #panel-encargo li {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        #panel-comprar button,
+        #panel-encargo button {
+            width: 100%;
+            padding: 1.25rem 1rem;
+            border-radius: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #panel-comprar button:hover,
+        #panel-encargo button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 143, 152, 0.3);
+        }
+
+        @media (max-width: 640px) {
+            #sidebar {
+                width: 280px;
+            }
+
+            #panel-comprar,
+            #panel-encargo {
+                width: 280px;
+            }
+        }
+      
         .section-image {
-            filter: brightness(0.95) contrast(1.05);
+            width: 100% !important;
+            height: auto;
+            display: block;
         }
-        
-        .floating-arrow {
-            animation: bounceArrow 1.5s infinite ease-in-out;
+      
+        .portada-dos {
+            margin-top: 0 !important;
         }
-        
+      
+        .floating-arrow { animation: bounce 1.8s infinite ease-in-out; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+      
+        @keyframes slideDown { from { transform: translate(-50%, -100%); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+        @keyframes slideUp { from { transform: translate(-50%, 0); opacity: 1; } to { transform: translate(-50%, -100%); opacity: 0; } }
+      
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .comentario-card { animation: fadeIn 0.6s ease-out forwards; }
+      
         .whatsapp-float {
-            animation: floatWhatsApp 3s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
         }
-        
-        .banner-white {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      
+        .banner-white { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+
+        /* === HEADER - SIMETRÍA PERFECTA === */
+        header {
+            background: white;
+            color: #22222c;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 4px solid #E6B1B9;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-        
+
+        header .max-w-7xl {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1rem;
+            gap: 1rem;
+        }
+
+        header button {
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #222222;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        header button:hover {
+            transform: scale(1.1);
+            color: #E6B1B9;
+        }
+
+        header button:active {
+            transform: scale(0.95);
+        }
+
+        header .flex-1 {
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+
+        header h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.75rem, 4vw, 3rem);
+            color: #222222;
+            text-align: center;
+            letter-spacing: -0.02em;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        header .flex.items-center.gap-3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        header img {
+            height: 3rem;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header img {
+                height: 2.5rem;
+            }
+        }
+      
+        .product-name {
+            font-size: 0.95rem;
+            line-height: 1.2;
+            font-weight: 600;
+            text-align: center;
+            white-space: normal;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+      
+        .custom-order {
+            font-size: 0.88rem;
+            color: #ff9f6b;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 2px;
+        }
+      
+        .buy-btn, .info-btn {
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 12px 16px;
+            border-radius: 9999px;
+            width: 100%;
+            margin-top: 8px;
+        }
+      
+        .buy-btn { background-color: var(--buy); color: #222222; }
+        .info-btn { background-color: white; color: #222222; border: 2px solid #222222; }
+      
+        .strikethrough {
+            color: #d1d5db !important;
+            text-decoration: line-through;
+        }
+      
+        .stock-text {
+            color: white !important;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+      
+        .close-float-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1rem;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+      
+        .modal-content {
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+      
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* === CATÁLOGO FLOTANTE - CENTRADO PERFECTO === */
+        #catalog-panel {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 120;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        #catalog-panel.flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #catalog-panel > div {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            color: #222222;
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            position: relative;
+            max-height: 88vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #catalog-panel h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #E6B1B9;
+            margin: 0 0 2rem 0;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        #catalog-panel .title-font {
+            color: #E6B1B9;
+            font-size: 1.875rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        @media (max-width: 768px) {
+            #catalog-panel > div {
+                padding: 1.25rem;
+            }
+
+            #catalog-panel h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .catalog-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 1rem;
+            }
+        }
+      
+        .stefi-section {
+            background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78));
+            position: relative;
+        }
+
         /* === ESTILOS PARA SECCIÓN DE OPINIONES === */
         .comentarios-section {
             background: #F7F6F7;
@@ -178,7 +483,6 @@
             animation: fadeInUp 0.4s ease-out;
         }
         .star {
-            font-size: 2.2rem;
             color: #e0e0e0;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -194,6 +498,7 @@
         .star.active {
             color: #FFD700;
             border-color: #FFD700;
+            fill: #FFD700;
             text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
         }
         #comentario {
@@ -209,13 +514,13 @@
             background: #fafbfc;
         }
         #comentario:focus {
-            border-color: #0097b2;
-            box-shadow: 0 0 0 3px rgba(0, 151, 178, 0.1);
+            border-color: #E6B1B9;
+            box-shadow: 0 0 0 3px rgba(230, 177, 185, 0.1);
             background: white;
             transform: translateY(-1px);
         }
         #comentario:hover {
-            border-color: #0097b2;
+            border-color: #E6B1B9;
             background: white;
         }
         #nombre {
@@ -230,13 +535,13 @@
             background: #fafbfc;
         }
         #nombre:focus {
-            border-color: #0097b2;
-            box-shadow: 0 0 0 3px rgba(0, 151, 178, 0.1);
+            border-color: #E6B1B9;
+            box-shadow: 0 0 0 3px rgba(230, 177, 185, 0.1);
             background: white;
             transform: translateY(-1px);
         }
         #nombre:hover {
-            border-color: #0097b2;
+            border-color: #E6B1B9;
             background: white;
         }
         #comentario::placeholder {
@@ -246,200 +551,852 @@
             font-family: 'Luckiest Guy', cursive;
             letter-spacing: 0.02em;
         }
-        
-        /* Modal de comentario */
-        .modal-comentario {
-            animation: fadeInScale 0.3s ease both;
-        }
-        @keyframes fadeInScale {
-            0% { opacity: 0; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-        
-        /* Panel flotante de comentarios */
-        .panel-comentarios {
-            animation: slideUpPanel 0.4s ease both;
-        }
-        @keyframes slideUpPanel {
-            0% { opacity: 0; transform: translateY(100%); }
-            100% { opacity: 1; transform: translateY(0); }
+
+        /* === ESTRELLAS ELEGANTES === */
+        .star-compacto {
+            color: #FFD700 !important;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.3));
         }
         
-        /* Input compacto */
-        .input-compact {
+        .star-compacto:hover {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        .star {
+            color: #FFD700;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.3));
+        }
+        
+        .star:hover {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        .star.active {
+            color: #FFD700 !important;
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+        }
+
+        /* === CUADRO COMPACTO === */
+        .comentarios-section {
+            background: white;
+            margin-top: 0;
+            padding: 2rem 1rem;
+        }
+
+        .comentarios-section .max-w-6xl {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .comentarios-section h2 {
+            font-size: clamp(1.875rem, 5vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .comentarios-section h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* === MODAL ANIMACIÓN === */
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* === MODAL DE COMENTARIO - CENTRADO PERFECTO === */
+        #modal-comentario {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 160;
+            padding: 1rem;
+        }
+
+        #modal-comentario.flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        #modal-comentario > div {
             width: 100%;
-            max-width: 400px;
-            padding: 16px 20px;
+            max-width: 540px;
+            max-height: calc(100vh - 2rem);
+            overflow-y: auto;
+            border-radius: 1.5rem;
+            background: white;
+            animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #modal-comentario .bg-gradient-to-r {
+            border-radius: 1.5rem 1.5rem 0 0;
+        }
+
+        /* === CONTENIDO DEL MODAL - ESPACIADO UNIFORME === */
+        #modal-comentario .p-8 {
+            padding: 2rem 1.5rem;
+        }
+
+        #modal-comentario .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        #modal-comentario label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            color: #222222;
+            letter-spacing: 0.3px;
+        }
+
+        #modal-comentario input,
+        #modal-comentario textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
             border: 2px solid #e1e5e9;
-            border-radius: 50px;
+            border-radius: 0.875rem;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             color: #222222;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fafbfc;
+        }
+
+        #modal-comentario input:focus,
+        #modal-comentario textarea:focus {
+            border-color: #0097b2;
+            box-shadow: 0 0 0 3px rgba(0, 151, 178, 0.1);
             background: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        .input-compact:hover {
-            border-color: #0097b2;
-            box-shadow: 0 6px 25px rgba(0, 151, 178, 0.2);
-            transform: translateY(-2px);
-        }
-        .input-compact:focus {
+            transform: translateY(-1px);
             outline: none;
+        }
+
+        #modal-comentario input:hover,
+        #modal-comentario textarea:hover {
             border-color: #0097b2;
-            box-shadow: 0 0 0 3px rgba(0, 151, 178, 0.3);
+            background: white;
         }
-        
-        /* Flechas animadas */
-        .arrow-down {
-            animation: bounceArrow 1.5s infinite ease-in-out;
+
+        @media (max-width: 640px) {
+            #modal-comentario .p-8 {
+                padding: 1.5rem 1.25rem;
+            }
         }
-        @keyframes bounceArrow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+
+        /* === AVATAR SELECTOR === */
+        #avatar-selector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
-        
-        /* Avatares */
-        .avatar-selector img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 3px solid #e1e5e9;
+
+        .avatar-option {
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
-        .avatar-selector img:hover {
+
+        .avatar-option img {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+            border: 3px solid #e1e5e9;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            display: block;
+        }
+
+        .avatar-option:hover img {
             transform: scale(1.1);
             border-color: #0097b2;
+            box-shadow: 0 0 12px rgba(0, 151, 178, 0.3);
         }
-        .avatar-selector .selected {
-            border-color: #0097b2;
-            box-shadow: 0 0 0 3px rgba(0, 151, 178, 0.3);
+
+        .avatar-option.selected img {
+            border-color: #0097b2 !important;
+            transform: scale(1.15);
+            box-shadow: 0 0 12px rgba(0, 151, 178, 0.4);
         }
-        
-        /* Botón enviar */
-        .btn-enviar {
-            background: #0097b2;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 25px;
+
+        @media (max-width: 640px) {
+            #avatar-selector {
+                gap: 1rem;
+            }
+
+            .avatar-option img {
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+
+        /* === PANEL FLOTANTE DE COMENTARIOS - CENTRADO PERFECTO === */
+        #panel-comentarios {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 150;
+            padding: 1rem;
+        }
+
+        #panel-comentarios.flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #panel-comentarios > div {
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #panel-comentarios button.absolute {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #222222;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
             border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+
+        #panel-comentarios button.absolute:hover {
+            background: white;
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        #panel-comentarios img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        #panel-comentarios h3 {
+            font-size: 1.875rem;
+            font-weight: 300;
+            color: #222222;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        #panel-comentarios .p-8 {
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        #panel-comentarios .space-y-6 {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        #panel-comentarios .bg-white.border {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 0.875rem;
+            padding: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #panel-comentarios .bg-white.border:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        #panel-comentarios .flex.items-center.gap-3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        #panel-comentarios .flex.items-center.gap-3 img {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            border: 2px solid #0097b2;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        #panel-comentarios .flex.items-center.justify-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 640px) {
+            #panel-comentarios > div {
+                margin: auto;
+            }
+
+            #panel-comentarios img {
+                height: 150px;
+            }
+
+            #panel-comentarios .p-8 {
+                padding: 1.5rem 1rem;
+            }
+
+            #panel-comentarios h3 {
+                font-size: 1.5rem;
+            }
+
+            #panel-comentarios .bg-white.border {
+                padding: 1rem;
+            }
+        }
+
+        /* === CLOSEBUTTON (CIRCULAR) === */
+        .close-float-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #E6B1B9;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-float-btn:hover {
+            background: #D38F98;
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* === BOTÓN CERRAR FULL-WIDTH EN MODALES === */
+        #modal-stefi .close-float-btn,
+        #modal-stefi2 .close-float-btn {
+            position: static;
+            width: 100%;
+            height: auto;
+            padding: 16px 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #E6B1B9 0%, #D38F98 100%);
+            margin-top: 28px;
+            border-top: 1px solid rgba(227, 147, 165, 0.2);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #modal-stefi .close-float-btn:hover,
+        #modal-stefi2 .close-float-btn:hover {
+            background: linear-gradient(135deg, #D38F98 0%, #C46D7A 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(211, 143, 152, 0.3);
+        }
+
+        #modal-stefi .close-float-btn:active,
+        #modal-stefi2 .close-float-btn:active {
+            transform: translateY(0);
+        }
+
+        /* === ESTRELLAS EN SECCIÓN DE OPINIONES === */
+        .star-seccion {
+            color: #FFD700 !important;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 0 0px rgba(255, 215, 0, 0.3));
+        }
+
+        .star-seccion:hover {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
+        }
+
+        .star-seccion.active {
+            color: #FFD700 !important;
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+        }
+
+        /* === AVATAR SELECTOR EN SECCIÓN === */
+        .avatar-option-seccion {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .avatar-option-seccion img {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+            border: 3px solid #e1e5e9;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            display: block;
+        }
+
+        .avatar-option-seccion:hover img {
+            transform: scale(1.1);
+            border-color: #0097b2;
+            box-shadow: 0 0 12px rgba(0, 151, 178, 0.3);
+        }
+
+        .avatar-option-seccion.selected img {
+            border-color: #0097b2 !important;
+            transform: scale(1.15);
+            box-shadow: 0 0 12px rgba(0, 151, 178, 0.4);
+        }
+
+        /* === MODALES STEFI - CENTRADO PERFECTO === */
+        #modal-stefi,
+        #modal-stefi2 {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 200;
+            padding: 1rem;
+        }
+
+        #modal-stefi.flex,
+        #modal-stefi2.flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #modal-stefi > div,
+        #modal-stefi2 > div {
+            width: 100%;
+            max-width: 560px;
+            background: white;
+            color: #222222;
+            border-radius: 1.5rem;
+            padding: 2rem 1.75rem;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #modal-stefi h2,
+        #modal-stefi2 h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #E6B1B9;
+            margin: 0 0 1.5rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        #modal-stefi p,
+        #modal-stefi2 p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        #modal-stefi .modal-content,
+        #modal-stefi2 .modal-content {
+            max-height: 85vh;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        #modal-stefi .modal-content::-webkit-scrollbar,
+        #modal-stefi2 .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #modal-stefi .modal-content::-webkit-scrollbar-track,
+        #modal-stefi2 .modal-content::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        #modal-stefi .modal-content::-webkit-scrollbar-thumb,
+        #modal-stefi2 .modal-content::-webkit-scrollbar-thumb {
+            background: #E6B1B9;
+            border-radius: 10px;
+        }
+
+        #modal-stefi .modal-content::-webkit-scrollbar-thumb:hover,
+        #modal-stefi2 .modal-content::-webkit-scrollbar-thumb:hover {
+            background: #D38F98;
+        }
+
+        @media (max-width: 640px) {
+            #modal-stefi > div,
+            #modal-stefi2 > div {
+                max-width: 95%;
+                padding: 1.5rem 1.25rem;
+            }
+
+            #modal-stefi h2,
+            #modal-stefi2 h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+
+            #modal-stefi p,
+            #modal-stefi2 p {
+                font-size: 0.95rem;
+                text-align: left;
+            }
+
+            #modal-stefi .close-float-btn,
+            #modal-stefi2 .close-float-btn {
+                padding: 14px 16px;
+                font-size: 15px;
+            }
+        }
+
+        /* === BOTÓN CERRAR CATALOG-PANEL FULL-WIDTH === */
+        #catalog-panel + .close-float-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 90%;
+            height: auto;
+            padding: 16px 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #E6B1B9 0%, #D38F98 100%);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: none;
+            z-index: 130;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #catalog-panel + .close-float-btn:hover {
+            background: linear-gradient(135deg, #D38F98 0%, #C46D7A 100%);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 4px 12px rgba(211, 143, 152, 0.3);
+        }
+
+        #catalog-panel + .close-float-btn:active {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* === FOOTER - SIMETRÍA Y ESPACIADO === */
+        footer {
+            background: white;
+            color: #222222;
+            border-top: 4px solid #E6B1B9;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        footer .max-w-7xl {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #222222;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        footer a:hover {
+            color: #E6B1B9;
+        }
+
+        footer img {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        footer img:hover {
+            filter: brightness(1.1);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        @media (max-width: 640px) {
+            footer {
+                padding: 2rem 0.5rem;
+            }
+
+            footer .flex.flex-wrap {
+                gap: 1rem !important;
+            }
+        }
+
+        /* === ESPACIOS GLOBALES === */
+        .h-8 { height: 2rem; }
+        .h-12 { height: 3rem; }
+
+        @media (max-width: 768px) {
+            .h-8 { height: 1rem; }
+            .h-12 { height: 1.5rem; }
+        }
+
+        /* === CUADRO COMPACTO DE OPINIONES - SIMETRÍA PERFECTA === */
+        .comentarios-section {
+            background: white;
+            margin-top: 0;
+            padding: 3rem 1rem;
+        }
+
+        .comentarios-section .max-w-6xl {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .comentarios-section h2 {
+            font-size: clamp(1.875rem, 5vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* === CUADRO COMPACTO ESTILO CARD === */
+        .comentarios-section .mx-auto.mb-16.max-w-2xl {
+            padding: 0 1rem;
+        }
+
+        .comentarios-section .bg-white.border-2 {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: center;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comentarios-section .bg-white.border-2:hover {
+            border-color: #0097b2;
+            box-shadow: 0 8px 24px rgba(0, 151, 178, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .comentarios-section .space-y-4 {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* === TÍTULO DEL CUADRO === */
+        .comentarios-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #222222;
+            margin: 0;
+            text-align: center;
+            letter-spacing: -0.01em;
+        }
+
+        /* === CAMPOS DEL CUADRO COMPACTO === */
+        .comentarios-section .text-center:first-of-type {
+            padding: 0.5rem 0;
+        }
+
+        .comentarios-section .flex.items-center.justify-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .comentarios-section .flex.gap-1\.5 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        /* === CAMPO DE OPINIÓN COMPACTO === */
+        .comentarios-section .p-3\.5.border-2 {
+            padding: 0.875rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.875rem;
+            background: #fafbfc;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: text;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .comentarios-section .p-3\.5.border-2:hover {
+            border-color: #0097b2;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 151, 178, 0.1);
+        }
+
+        /* === BOTÓN VER MÁS COMENTARIOS === */
+        .comentarios-section .text-center.mt-8 button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: white;
+            color: #222222;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            border: 1px solid #e0e0e0;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
-        .btn-enviar:hover {
-            background: #007a94;
+
+        .comentarios-section .text-center.mt-8 button:hover {
+            background: #f8f9fa;
+            border-color: #0097b2;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 151, 178, 0.4);
+        }
+
+        .comentarios-section .text-center.mt-8 button:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            .comentarios-section {
+                padding: 2rem 0.5rem;
+            }
+
+            .comentarios-section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .comentarios-section .bg-white.border-2 {
+                padding: 1.25rem;
+            }
+
+            .comentarios-section h3 {
+                font-size: 1rem;
+            }
+
+            .comentarios-section .text-center.mt-8 button {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
-<body class="tail-container bg-[#000000] text-white min-h-screen hero-bg">
-    <!-- BARRA SUPERIOR BLANCA (BANNER PRINCIPAL) -->
-    <header class="banner-white bg-white text-[#000000] sticky top-0 z-50 border-b-4 border-[#92185d]">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            
-            <!-- ÍCONO MENÚ HAMBURGUESA -->
-            <button onclick="toggleSidebar()" 
-                    class="w-12 h-12 flex items-center justify-center text-3xl hover:scale-110 active:scale-95 focus:outline-none">
+<body class="hero-bg bg-black text-white min-h-screen overflow-x-hidden">
+
+    <!-- BANNER SUPERIOR -->
+    <header class="banner-white bg-white text-black sticky top-0 z-50 border-b-4 border-[#E6B1B9]">
+        <div class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
+            <button onclick="toggleSidebar()" class="w-14 h-14 flex items-center justify-center text-4xl hover:scale-110 active:scale-95">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            
-            <!-- TÍTULO DE MARCA -->
-            <div class="flex-1 flex justify-center items-center gap-3">
-                <h1 class="title-font text-4xl md:text-5xl tracking-[-2px] text-[#92185d] text-center">
-                    CANDY PAWS
-                </h1>
+            <div class="flex-1 flex justify-center">
+                <h1 class="title-font text-4xl md:text-5xl text-black tracking-[-2px] text-center">CANDY PAWS</h1>
             </div>
-            
-            <!-- LOGO ESCUDO A LA DERECHA -->
-            <div class="flex items-center">
-                <img src="logoweb.png" alt="Logo Candy Paws" 
-                     class="h-12 w-auto object-contain drop-shadow-md">
+            <div class="flex items-center gap-3">
+                <img src="logoweb.png" alt="Logo Candy Paws" class="h-12 w-auto object-contain">
             </div>
         </div>
     </header>
 
-    <!-- SIDEBAR MENÚ LATERAL -->
-    <div id="sidebar" 
-         class="hidden fixed top-0 left-0 h-full w-80 bg-white text-[#000000] shadow-2xl z-[100] overflow-y-auto sidebar flex flex-col">
-        
-        <!-- HEADER DEL MENÚ -->
-        <div class="px-6 pt-6 pb-4 border-b flex items-center justify-between sticky top-0 bg-white z-10">
-            <div class="flex items-center gap-2">
-                <img src="logoweb.png" alt="Logo pequeño" class="h-9 w-auto">
-                <h2 class="title-font text-2xl text-[#92185d]">Candy Pew</h2>
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="hidden fixed inset-y-0 left-0 w-80 bg-white text-black shadow-2xl z-[100] sidebar flex flex-col overflow-y-auto">
+        <div class="px-6 pt-8 pb-6 border-b flex items-center justify-between sticky top-0 bg-white z-10">
+            <div class="flex items-center gap-3">
+                <img src="logoweb.png" alt="Logo" class="h-9 w-auto">
+                <h2 class="title-font text-2xl text-black">Candy Paws</h2>
             </div>
-            <button onclick="toggleSidebar()" 
-                    class="text-4xl text-[#92185d] hover:text-[#5ce1e6] w-10 h-10 flex items-center justify-center">
-                ✕
-            </button>
+            <button onclick="toggleSidebar()" class="text-4xl text-[#E6B1B9] hover:text-black">✕</button>
         </div>
-        
-        <!-- OPCIONES DEL MENÚ -->
-        <nav class="flex-1 px-6 py-8 space-y-2 text-lg font-medium">
-            
-            <!-- Como Comprar -->
-            <button onclick="openComoComprar()" 
-                    class="w-full text-left px-6 py-5 hover:bg-[#f2d6db] rounded-2xl flex items-center justify-between group">
-                <span class="flex items-center gap-3">
-                    <i class="fa-solid fa-cart-shopping text-[#5ce1e6]"></i>
-                    Cómo Comprar
-                </span>
-                <i class="fa-solid fa-chevron-right group-hover:translate-x-1"></i>
-            </button>
-            
-            <!-- Cómo hacer un encargo -->
-            <button onclick="openComoEncargo()" 
-                    class="w-full text-left px-6 py-5 hover:bg-[#f2d6db] rounded-2xl flex items-center justify-between group">
-                <span class="flex items-center gap-3">
-                    <i class="fa-solid fa-gift text-[#5ce1e6]"></i>
-                    Cómo hacer un encargo
-                </span>
-                <i class="fa-solid fa-chevron-right group-hover:translate-x-1"></i>
-            </button>
-            
-            <!-- Ir a la tienda -->
-            <a href="#productos" onclick="toggleSidebar()" 
-               class="block px-6 py-5 hover:bg-[#f2d6db] rounded-2xl flex items-center gap-3">
-                <i class="fa-solid fa-store text-[#5ce1e6]"></i>
-                Ir a la tienda
-            </a>
-            
-            <!-- Contacto -->
-            <a href="https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta." 
-               target="_blank" onclick="toggleSidebar()" 
-               class="block px-6 py-5 hover:bg-[#f2d6db] rounded-2xl flex items-center gap-3">
-                <i class="fa-solid fa-headset text-[#5ce1e6]"></i>
-                Contacto
-            </a>
-            
-            <!-- Seguinos en redes -->
-            <a href="#redes" onclick="toggleSidebar()" 
-               class="block px-6 py-5 hover:bg-[#f2d6db] rounded-2xl flex items-center gap-3">
-                <i class="fa-solid fa-share-nodes text-[#5ce1e6]"></i>
-                Seguinos en redes
-            </a>
+        <nav class="flex-1 px-6 py-10 space-y-3 text-xl font-medium">
+            <button onclick="openComoComprar()" class="menu-item w-full text-left py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Cómo Comprar</button>
+            <button onclick="openComoEncargo()" class="menu-item w-full text-left py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Cómo hacer un encargo</button>
+            <a href="#productos" onclick="toggleSidebar()" class="menu-item block py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Ir a la tienda</a>
+            <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" onclick="toggleSidebar()" class="menu-item block py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Contacto</a>
+            <a href="#redes" onclick="toggleSidebar()" class="menu-item block py-6 px-6 hover:bg-[#F2D6DB] rounded-3xl">Seguinos en redes</a>
         </nav>
-        
-        <!-- FOOTER DEL SIDEBAR -->
-        <div class="px-6 py-8 border-t text-xs text-center text-gray-500">
+        <div class="p-6 text-xs text-center text-gray-500 border-t">
             Candy Paws © 2025/2026 – Todos los derechos reservados.
         </div>
     </div>
 
-    <!-- SUBPANEL "CÓMO COMPRAR" -->
-    <div id="panel-comprar" 
-         class="hidden fixed top-0 right-0 h-full w-80 md:w-96 bg-white text-[#000000] shadow-2xl z-[110] subpanel flex flex-col">
-        <div class="px-6 pt-6 pb-4 border-b flex items-center justify-between sticky top-0 bg-white">
-            <h3 class="title-font text-2xl text-[#92185d]">Cómo Comprar</h3>
-            <button onclick="closeSubPanels()" class="text-4xl text-[#92185d]">✕</button>
+    <!-- SUBPANEL CÓMO COMPRAR -->
+    <div id="panel-comprar" class="hidden fixed inset-y-0 right-0 w-80 md:w-96 bg-white text-black shadow-2xl z-[110] subpanel flex flex-col">
+        <div class="px-6 py-6 border-b flex justify-between items-center sticky top-0 bg-white">
+            <h3 class="title-font text-3xl text-[#E6B1B9]">Cómo Comprar</h3>
+            <button onclick="closeSubPanels()" class="text-4xl">✕</button>
         </div>
-        <div class="flex-1 px-6 py-8 space-y-6 text-base leading-relaxed overflow-y-auto">
-            <ol class="list-decimal pl-5 space-y-4">
+        <div class="flex-1 p-6 overflow-y-auto text-base leading-relaxed">
+            <ol class="list-decimal pl-6 space-y-5">
                 <li>Entrá al catálogo de Snacks.</li>
                 <li>Elegí el producto que tu mascota necesita.</li>
                 <li>Hacé clic en el botón <strong>Comprar</strong>.</li>
@@ -447,22 +1404,20 @@
                 <li>Completá tus datos en el formulario o enviáselos directamente a Stefy por WhatsApp.</li>
                 <li>¡Y listo! Nosotros nos encargamos del resto.</li>
             </ol>
-            <a href="#productos" onclick="closeSubPanels()" 
-               class="block text-center bg-[#92185d] hover:bg-[#5ce1e6] text-white font-medium py-4 rounded-2xl text-lg">
+            <button onclick="openCatalogPanel()" class="mt-10 block w-full text-center bg-[#E6B1B9] hover:bg-[#D38F98] text-white py-5 rounded-3xl text-xl font-semibold">
                 Ver productos
-            </a>
+            </button>
         </div>
     </div>
 
-    <!-- SUBPANEL "CÓMO HACER UN ENCARGO" -->
-    <div id="panel-encargo" 
-         class="hidden fixed top-0 right-0 h-full w-80 md:w-96 bg-white text-[#000000] shadow-2xl z-[110] subpanel flex flex-col">
-        <div class="px-6 pt-6 pb-4 border-b flex items-center justify-between sticky top-0 bg-white">
-            <h3 class="title-font text-2xl text-[#92185d]">Cómo hacer un encargo</h3>
-            <button onclick="closeSubPanels()" class="text-4xl text-[#92185d]">✕</button>
+    <!-- SUBPANEL CÓMO HACER UN ENCARGO -->
+    <div id="panel-encargo" class="hidden fixed inset-y-0 right-0 w-80 md:w-96 bg-white text-black shadow-2xl z-[110] subpanel flex flex-col">
+        <div class="px-6 py-6 border-b flex justify-between items-center sticky top-0 bg-white">
+            <h3 class="title-font text-3xl text-[#E6B1B9]">Cómo hacer un encargo</h3>
+            <button onclick="closeSubPanels()" class="text-4xl">✕</button>
         </div>
-        <div class="flex-1 px-6 py-8 space-y-6 text-base leading-relaxed overflow-y-auto">
-            <ol class="list-decimal pl-5 space-y-4">
+        <div class="flex-1 p-6 overflow-y-auto text-base leading-relaxed">
+            <ol class="list-decimal pl-6 space-y-5">
                 <li>Entrá al catálogo de Tortas por encargo.</li>
                 <li>Elegí el o los productos que tu mascota necesita.</li>
                 <li>Hacé clic en el botón <strong>Hacer pedido</strong>.</li>
@@ -470,274 +1425,490 @@
                 <li>Completá tus datos en el formulario o enviáselos directamente a Stefy por WhatsApp.</li>
                 <li>¡Y listo! Nosotros nos encargamos del resto.</li>
             </ol>
-            <a href="#productos" onclick="closeSubPanels()" 
-               class="block text-center bg-[#92185d] hover:bg-[#5ce1e6] text-white font-medium py-4 rounded-2xl text-lg">
+            <button onclick="openCatalogPanel()" class="mt-10 block w-full text-center bg-[#E6B1B9] hover:bg-[#D38F98] text-white py-5 rounded-3xl text-xl font-semibold">
                 Ver productos
-            </a>
+            </button>
         </div>
     </div>
 
-    <!-- PORTADA PRINCIPAL (SECCIÓN 1) -->
-    <section class="relative">
-        <img src="portadauno.png" alt="Portada Candy Paws" 
-             class="w-full h-auto section-image">
-        
-        <!-- PORTADA DOS -->
-        <div class="max-w-7xl mx-auto px-4 -mt-8 relative z-10">
-            <img src="portadados.png" alt="Portada 2" 
-                 class="w-full rounded-3xl shadow-2xl border-4 border-white mx-auto max-w-5xl">
-        </div>
-        
-        <!-- MENSAJE STEFI - IMAGEN CIRCULAR FLOTANTE -->
-        <div class="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center gap-8">
-            <div onclick="showStefiModal()" 
-                 class="relative cursor-pointer group mx-auto md:mx-0">
-                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border-8 border-[#92185d] overflow-hidden shadow-2xl flex-shrink-0">
-                    <img src="mensajeweb.png" alt="Stefi" 
-                         class="w-full h-full object-cover group-active:scale-105">
+    <!-- CATÁLOGO FLOTANTE -->
+    <div id="catalog-panel" class="hidden fixed inset-0 bg-black/90 z-[120] flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white text-black max-w-5xl w-full rounded-3xl p-6 md:p-8 relative max-h-[88vh] overflow-y-auto pb-24">
+            <h2 class="title-font text-center mb-10 text-[#E6B1B9] text-3xl">Nuestros Productos</h2>
+            <div class="catalog-grid">
+                <!-- Gomitas -->
+                <div class="col-span-full"><h3 class="title-font text-3xl text-center text-[#E6B1B9] mb-8">100% natural, sin conservantes</h3></div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="gomitasuno.png" alt="Gomitas de colágeno x 1/2kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Gomitas de colágeno x 1/2kg</h4>
+                    <p class="stock-text text-center">Siempre en Stock</p>
+                    <p class="text-sm strikethrough text-center">$9.050</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$8.200</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Gomitas de colágeno x 1/2kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGomitas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
                 </div>
-                <!-- Flechas animadas -->
-                <div class="absolute -bottom-2 -right-2 bg-white text-[#92185d] rounded-2xl px-5 py-2 shadow-xl flex items-center gap-2 text-sm font-medium">
-                    <span>Tocá para conocerme</span>
-                    <i class="fa-solid fa-arrow-right floating-arrow text-xl"></i>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="gomitasdos.png" alt="Gomitas de colágeno x 1kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Gomitas de colágeno x 1kg</h4>
+                    <p class="stock-text text-center">Siempre en Stock</p>
+                    <p class="text-sm strikethrough text-center">$16.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$16.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Gomitas de colágeno x 1kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGomitas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- PORTADA TRES (debajo) -->
-            <div class="flex-1 w-full">
-                <img src="portadatres.png" alt="Portada 3" 
-                     class="w-full rounded-3xl shadow-2xl border-4 border-white">
-            </div>
-        </div>
-    </section>
 
-    <!-- SECCIÓN 2 – GOMITAS -->
-    <section id="productos" class="max-w-7xl mx-auto px-4 py-16">
-        <h2 class="title-font text-5xl text-center text-white mb-12 tracking-[-1px]">
-            LA MEJOR CALIDAD Y MEJOR PRECIO.
-        </h2>
-        
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-            <!-- Imagen producto -->
-            <div class="product-card bg-white p-3 rounded-3xl overflow-hidden">
-                <img src="gomitasuno.png" alt="Gomitas de Colágeno" 
-                     class="w-full aspect-square object-cover rounded-2xl">
-            </div>
-            
-            <!-- Info -->
-            <div class="space-y-6">
-                <h3 class="title-font text-4xl text-[#5ce1e6]">Gomitas de Colágeno</h3>
-                
-                <div class="flex flex-wrap gap-4">
-                    <button onclick="openComprarPanel(1)" 
-                            class="flex-1 md:flex-none bg-[#83d7a0] hover:bg-[#5ce1e6] text-black font-semibold py-4 px-10 rounded-2xl text-xl shadow-lg flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        Comprar
-                    </button>
-                    <button onclick="openInfoGomitas()" 
-                            class="flex-1 md:flex-none bg-[#000000] hover:bg-[#92185d] text-white font-semibold py-4 px-10 rounded-2xl text-xl shadow-lg flex items-center justify-center">
-                        Información del producto
-                    </button>
+                <!-- Galletas -->
+                <div class="col-span-full mt-12"><h3 class="title-font text-3xl text-center text-[#E6B1B9] mb-8">100% natural, sin conservantes</h3></div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="galletasuno.png" alt="Galletas Snacks x 1/2kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Galletas Snacks x 1/2kg</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$10.150</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$9.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Galletas Snacks x 1/2kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGalletitas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
                 </div>
-                
-                <p class="text-white/90 text-lg leading-relaxed">
-                    Bolsitas listas para llevar • Sabores: Brócoli con pollo, Batata con pollo, Zanahoria con pollo
-                </p>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="galletasdos.png" alt="Galletas Snacks x 1kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Galletas Snacks x 1kg</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$17.800</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Galletas Snacks x 1kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGalletitas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+
+                <!-- Tortas -->
+                <div class="col-span-full mt-12"><h3 class="title-font text-3xl text-center text-[#E6B1B9] mb-8">100% natural, sin conservantes</h3></div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="tortasuno.png" alt="Torta nº10" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº10</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$12.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$12.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Torta nº10')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="tortasdos.png" alt="Torta nº12" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº12</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$17.800</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Torta nº12')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="tortastres.png" alt="Torta nº14" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº14</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$18.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Torta nº14')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[240px]">
+                        <img src="tortascuatro.png" alt="Torta nº17" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº17</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$21.790</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$21.000</p>
+                    <div class="mt-6 w-full max-w-[240px]">
+                        <button onclick="buyWithOption('Torta nº17')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas(); closeCatalogPanel();" class="info-btn">Información</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
-
-    <!-- PORTADA CUATRO -->
-    <div class="w-full">
-        <img src="portadacuatro.png" alt="Portada 4" 
-             class="w-full section-image">
+        <button onclick="closeCatalogPanel()" class="close-float-btn">Cerrar</button>
     </div>
 
-    <!-- SECCIÓN 3 – GALLETITAS -->
-    <section class="max-w-7xl mx-auto px-4 py-16">
-        <h2 class="title-font text-5xl text-center text-white mb-12 tracking-[-1px]">
-            LA MEJOR CALIDAD Y MEJOR PRECIO.
-        </h2>
-        
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-            <!-- Imagen producto -->
-            <div class="product-card bg-white p-3 rounded-3xl overflow-hidden">
-                <img src="galletasuno.png" alt="Galletitas Snack" 
-                     class="w-full aspect-square object-cover rounded-2xl">
-            </div>
-            
-            <!-- Info -->
-            <div class="space-y-6">
-                <h3 class="title-font text-4xl text-[#5ce1e6]">Galletitas Snack</h3>
-                
-                <div class="flex flex-wrap gap-4">
-                    <button onclick="openComprarPanel(2)" 
-                            class="flex-1 md:flex-none bg-[#83d7a0] hover:bg-[#5ce1e6] text-black font-semibold py-4 px-10 rounded-2xl text-xl shadow-lg flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        Comprar
-                    </button>
-                    <button onclick="openInfoGalletitas()" 
-                            class="flex-1 md:flex-none bg-[#000000] hover:bg-[#92185d] text-white font-semibold py-4 px-10 rounded-2xl text-xl shadow-lg flex items-center justify-center">
-                        Información del producto
-                    </button>
+    <!-- CONTENIDO PRINCIPAL -->
+    <img src="portadauno.png" alt="Portada 1" class="section-image">
+    <img src="portadados.png" alt="Portada 2" class="section-image portada-dos">
+
+    <!-- SECCIÓN STEFI -->
+    <section class="stefi-section py-12 relative">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+            <div onclick="showStefiModal()" class="relative cursor-pointer group mx-auto md:mx-0 flex-shrink-0">
+                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border-8 border-[#E6B1B9] overflow-hidden shadow-2xl">
+                    <img src="mensajeweb.png" alt="Stefi" class="w-full h-full object-cover group-active:scale-105">
                 </div>
-                
-                <p class="text-white/90 text-lg leading-relaxed">
-                    Sabores: Pollo, Hígado • Por encargo cualquier sabor
-                </p>
+                <div class="absolute -bottom-4 -right-4 bg-white text-[#E6B1B9] px-6 py-3 rounded-3xl shadow-2xl flex items-center gap-3 text-sm font-medium">
+                    Tocá para conocerme <i class="fa-solid fa-arrow-right floating-arrow text-xl"></i>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTADA CINCO -->
-    <div class="w-full">
-        <img src="portadacincoo.png" alt="Portada 5" 
-             class="w-full section-image">
-    </div>
+    <img src="portadatres.png" alt="Portada 3" class="section-image">
 
-    <!-- SECCIÓN 4 – TORTAS -->
-    <section class="max-w-7xl mx-auto px-4 py-16">
-        <h2 class="title-font text-5xl text-center text-white mb-12 tracking-[-1px]">
-            LA MEJOR CALIDAD Y MEJOR PRECIO.
-        </h2>
-        
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-            <!-- Imagen producto -->
-            <div class="product-card bg-white p-3 rounded-3xl overflow-hidden">
-                <img src="tortasuno.png" alt="Tortas de Cumpleaños" 
-                     class="w-full aspect-square object-cover rounded-2xl">
-            </div>
-            
-            <!-- Info -->
-            <div class="space-y-6">
-                <h3 class="title-font text-4xl text-[#5ce1e6]">Tortas de Cumpleaños</h3>
-                
-                <div class="flex flex-wrap gap-4">
-                    <button onclick="openComprarPanel(3)" 
-                            class="flex-1 md:flex-none bg-[#83d7a0] hover:bg-[#5ce1e6] text-black font-semibold py-4 px-10 rounded-2xl text-xl shadow-lg flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        Comprar
-                    </button>
-                    <button onclick="openInfoTortas()" 
-                            class="flex-1 md:flex-none bg-[#000000] hover:bg-[#92185d] text-white font-semibold py-4 px-10 rounded-2xl text-xl shadow-lg flex items-center justify-center">
-                        Información del producto
-                    </button>
+    <!-- SECCIÓN GOMITAS -->
+    <section id="productos" class="relative py-20 overlay-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="title-font text-3xl md:text-4xl text-center text-white mb-12">100% natural, sin conservantes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="gomitasuno.png" alt="Gomitas de colágeno x 1/2kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Gomitas de colágeno x 1/2kg</h4>
+                    <p class="stock-text text-center">Siempre en Stock</p>
+                    <p class="text-sm strikethrough text-center">$9.050</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$8.200</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Gomitas de colágeno x 1/2kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGomitas()" class="info-btn">Información</button>
+                    </div>
                 </div>
-                
-                <p class="text-white/90 text-lg leading-relaxed">
-                    100% naturales • Por encargo • Topping con gomitas y galletitas
-                </p>
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="gomitasdos.png" alt="Gomitas de colágeno x 1kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Gomitas de colágeno x 1kg</h4>
+                    <p class="stock-text text-center">Siempre en Stock</p>
+                    <p class="text-sm strikethrough text-center">$16.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$16.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Gomitas de colágeno x 1kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGomitas()" class="info-btn">Información</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTADA SEIS -->
-    <div class="w-full">
-        <img src="portadaseis.png" alt="Portada 6" 
-             class="w-full section-image">
-    </div>
+    <img src="portadacuatro.png" alt="Portada 4" class="section-image">
 
-    <!-- SECCIÓN 5 – SERVICIOS ADICIONALES -->
-    <section class="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row items-center gap-8">
-        <!-- Imagen circular Stefi -->
-        <div onclick="showStefiModal2()" 
-             class="relative cursor-pointer group mx-auto md:mx-0 flex-shrink-0">
-            <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border-8 border-[#92185d] overflow-hidden shadow-2xl">
-                <img src="mensajeweb.png" alt="Stefi" 
-                     class="w-full h-full object-cover group-active:scale-105">
+    <!-- SECCIÓN GALLETAS -->
+    <section class="relative py-20 overlay-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="title-font text-3xl md:text-4xl text-center text-white mb-12">100% natural, sin conservantes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="galletasuno.png" alt="Galletas Snacks x 1/2kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Galletas Snacks x 1/2kg</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$10.150</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$9.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Galletas Snacks x 1/2kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGalletitas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="galletasdos.png" alt="Galletas Snacks x 1kg" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Galletas Snacks x 1kg</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$17.800</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Galletas Snacks x 1kg')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoGalletitas()" class="info-btn">Información</button>
+                    </div>
+                </div>
             </div>
-            <div class="absolute -bottom-2 -right-2 bg-white text-[#92185d] rounded-2xl px-5 py-2 shadow-xl flex items-center gap-2 text-sm font-medium">
-                <span>Tocá y descubrí más</span>
-                <i class="fa-solid fa-arrow-right floating-arrow text-xl"></i>
-            </div>
-        </div>
-        
-        <!-- PORTADA SIETE -->
-        <div class="flex-1 w-full">
-            <img src="portadasiete.png" alt="Portada 7" 
-                 class="w-full rounded-3xl shadow-2xl border-4 border-white">
         </div>
     </section>
 
-    <!-- SECCIÓN 6 – REDES SOCIALES -->
-    <section id="redes" class="max-w-7xl mx-auto px-4 py-16 text-center">
-        <img src="portadasiete.png" alt="Portada redes" 
-             class="w-full rounded-3xl mb-12 shadow-2xl border-4 border-white mx-auto max-w-5xl section-image">
-        
-        <h2 class="title-font text-5xl mb-8 text-white">Seguinos para no perderte nuestras Ofertas</h2>
-        
-        <div class="flex justify-center gap-8 flex-wrap">
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/canndypaws/" target="_blank"
-               class="group">
-                <div class="w-20 h-20 rounded-3xl border-4 border-[#92185d] overflow-hidden shadow-xl group-hover:scale-110">
-                    <img src="instagramweb.png" alt="Instagram" class="w-full h-full object-cover">
+    <img src="portadacinco.png" alt="Portada 5" class="section-image">
+
+    <!-- SECCIÓN TORTAS -->
+    <section class="relative py-20 overlay-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="title-font text-3xl md:text-4xl text-center text-white mb-12">100% natural, sin conservantes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12">
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="tortasuno.png" alt="Torta nº10" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº10</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$12.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$12.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Torta nº10')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas()" class="info-btn">Información</button>
+                    </div>
                 </div>
-            </a>
-            
-            <!-- TikTok -->
-            <a href="#" target="_blank"
-               class="group">
-                <div class="w-20 h-20 rounded-3xl border-4 border-[#92185d] overflow-hidden shadow-xl group-hover:scale-110">
-                    <img src="tiktokweb.png" alt="TikTok" class="w-full h-full object-cover">
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="tortasdos.png" alt="Torta nº12" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº12</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$17.800</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Torta nº12')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas()" class="info-btn">Información</button>
+                    </div>
                 </div>
-            </a>
-            
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/stefi.bordenave" target="_blank"
-               class="group">
-                <div class="w-20 h-20 rounded-3xl border-4 border-[#92185d] overflow-hidden shadow-xl group-hover:scale-110">
-                    <img src="facebookweb.png" alt="Facebook" class="w-full h-full object-cover">
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="tortastres.png" alt="Torta nº14" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº14</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$18.750</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$18.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Torta nº14')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas()" class="info-btn">Información</button>
+                    </div>
                 </div>
-            </a>
+                <div class="md:col-span-6 flex flex-col items-center">
+                    <div class="product-card p-3 w-full max-w-[260px]">
+                        <img src="tortascuatro.png" alt="Torta nº17" class="w-full aspect-square object-cover rounded-2xl">
+                    </div>
+                    <h4 class="product-name mt-5">Torta nº17</h4>
+                    <p class="custom-order">Por encargo personalizado</p>
+                    <p class="text-sm strikethrough text-center">$21.790</p>
+                    <p class="text-2xl font-bold text-[#83d7a0] text-center">$21.000</p>
+                    <div class="mt-6 w-full max-w-[260px]">
+                        <button onclick="buyWithOption('Torta nº17')" class="buy-btn">Comprar</button>
+                        <button onclick="openInfoTortas()" class="info-btn">Información</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." 
-       target="_blank"
-       class="whatsapp-float fixed bottom-6 right-6 bg-[#5ce1e6] text-black w-16 h-16 rounded-3xl flex items-center justify-center shadow-2xl z-50 hover:scale-110 border-4 border-white">
-        <img src="whatsappweb.png" alt="WhatsApp" class="w-10 h-10 object-contain">
+    <img src="portadaseis.png" alt="Portada 6" class="section-image">
+
+    <!-- Stefi 2 -->
+    <section class="relative py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+            <div onclick="showStefiModal2()" class="relative cursor-pointer group mx-auto md:mx-0 flex-shrink-0">
+                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full border-8 border-[#E6B1B9] overflow-hidden shadow-2xl">
+                    <img src="mensajeweb.png" alt="Stefi" class="w-full h-full object-cover group-active:scale-105">
+                </div>
+                <div class="absolute -bottom-4 -right-4 bg-white text-[#E6B1B9] px-7 py-4 rounded-3xl shadow-2xl flex items-center gap-3 text-sm">
+                    Tocá y descubrí más <i class="fa-solid fa-arrow-right floating-arrow text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === SECCIÓN DE OPINIONES COMPACTA === -->
+    <section class="comentarios-section py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="title-font text-3xl md:text-4xl text-center text-[#222222] mb-16">TU MENSAJE NOS IMPORTA</h2>
+
+            <!-- CUADRO PRINCIPAL CON NOMBRE, ESTRELLAS Y AVATAR -->
+            <div class="mx-auto mb-16 max-w-3xl">
+                <div class="bg-white border-2 border-gray-200 rounded-3xl p-8 shadow-md hover:shadow-lg transition-all duration-300" style="font-family: 'Inter', sans-serif;">
+                    
+                    <!-- Nombre -->
+                    <div class="mb-8">
+                        <label class="block text-[#222222] font-semibold text-sm mb-3">Tu nombre (opcional)</label>
+                        <input type="text" id="nombre-seccion" placeholder="Tu nombre"
+                               class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#0097b2] focus:border-[#0097b2] transition-all duration-300">
+                    </div>
+
+                    <!-- Calificación con estrellas -->
+                    <div class="mb-8">
+                        <label class="block text-[#222222] font-semibold text-sm mb-3">Tu calificación</label>
+                        <div id="star-rating-seccion" class="flex justify-center gap-2">
+                            <i class="star-seccion fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="1" style="color: #FFD700;"></i>
+                            <i class="star-seccion fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="2" style="color: #FFD700;"></i>
+                            <i class="star-seccion fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="3" style="color: #FFD700;"></i>
+                            <i class="star-seccion fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="4" style="color: #FFD700;"></i>
+                            <i class="star-seccion fa-solid fa-star text-3xl cursor-pointer transition-all duration-300" data-value="5" style="color: #FFD700;"></i>
+                        </div>
+                        <input type="hidden" id="rating-seccion" value="5">
+                    </div>
+
+                    <!-- Avatar selector -->
+                    <div class="mb-8">
+                        <label class="block text-[#222222] font-semibold text-sm mb-3">Avatar de tu mascota</label>
+                        <div id="avatar-selector-seccion" class="flex justify-center gap-4 flex-wrap">
+                            <div class="avatar-option-seccion" data-avatar="avataruno.png">
+                                <img src="avataruno.png" alt="Avatar 1" class="w-14 h-14 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
+                            </div>
+                            <div class="avatar-option-seccion" data-avatar="avatardos.png">
+                                <img src="avatardos.png" alt="Avatar 2" class="w-14 h-14 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
+                            </div>
+                            <div class="avatar-option-seccion" data-avatar="avatartres.png">
+                                <img src="avatartres.png" alt="Avatar 3" class="w-14 h-14 rounded-full border-3 border-gray-300 hover:border-[#0097b2] cursor-pointer transition-all duration-300">
+                            </div>
+                            <div class="avatar-option-seccion selected" data-avatar="avatarcuatro.png">
+                                <img src="avatarcuatro.png" alt="Avatar 4" class="w-14 h-14 rounded-full border-3 border-[#0097b2] cursor-pointer transition-all duration-300">
+                            </div>
+                        </div>
+                        <input type="hidden" id="avatar-seccion" value="avatarcuatro.png">
+                    </div>
+
+                    <!-- Campo opinión ancho y bajito (abre modal de texto) -->
+                    <div onclick="abrirModalTextoComentario()" class="p-5 border-2 border-gray-300 rounded-xl bg-white/50 hover:bg-white hover:border-[#0097b2] transition-all duration-300 cursor-text flex items-center gap-2 group">
+                        <i class="fa-solid fa-pen-to-square text-[#0097b2] text-lg group-hover:scale-110 transition-all duration-300 flex-shrink-0"></i>
+                        <span class="text-[#888] font-medium text-sm group-hover:text-[#222222] transition-all duration-300">Dejanos tu comentario sobre los snacks, tortas, o la atención de Stefi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comentario Destacado (TOP) -->
+            <div id="comentarioDestacado" class="mt-12 max-w-2xl mx-auto"></div>
+
+            <!-- Ver más comentarios -->
+            <div class="text-center mt-8">
+                <button onclick="abrirPanelComentarios()" class="inline-flex items-center gap-3 bg-white hover:bg-gray-50 text-[#222222] font-semibold py-4 px-8 rounded-2xl border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 group">
+                    <span>Ver más comentarios</span>
+                    <i class="fa-solid fa-chevron-down text-xl animate-bounce group-hover:animate-pulse"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPACIO ELEGANTE -->
+    <div class="h-8 md:h-12"></div>
+
+    <img src="portadasiete.png" alt="Portada 7" class="section-image">
+
+    <!-- SECCIÓN REDES -->
+    <section id="redes" class="relative py-12 overlay-dark text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="title-font text-2xl md:text-3xl text-white mb-6 leading-tight">Seguinos para no perderte<br>nuestras ofertas</h2>
+            <div class="flex justify-center gap-8 flex-wrap">
+                <a href="https://www.instagram.com/canndypaws/" target="_blank" class="group">
+                    <div class="w-16 h-16 rounded-3xl border-4 border-[#E6B1B9] overflow-hidden shadow-xl group-hover:scale-110">
+                        <img src="instagramweb.png" alt="Instagram" class="w-full h-full object-cover">
+                    </div>
+                </a>
+                <a href="#" target="_blank" class="group">
+                    <div class="w-16 h-16 rounded-3xl border-4 border-[#E6B1B9] overflow-hidden shadow-xl group-hover:scale-110">
+                        <img src="tiktokweb.png" alt="TikTok" class="w-full h-full object-cover">
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/stefi.bordenave" target="_blank" class="group">
+                    <div class="w-16 h-16 rounded-3xl border-4 border-[#E6B1B9] overflow-hidden shadow-xl group-hover:scale-110">
+                        <img src="facebookweb.png" alt="Facebook" class="w-full h-full object-cover">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank"
+       class="whatsapp-float fixed bottom-6 right-6 w-20 h-20 flex items-center justify-center z-50">
+        <img src="whatsappweb.png" alt="WhatsApp" class="w-16 h-16 object-contain">
     </a>
 
-    <!-- FOOTER BANNER BLANCO -->
-    <footer class="banner-white bg-white text-[#000000] py-8 border-t-4 border-[#92185d]">
+    <!-- FOOTER -->
+    <footer class="bg-white text-black py-12 border-t-4 border-[#E6B1B9]">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-sm md:text-base font-medium">
-                <a onclick="openComoComprar(); return false;" class="hover:text-[#92185d] flex items-center gap-2">
-                    <i class="fa-solid fa-cart-shopping"></i> Cómo Comprar
-                </a>
-                <a href="#productos" class="hover:text-[#92185d] flex items-center gap-2">
-                    <i class="fa-solid fa-store"></i> Ir a la tienda
-                </a>
-                <a href="https://wa.me/5492395418232?text=Hola!%20Quiero%20hacer%20una%20consulta." 
-                   target="_blank" class="hover:text-[#92185d] flex items-center gap-2">
-                    <i class="fa-solid fa-headset"></i> Contacto
-                </a>
-                <a href="#redes" class="hover:text-[#92185d] flex items-center gap-2">
-                    <i class="fa-solid fa-share-nodes"></i> Seguinos en redes
-                </a>
+            <!-- Enlaces -->
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-base font-medium mb-8">
+                <a onclick="openComoComprar(); return false;" class="cursor-pointer text-[#222222] hover:text-[#E6B1B9] transition-all duration-300">Cómo Comprar</a>
+                <a href="#productos" class="text-[#222222] hover:text-[#E6B1B9] transition-all duration-300">Ir a la tienda</a>
+                <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="text-[#222222] hover:text-[#E6B1B9] transition-all duration-300">Contacto</a>
+                <a href="#redes" class="text-[#222222] hover:text-[#E6B1B9] transition-all duration-300">Seguinos en redes</a>
             </div>
-            
-            <div class="flex justify-center mt-8">
-                <img src="logoweb.png" alt="Logo Candy Paws" class="h-12 opacity-90">
+
+            <!-- Logo -->
+            <div class="flex justify-center my-8">
+                <img src="logoweb.png" alt="Logo Candy Paws" class="h-14 opacity-85 hover:opacity-100 transition-all duration-300">
             </div>
-            
-            <p class="text-center text-xs text-gray-500 mt-6">
-                Candy Paws © 2025/2026 – Todos los derechos reservados.
-            </p>
+
+            <!-- Copyright -->
+            <div class="text-center border-t border-gray-200 pt-6">
+                <p class="text-xs text-gray-500">Candy Paws © 2025/2026 – Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- MODAL STEFI (primer aparición) -->
-    <div id="modal-stefi" onclick="if(event.target.id === 'modal-stefi') hideStefiModal()" 
-         class="hidden fixed inset-0 bg-black/70 z-[200] flex items-center justify-center modal">
-        <div onclick="event.stopImmediatePropagation()" 
-             class="bg-white text-[#000000] max-w-2xl w-full mx-4 rounded-3xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-end mb-4">
-                <button onclick="hideStefiModal()" class="text-4xl text-[#92185d]">✕</button>
+    <!-- PANEL FLOTANTE DE COMENTARIOS -->
+    <div id="panel-comentarios" onclick="cerrarPanelComentarios()" class="hidden fixed inset-0 bg-black/70 z-[150] flex items-center justify-center p-4 overflow-y-auto">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl overflow-hidden animate-fadeInUp">
+            <!-- Header con imagen -->
+            <div class="relative">
+                <img src="portadaocho.png" alt="Portada Comentarios" class="w-full h-48 object-cover">
+                <button onclick="cerrarPanelComentarios()" class="absolute top-4 right-4 bg-white/90 hover:bg-white text-[#222222] w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-lg transition-all duration-300">
+                    ✕
+                </button>
             </div>
-            <h2 class="title-font text-4xl text-[#92185d] mb-6">Hola, soy Stefi ❤️</h2>
+
+            <!-- Contenido -->
+            <div class="p-8 max-h-[60vh] overflow-y-auto">
+                <h3 class="text-3xl font-light text-[#222222] text-center mb-8 tracking-wide">Todas las opiniones</h3>
+
+                <!-- Lista completa de comentarios -->
+                <div id="listaComentariosCompleta" class="space-y-6">
+                    <!-- Los comentarios se cargarán aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FLOTANTE DE TEXTO - SOLO COMENTARIO -->
+    <div id="modal-texto-comentario" onclick="if(event.target.id === 'modal-texto-comentario') cerrarModalTextoComentario()" class="hidden fixed inset-0 bg-black/70 z-[160] flex items-center justify-center p-4 overflow-y-auto">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden animate-fadeInUp my-auto">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-[#E6B1B9] to-[#D38F98] p-6">
+                <h3 class="text-2xl font-semibold text-white text-center">Dejanos tu comentario</h3>
+            </div>
+
+            <!-- Contenido del modal -->
+            <div class="p-8">
+                <!-- Textarea grande -->
+                <div class="mb-6">
+                    <textarea id="comentario" placeholder="Compartí tu experiencia con Candy Paws, snacks, tortas, o la atención de Stefi..."
+                              class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl text-[#222222] font-medium focus:outline-none focus:ring-2 focus:ring-[#E6B1B9] focus:border-[#E6B1B9] resize-none min-h-[200px] transition-all duration-300"></textarea>
+                    <p class="text-xs text-gray-500 mt-2">Mínimo 10 caracteres, máximo 500</p>
+                </div>
+
+                <!-- reCAPTCHA -->
+                <div class="flex justify-center mb-6">
+                    <div class="g-recaptcha" data-sitekey="6LcWAsQsAAAAAE77NP8tHGW3DwknCVnEC_z9bTAe"></div>
+                </div>
+
+                <!-- Botón enviar - centrado en la parte inferior -->
+                <button onclick="guardarComentario()" class="w-full bg-[#E6B1B9] hover:bg-[#D38F98] active:bg-[#C46D7A] text-white font-semibold text-lg py-4 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] tracking-wide">
+                    Enviar comentario
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALES STEFI -->
+    <div id="modal-stefi" onclick="if(event.target.id === 'modal-stefi') hideStefiModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <h2 class="title-font text-4xl text-[#E6B1B9] mb-8">Hola, soy Stefi ❤️</h2>
             <p class="text-lg leading-relaxed">
                 Hola, me presento para los que todavía no me conocen: soy Stefi, una apasionada de los animales.<br><br>
                 Siempre me pasa lo mismo… estoy tomando unos mates, comiendo galletitas y mi mascota se queda mirándome con esos ojitos que dicen “¿y yo qué?”.<br><br>
@@ -750,17 +1921,12 @@
                 Y los budines/tortas hechas por encargo, todo 100% natural para que también tengan su fiesta.<br><br>
                 Escribime por WhatsApp y armamos tu pedido juntos ❤️
             </p>
+            <button onclick="hideStefiModal()" class="close-float-btn">Cerrar</button>
         </div>
     </div>
 
-    <!-- MODAL STEFI 2 (segunda aparición) -->
-    <div id="modal-stefi2" onclick="if(event.target.id === 'modal-stefi2') hideStefiModal2()" 
-         class="hidden fixed inset-0 bg-black/70 z-[200] flex items-center justify-center modal">
-        <div onclick="event.stopImmediatePropagation()" 
-             class="bg-white text-[#000000] max-w-2xl w-full mx-4 rounded-3xl p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-end mb-4">
-                <button onclick="hideStefiModal2()" class="text-4xl text-[#92185d]">✕</button>
-            </div>
+    <div id="modal-stefi2" onclick="if(event.target.id === 'modal-stefi2') hideStefiModal2()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
             <p class="text-lg leading-relaxed whitespace-pre-line">
                 Todo lo que preparo es hecho con amor en casa, con receta casera, usando solo ingredientes que yo misma le daría a mi propia mascota.<br><br>
                 Nada de colorantes, nada de conservantes, nada artificial. Solo cosas ricas y sanas que realmente les hacen bien: ayudan a las articulaciones, dejan el pelaje más brillante y les dan una merienda que pueden disfrutar sin culpa.<br><br>
@@ -778,219 +1944,749 @@
                 Podés comprar directamente desde la web (yo me encargo de todo) o mandarme mensaje por WhatsApp y coordinamos tu pedido juntos.<br><br>
                 Estoy acá para ayudarte a hacer feliz a ese ser tan especial que tenés en casa ❤️
             </p>
+            <button onclick="hideStefiModal2()" class="close-float-btn">Cerrar</button>
         </div>
     </div>
 
-    <!-- PANEL COMPRAR (pestaña deslizante inferior) -->
-    <div id="panel-comprar-producto" onclick="if(event.target.id === 'panel-comprar-producto') hideComprarPanel()" 
-         class="hidden fixed bottom-0 inset-x-0 bg-black/80 z-[150] flex items-end">
-        <div onclick="event.stopImmediatePropagation()" 
-             class="bg-white text-[#000000] w-full max-w-2xl mx-auto rounded-t-3xl p-8">
-            <h3 class="text-3xl font-semibold mb-6 text-center">¡Genial! Conectamos tu Mercado Pago</h3>
-            <p class="text-center text-lg mb-8">Elegí cómo querés recibir tu pedido:</p>
-            
-            <div class="grid grid-cols-2 gap-4">
-                <button onclick="handleRetiro()" 
-                        class="bg-[#000000] text-white py-6 rounded-3xl text-xl font-medium shadow-xl flex flex-col items-center justify-center gap-2">
-                    <i class="fa-solid fa-store fa-2xl"></i>
-                    Retiro en local
+    <!-- PANEL COMPRAR -->
+    <div id="panel-comprar-producto" onclick="if(event.target.id === 'panel-comprar-producto') hideComprarPanel()" class="hidden fixed inset-x-0 bottom-0 bg-black/80 z-[150] flex items-end">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white w-full max-w-2xl mx-auto rounded-t-3xl p-8">
+            <h3 class="text-3xl font-semibold mb-6 text-center">Elegí cómo querés recibir tu pedido</h3>
+            <div class="grid grid-cols-2 gap-6">
+                <button onclick="sendToWhatsApp('Retiro en local')" class="bg-black text-white py-8 rounded-3xl text-xl font-medium flex flex-col items-center gap-3">
+                    <i class="fa-solid fa-store text-3xl"></i> Retiro en local
                 </button>
-                <button onclick="handleDomicilio()" 
-                        class="bg-[#83d7a0] text-black py-6 rounded-3xl text-xl font-medium shadow-xl flex flex-col items-center justify-center gap-2">
-                    <i class="fa-solid fa-motorcycle fa-2xl"></i>
-                    Recibir a domicilio
+                <button onclick="sendToWhatsApp('Recibir a domicilio')" class="bg-[#83d7a0] text-black py-8 rounded-3xl text-xl font-medium flex flex-col items-center gap-3">
+                    <i class="fa-solid fa-motorcycle text-3xl"></i> Recibir a domicilio
                 </button>
             </div>
-            
-            <button onclick="hideComprarPanel()" 
-                    class="mt-8 w-full py-4 text-[#92185d] font-medium">Cancelar</button>
+            <button onclick="hideComprarPanel()" class="mt-10 w-full py-4 text-[#E6B1B9] font-medium">Cancelar</button>
         </div>
     </div>
 
-    <!-- MODALES DE INFORMACIÓN DE PRODUCTOS -->
-    <div id="modal-info-gomitas" onclick="if(event.target.id === 'modal-info-gomitas') hideInfoModal()" 
-         class="hidden fixed inset-0 bg-black/70 z-[200] flex items-center justify-center modal">
-        <div onclick="event.stopImmediatePropagation()" class="bg-white text-[#000000] max-w-2xl w-full mx-4 rounded-3xl p-8">
-            <button onclick="hideInfoModal()" class="float-right text-4xl text-[#92185d]">✕</button>
-            <h3 class="title-font text-4xl text-[#92185d] mb-6">Gomitas de Colágeno</h3>
-            <p class="leading-relaxed text-lg">Les quiero contar sobre mis gomitas de colágeno, que son mis estrellas. Están elaboradas con colágeno natural y ayudan especialmente a las articulaciones y a dejar el pelaje más brillante y hermoso.<br><br>
-            Sabores que ya tengo:<br>
-            • Brócoli con pollo<br>
-            • Batata con pollo<br>
-            • Zanahoria con pollo<br><br>
-            ¡Todas mezcladitas y riquísimas!<br>
-            Se venden en bolsitas listas para llevar y son ideales para dar todos los días como premio o complemento. Todo 100% natural, sin colorantes, sin conservantes, sin sal y sin azúcar.</p>
+    <!-- MODALES INFORMACIÓN -->
+    <div id="modal-info-gomitas" onclick="if(event.target.id === 'modal-info-gomitas') hideInfoModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <h3 class="title-font text-4xl text-[#E6B1B9] mb-6 text-center">Gomitas de Colágeno</h3>
+            <p class="text-lg leading-relaxed">
+                Les quiero contar sobre mis gomitas de colágeno, que son mis estrellas. Están elaboradas con colágeno natural y ayudan especialmente a las articulaciones y a dejar el pelaje más brillante y hermoso.<br><br>
+                Sabores que ya tengo:<br>
+                • Brócoli con pollo<br>
+                • Batata con pollo<br>
+                • Zanahoria con pollo<br><br>
+                ¡Todas mezcladitas y riquísimas!<br>
+                Se venden en bolsitas listas para llevar y son ideales para dar todos los días como premio o complemento. Todo 100% natural, sin colorantes, sin conservantes, sin sal y sin azúcar.
+            </p>
+            <button onclick="hideInfoModal()" class="close-float-btn">Cerrar</button>
         </div>
     </div>
 
-    <div id="modal-info-galletitas" onclick="if(event.target.id === 'modal-info-galletitas') hideInfoModal()" 
-         class="hidden fixed inset-0 bg-black/70 z-[200] flex items-center justify-center modal">
-        <div onclick="event.stopImmediatePropagation()" class="bg-white text-[#000000] max-w-2xl w-full mx-4 rounded-3xl p-8">
-            <button onclick="hideInfoModal()" class="float-right text-4xl text-[#92185d]">✕</button>
-            <h3 class="title-font text-4xl text-[#92185d] mb-6">Galletitas Snack</h3>
-            <p class="leading-relaxed text-lg">Les quiero hablar de mis galletitas, que también son muy especiales. Están hechas 100% con ingredientes naturales, sin colorantes, sin conservantes, sin sal y sin azúcar. Todo casero y pensado para nuestras mascotas.<br><br>
-            Sabores que ya tengo:<br>
-            • Pollo<br>
-            • Hígado<br><br>
-            Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
-            Son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.</p>
+    <div id="modal-info-galletitas" onclick="if(event.target.id === 'modal-info-galletitas') hideInfoModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <h3 class="title-font text-4xl text-[#E6B1B9] mb-6 text-center">Galletitas Snack</h3>
+            <p class="text-lg leading-relaxed">
+                Les quiero hablar de mis galletitas, que también son muy especiales. Están hechas 100% con ingredientes naturales, sin colorantes, sin conservantes, sin sal y sin azúcar. Todo casero y pensado para nuestras mascotas.<br><br>
+                Sabores que ya tengo:<br>
+                • Pollo<br>
+                • Hígado<br><br>
+                Y por encargo puedo hacerlas del sabor que ustedes me pidan.<br><br>
+                Son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.<br><br>
+                También las uso como topping en las tortas de cumpleaños y budines.<br><br>
+                ¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz!
+            </p>
+            <button onclick="hideInfoModal()" class="close-float-btn">Cerrar</button>
         </div>
     </div>
 
-    <div id="modal-info-tortas" onclick="if(event.target.id === 'modal-info-tortas') hideInfoModal()" 
-         class="hidden fixed inset-0 bg-black/70 z-[200] flex items-center justify-center modal">
-        <div onclick="event.stopImmediatePropagation()" class="bg-white text-[#000000] max-w-2xl w-full mx-4 rounded-3xl p-8">
-            <button onclick="hideInfoModal()" class="float-right text-4xl text-[#92185d]">✕</button>
-            <h3 class="title-font text-4xl text-[#92185d] mb-6">Tortas de Cumpleaños</h3>
-            <p class="leading-relaxed text-lg">Ahora les cuento sobre las tortas de cumpleaños que hago por encargo para sus peludos. Son 100% naturales, sin colorantes, sin conservantes, sin sal y sin azúcar. Todo hecho con ingredientes reales y mucho cariño.<br><br>
-            Puedo hacerlas del sabor que prefieran (pollo, hígado, o combinaciones con brócoli, zanahoria, batata, etc.). En el topping les pongo gomitas de colágeno y galletitas para que queden hermosas y ricas.</p>
+    <div id="modal-info-tortas" onclick="if(event.target.id === 'modal-info-tortas') hideInfoModal()" class="hidden fixed inset-0 bg-black/80 z-[200] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white text-black max-w-2xl w-full mx-4 rounded-3xl p-10 modal-content relative">
+            <h3 class="title-font text-4xl text-[#E6B1B9] mb-6 text-center">Tortas de Cumpleaños</h3>
+            <p class="text-lg leading-relaxed">
+                Ahora les cuento sobre las tortas de cumpleaños que hago por encargo para sus peludos. Son 100% naturales, sin colorantes, sin conservantes, sin sal y sin azúcar. Todo hecho con ingredientes reales y mucho cariño.<br><br>
+                Puedo hacerlas del sabor que prefieran (pollo, hígado, o combinaciones con brócoli, zanahoria, batata, etc.). En el topping les pongo gomitas de colágeno y galletitas para que queden hermosas y ricas.<br><br>
+                Son ideales para celebrar el cumple de su mascota, una adopción o cualquier momento especial.<br><br>
+                Si querés una torta personalizada para tu peludo, me escribís por privado con la fecha y el sabor que te gustaría, y coordinamos todo por WhatsApp.<br><br>
+                ¡Todo natural y hecho con amor para que tu mascota se sienta consentida y feliz!
+            </p>
+            <button onclick="hideInfoModal()" class="close-float-btn">Cerrar</button>
         </div>
     </div>
 
     <script>
-        // Tailwind initialization
-        function initializeTailwind() {
-            tailwind.config = {
-                content: [],
-                theme: {
-                    extend: {
-                        colors: {
-                            primary: '#92185d',
-                            accent: '#5ce1e6',
-                            buy: '#83d7a0'
-                        }
-                    }
-                }
-            }
-        }
-        
-        // Sidebar
         function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar')
-            sidebar.classList.toggle('hidden')
+            document.getElementById('sidebar').classList.toggle('hidden');
         }
-        
-        // Subpanels
+      
         function openComoComprar() {
-            document.getElementById('panel-comprar').classList.remove('hidden')
-            document.getElementById('panel-encargo').classList.add('hidden')
+            document.getElementById('panel-comprar').classList.remove('hidden');
+            document.getElementById('panel-encargo').classList.add('hidden');
         }
-        
+      
         function openComoEncargo() {
-            document.getElementById('panel-encargo').classList.remove('hidden')
-            document.getElementById('panel-comprar').classList.add('hidden')
+            document.getElementById('panel-encargo').classList.remove('hidden');
+            document.getElementById('panel-comprar').classList.add('hidden');
         }
-        
+      
         function closeSubPanels() {
-            document.getElementById('panel-comprar').classList.add('hidden')
-            document.getElementById('panel-encargo').classList.add('hidden')
-            const sidebar = document.getElementById('sidebar')
-            if (!sidebar.classList.contains('hidden')) toggleSidebar()
+            document.getElementById('panel-comprar').classList.add('hidden');
+            document.getElementById('panel-encargo').classList.add('hidden');
         }
-        
-        // Modales Stefi
+      
+        function openCatalogPanel() {
+            closeSubPanels();
+            document.getElementById('catalog-panel').classList.remove('hidden');
+        }
+      
+        function closeCatalogPanel() {
+            document.getElementById('catalog-panel').classList.add('hidden');
+        }
+      
         function showStefiModal() {
-            document.getElementById('modal-stefi').classList.remove('hidden')
-            document.getElementById('modal-stefi').classList.add('flex')
+            document.getElementById('modal-stefi').classList.remove('hidden');
+            document.getElementById('modal-stefi').classList.add('flex');
         }
-        
+      
         function hideStefiModal() {
-            const modal = document.getElementById('modal-stefi')
-            modal.classList.add('hidden')
-            modal.classList.remove('flex')
+            const modal = document.getElementById('modal-stefi');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
-        
+      
         function showStefiModal2() {
-            document.getElementById('modal-stefi2').classList.remove('hidden')
-            document.getElementById('modal-stefi2').classList.add('flex')
+            document.getElementById('modal-stefi2').classList.remove('hidden');
+            document.getElementById('modal-stefi2').classList.add('flex');
         }
-        
+      
         function hideStefiModal2() {
-            const modal = document.getElementById('modal-stefi2')
-            modal.classList.add('hidden')
-            modal.classList.remove('flex')
+            const modal = document.getElementById('modal-stefi2');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
-        
-        // Panel Comprar producto
-        let currentProduct = null
-        
-        function openComprarPanel(productId) {
-            currentProduct = productId
-            document.getElementById('panel-comprar-producto').classList.remove('hidden')
-            document.getElementById('panel-comprar-producto').classList.add('flex')
+      
+        // === FUNCIONES DEL MODAL DE COMENTARIOS ===
+        function abrirModalTextoComentario() {
+            document.getElementById('modal-texto-comentario').classList.remove('hidden');
+            document.getElementById('modal-texto-comentario').classList.add('flex');
+            // Establecer foco en el campo de comentario
+            setTimeout(() => document.getElementById('comentario').focus(), 100);
         }
-        
-        function hideComprarPanel() {
-            const panel = document.getElementById('panel-comprar-producto')
-            panel.classList.add('hidden')
-            panel.classList.remove('flex')
-            currentProduct = null
+      
+        function cerrarModalTextoComentario() {
+            document.getElementById('modal-texto-comentario').classList.add('hidden');
+            document.getElementById('modal-texto-comentario').classList.remove('flex');
         }
-        
-        function handleRetiro() {
-            hideComprarPanel()
-            alert('✅ ¡Perfecto! Te redirigimos a Mercado Pago para pago de retiro en local. ¡Gracias por elegirnos!')
-            // Aquí iría el link real a Mercado Pago
-            console.log('Retiro - Producto:', currentProduct)
+
+        // === PANEL DE COMENTARIOS ===
+        function abrirPanelComentarios() {
+            const panel = document.getElementById('panel-comentarios');
+            panel.classList.remove('hidden');
+            panel.classList.add('flex');
+            cargarComentariosCompletos();
         }
-        
-        function handleDomicilio() {
-            hideComprarPanel()
-            alert('✅ ¡Genial! Te redirigimos a Mercado Pago para pago con envío a domicilio. ¡Gracias por elegirnos!')
-            // Aquí iría el link real a Mercado Pago
-            console.log('Domicilio - Producto:', currentProduct)
+
+        function cerrarPanelComentarios() {
+            const panel = document.getElementById('panel-comentarios');
+            panel.classList.add('hidden');
+            panel.classList.remove('flex');
         }
-        
-        // Modales información productos
-        function openInfoGomitas() {
-            document.getElementById('modal-info-gomitas').classList.remove('hidden')
-            document.getElementById('modal-info-gomitas').classList.add('flex')
-        }
-        
-        function openInfoGalletitas() {
-            document.getElementById('modal-info-galletitas').classList.remove('hidden')
-            document.getElementById('modal-info-galletitas').classList.add('flex')
-        }
-        
-        function openInfoTortas() {
-            document.getElementById('modal-info-tortas').classList.remove('hidden')
-            document.getElementById('modal-info-tortas').classList.add('flex')
-        }
-        
-        function hideInfoModal() {
-            const modals = document.querySelectorAll('.modal')
-            modals.forEach(modal => {
-                if (!modal.classList.contains('hidden')) {
-                    modal.classList.add('hidden')
-                    modal.classList.remove('flex')
-                }
-            })
-        }
-        
-        // Cerrar sidebar y panels con tecla ESC
-        document.addEventListener('keydown', function(e) {
+
+        // === CERRAR CON TECLA ESC ===
+        document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                const sidebar = document.getElementById('sidebar')
-                if (!sidebar.classList.contains('hidden')) toggleSidebar()
-                
-                const panels = document.querySelectorAll('.subpanel')
-                panels.forEach(p => p.classList.add('hidden'))
-                
-                hideComprarPanel()
-                hideStefiModal()
-                hideStefiModal2()
-                hideInfoModal()
+                cerrarModalTextoComentario();
+                cerrarPanelComentarios();
             }
-        })
-        
-        // Inicialización
-        window.onload = function() {
-            initializeTailwind()
-            console.log('%c✅ Candy Paws - index.html cargado correctamente. Responsive, animaciones suaves y 100% simétrico.', 'color:#5ce1e6; font-weight:700;')
-            
-            // Mensaje de bienvenida en consola para el desarrollador
-            console.log('Imágenes cargadas desde Cloudflare/GitHub. Reemplaza las rutas si es necesario (ej: https://tu-dominio.cloudflare.dev/fondoweb.png)')
+        });
+      
+        function hideComprarPanel() {
+            const panel = document.getElementById('panel-comprar-producto');
+            panel.classList.add('hidden');
+            panel.classList.remove('flex');
         }
+      
+        function buyWithOption(productName) {
+            window.selectedProduct = productName;
+            document.getElementById('panel-comprar-producto').classList.remove('hidden');
+            document.getElementById('panel-comprar-producto').classList.add('flex');
+        }
+      
+        function sendToWhatsApp(option) {
+            const product = window.selectedProduct || "Producto";
+            const message = `Hola Stefy! Quiero comprar: ${product} - ${option}. ¿Me podés ayudar con el pedido?`;
+            const whatsappUrl = `https://wa.me/5492396512544?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            hideComprarPanel();
+        }
+      
+        function openInfoGomitas() {
+            document.getElementById('modal-info-gomitas').classList.remove('hidden');
+            document.getElementById('modal-info-gomitas').classList.add('flex');
+        }
+      
+        function openInfoGalletitas() {
+            document.getElementById('modal-info-galletitas').classList.remove('hidden');
+            document.getElementById('modal-info-galletitas').classList.add('flex');
+        }
+      
+        function openInfoTortas() {
+            document.getElementById('modal-info-tortas').classList.remove('hidden');
+            document.getElementById('modal-info-tortas').classList.add('flex');
+        }
+      
+        function hideInfoModal() {
+            document.querySelectorAll('#modal-info-gomitas, #modal-info-galletitas, #modal-info-tortas').forEach(modal => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            });
+        }
+      
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                document.getElementById('sidebar').classList.add('hidden');
+                closeSubPanels();
+                hideComprarPanel();
+                closeCatalogPanel();
+                hideStefiModal();
+                hideStefiModal2();
+                hideInfoModal();
+                closeLoginModal();
+            }
+        });
+
+        // === FUNCIONES DEL PANEL DE COMENTARIOS ===
+        function abrirPanelComentarios() {
+            document.getElementById('panel-comentarios').classList.remove('hidden');
+            document.getElementById('panel-comentarios').classList.add('flex');
+            cargarComentariosCompletos();
+        }
+
+        function cerrarPanelComentarios() {
+            document.getElementById('panel-comentarios').classList.add('hidden');
+            document.getElementById('panel-comentarios').classList.remove('flex');
+        }
+
+        // Cerrar con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                cerrarPanelComentarios();
+                cerrarModalTextoComentario();
+            }
+        });
     </script>
+
+    <!-- === SCRIPT FIREBASE ACTUALIZADO === -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, updateDoc, doc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        // Nueva configuración de Firebase (actualizada)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDxX70OyFYiQcw1SwX51Mv6fCt_jloYddk",
+            authDomain: "estrellas-y-comentarios.firebaseapp.com",
+            projectId: "estrellas-y-comentarios",
+            storageBucket: "estrellas-y-comentarios.firebasestorage.app",
+            messagingSenderId: "593954229438",
+            appId: "1:593954229438:web:2d5c4f9ea6aa13ea9d62ef",
+            measurementId: "G-VWEVVQ3238"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Variables globales
+        let currentRating = 5;
+        let lastSubmitTime = 0;
+        const COOLDOWN_MS = 6000; // 6 segundos entre comentarios
+        const BLACKLIST = ["puta", "mierda", "idiota", "boludo", "pelotudo", "tarado", "boluda"];
+
+        // Autenticación anónima
+        signInAnonymously(auth).catch(error => {
+            console.error("Error en autenticación:", error);
+        });
+
+        // === ESTRELLAS CLICKEABLES ===
+        const stars = document.querySelectorAll('#star-rating .star');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                currentRating = parseInt(star.dataset.value);
+                document.getElementById('rating').value = currentRating;
+                updateStars();
+            });
+            star.addEventListener('mouseover', () => {
+                const hoverValue = parseInt(star.dataset.value);
+                stars.forEach(s => {
+                    if (parseInt(s.dataset.value) <= hoverValue) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        document.getElementById('star-rating').addEventListener('mouseleave', updateStars);
+
+        function updateStars() {
+            stars.forEach(star => {
+                if (parseInt(star.dataset.value) <= currentRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // === ESTRELLAS EN SECCIÓN DE OPINIONES ===
+        let currentRatingSeccion = 5;
+        const starsSeccion = document.querySelectorAll('#star-rating-seccion .star-seccion');
+        starsSeccion.forEach(star => {
+            star.addEventListener('click', () => {
+                currentRatingSeccion = parseInt(star.dataset.value);
+                document.getElementById('rating-seccion').value = currentRatingSeccion;
+                updateStarsSeccion();
+            });
+            star.addEventListener('mouseover', () => {
+                const hoverValue = parseInt(star.dataset.value);
+                starsSeccion.forEach(s => {
+                    if (parseInt(s.dataset.value) <= hoverValue) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        document.getElementById('star-rating-seccion').addEventListener('mouseleave', updateStarsSeccion);
+
+        function updateStarsSeccion() {
+            starsSeccion.forEach(star => {
+                if (parseInt(star.dataset.value) <= currentRatingSeccion) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // === SELECTOR DE AVATARES EN SECCIÓN ===
+        const avatarOptionsSeccion = document.querySelectorAll('.avatar-option-seccion');
+        avatarOptionsSeccion.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                avatarOptionsSeccion.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                document.getElementById('avatar-seccion').value = option.dataset.avatar;
+            });
+        });
+
+        // === FUNCIONES DE VALIDACIÓN ===
+        function isValidText(text) {
+            if (!text || text.length < 10 || text.length > 500) return false;
+            const cleaned = text.toLowerCase();
+            return !BLACKLIST.some(word => cleaned.includes(word));
+        }
+
+        function verificarCaptcha() {
+            const token = grecaptcha.getResponse();
+            return token && token.length > 0;
+        }
+
+        function antiSpam() {
+            const now = Date.now();
+            if (now - lastSubmitTime < COOLDOWN_MS) {
+                const segundos = Math.ceil((COOLDOWN_MS - (now - lastSubmitTime)) / 1000);
+                alert(`Esperá ${segundos} segundos antes de comentar de nuevo`);
+                return false;
+            }
+            lastSubmitTime = now;
+            return true;
+        }
+
+        // === GUARDAR COMENTARIO ===
+        window.guardarComentario = async function () {
+            console.log('🔥 guardarComentario() iniciado');
+
+            const nombre = document.getElementById("nombre-seccion").value.trim() || "Anónimo";
+            const avatar = document.getElementById("avatar-seccion").value;
+            const estrellas = parseInt(document.getElementById("rating-seccion").value);
+            const comentario = document.getElementById("comentario").value.trim();
+
+            console.log('📝 Datos del formulario:', { nombre, avatar, estrellas, comentario: comentario.substring(0, 50) + '...' });
+
+            // Validaciones
+            if (!isValidText(comentario)) {
+                console.log('❌ Validación de texto fallida');
+                alert("El comentario debe tener entre 10 y 500 caracteres y sin palabras prohibidas");
+                return;
+            }
+
+            if (!verificarCaptcha()) {
+                console.log('❌ Captcha no verificado');
+                alert("Por favor confirmá que no sos un robot");
+                grecaptcha.reset();
+                return;
+            }
+
+            if (!antiSpam()) {
+                console.log('❌ Anti-spam activado');
+                return;
+            }
+
+            // Cambiar botón a estado enviando
+            const btn = document.querySelector('button[onclick="guardarComentario()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Enviando... ⏳';
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            try {
+                console.log('📤 Enviando a Firebase...');
+                await addDoc(collection(db, "comentarios"), {
+                    nombre: nombre.substring(0, 50),
+                    avatar: avatar,
+                    estrellas: estrellas,
+                    comentario: comentario.substring(0, 500),
+                    likes: 0,
+                    fecha: Date.now(),
+                    timestamp: new Date().toISOString()
+                });
+                
+                console.log('✅ Comentario guardado exitosamente');
+                
+                // Mostrar confirmación elegante
+                mostrarMensajeExito();
+                
+                // Cerrar modal
+                cerrarModalTextoComentario();
+                
+                // Limpiar formulario
+                document.getElementById("nombre-seccion").value = "";
+                // Resetear avatar al primero (avatarcuatro)
+                document.querySelectorAll('.avatar-option-seccion').forEach(opt => opt.classList.remove('selected'));
+                document.querySelector('[data-avatar="avatarcuatro.png"].avatar-option-seccion').classList.add('selected');
+                document.getElementById('avatar-seccion').value = "avatarcuatro.png";
+                document.getElementById("comentario").value = "";
+                currentRatingSeccion = 5;
+                updateStarsSeccion();
+                grecaptcha.reset();
+                
+                // Recargar comentarios
+                cargarComentarios();
+                
+            } catch (error) {
+                console.error("❌ Error al guardar comentario:", error);
+                console.error("Código de error:", error.code);
+                console.error("Mensaje de error:", error.message);
+                console.error("Detalles completos:", error);
+
+                // Mostrar error más específico al usuario
+                let mensajeError = "Hubo un problema al guardar tu comentario.";
+                if (error.code === 'permission-denied') {
+                    mensajeError = "Error de permisos. Verifica la configuración de Firebase.";
+                } else if (error.code === 'unavailable') {
+                    mensajeError = "Servicio no disponible. Revisa tu conexión a internet.";
+                }
+
+                alert(mensajeError + " Revisa la consola para más detalles.");
+            } finally {
+                // Restaurar botón
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        };
+
+        // === FUNCIÓN MENSAJE ÉXITO ===
+        function mostrarMensajeExito() {
+            // Crear elemento de mensaje
+            const mensaje = document.createElement('div');
+            mensaje.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-[#0097b2] text-white px-6 py-4 rounded-2xl shadow-lg z-50 border-2 border-white font-bold text-lg';
+            mensaje.innerHTML = 'Candy Paws te agradece ❤️<br>Tu comentario fue enviado correctamente';
+            
+            // Agregar animación
+            mensaje.style.animation = 'slideDown 0.5s ease-out';
+            
+            document.body.appendChild(mensaje);
+            
+            // Remover después de 4 segundos
+            setTimeout(() => {
+                mensaje.style.animation = 'slideUp 0.5s ease-in';
+                setTimeout(() => mensaje.remove(), 500);
+            }, 4000);
+        }
+        async function cargarComentarios() {
+            const contenedor = document.getElementById("listaComentarios");
+            contenedor.innerHTML = "<p class='text-center text-gray-500 py-8'>Cargando opiniones...</p>";
+
+            try {
+                // 🔥 SOLUCIÓN: Cambiar query para evitar índice compuesto
+                // Antes: orderBy("likes", "desc"), orderBy("fecha", "desc") - requiere índice
+                // Ahora: solo orderBy("fecha", "desc") - funciona sin índice
+                const q = query(collection(db, "comentarios"), orderBy("fecha", "desc"));
+                const querySnapshot = await getDocs(q);
+                contenedor.innerHTML = "";
+
+                if (querySnapshot.empty) {
+                    contenedor.innerHTML = "<p class='text-center text-gray-500 py-12'>Aún no hay opiniones. ¡Sé el primero en dejar tu comentario!</p>";
+                    return;
+                }
+
+                let comentariosArray = [];
+                querySnapshot.forEach((docSnap) => {
+                    comentariosArray.push({
+                        id: docSnap.id,
+                        ...docSnap.data()
+                    });
+                });
+
+                // Ordenar por likes descendente, luego por fecha descendente
+                comentariosArray.sort((a, b) => {
+                    if (b.likes !== a.likes) return b.likes - a.likes;
+                    return b.fecha - a.fecha;
+                });
+
+                // Mostrar solo el comentario TOP
+                if (comentariosArray.length > 0) {
+                    const comentarioTop = comentariosArray[0];
+                    const fecha = new Date(comentarioTop.fecha).toLocaleDateString('es-AR', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+
+                    const contenedorDestacado = document.getElementById("comentarioDestacado");
+                    contenedorDestacado.innerHTML = `
+                        <div class="bg-gradient-to-r from-[#E6B1B9] to-[#D38F98] rounded-2xl p-8 shadow-xl text-white">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="relative">
+                                <img src="${comentarioTop.avatar || 'avatarcuatro.png'}" alt="Avatar" class="w-16 h-16 rounded-full border-4 border-white shadow-lg">
+                                    <div class="absolute -top-2 -right-2 bg-[#FFD700] text-[#222222] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+                                        ⭐
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-2xl font-bold">${comentarioTop.nombre}</h4>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <div class="flex gap-1">
+                                            ${Array.from({length: 5}, (_, i) => i < comentarioTop.estrellas ?
+                                                '<i class="fa-solid fa-star text-[#FFD700]"></i>' :
+                                                '<i class="fa-regular fa-star text-white/70"></i>').join('')}
+                                        </div>
+                                        <span class="text-white/90 font-medium">TOP comentario</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <blockquote class="text-lg leading-relaxed italic mb-4">
+                                "${comentarioTop.comentario}"
+                            </blockquote>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <button onclick="darLike('${comentarioTop.id}')" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2">
+                                        <i class="fa-solid fa-heart"></i>
+                                        <span>${comentarioTop.likes} likes</span>
+                                    </button>
+                                </div>
+                                <span class="text-white/80 text-sm">${fecha}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error("❌ Error al cargar comentarios:", error);
+                console.error("Código de error:", error.code);
+                console.error("Mensaje:", error.message);
+
+                // 🔥 SOLUCIÓN: Fallback si falla la query ordenada
+                console.log("🔄 Intentando cargar sin ordenar como fallback...");
+                contenedor.innerHTML = "<p class='text-center text-orange-500 py-8'>Error al ordenar comentarios. Cargando sin ordenar...</p>";
+
+                try {
+                    // Intentar cargar sin orderBy como fallback
+                    const querySnapshot = await getDocs(collection(db, "comentarios"));
+                    contenedor.innerHTML = "";
+
+                    if (querySnapshot.empty) {
+                        contenedor.innerHTML = "<p class='text-center text-gray-500 py-12'>Aún no hay opiniones. ¡Sé el primero en dejar tu comentario!</p>";
+                        return;
+                    }
+
+                    // Mostrar comentarios sin ordenar
+                    querySnapshot.forEach((docSnap) => {
+                        const data = docSnap.data();
+                        const fecha = new Date(data.fecha).toLocaleDateString('es-AR', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        });
+
+                        contenedor.innerHTML += `
+                            <div class="comentario-card bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300" style="margin-bottom: 20px;">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-10 h-10 bg-[#E6B1B9] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                                        ${data.nombre.charAt(0).toUpperCase()}
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-[#222222] text-base">${data.nombre}</div>
+                                        <div class="flex items-center gap-1">
+                                            ${Array.from({length: 5}, (_, i) => i < data.estrellas ?
+                                                '<i class="fa-solid fa-star text-[#FFD700] text-sm"></i>' :
+                                                '<i class="fa-regular fa-star text-gray-300 text-sm"></i>').join('')}
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-[#555] leading-relaxed text-base mb-4 font-light" style="line-height: 1.6;">${data.comentario}</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="likes-section flex items-center gap-3">
+                                        <button onclick="darLike('${docSnap.id}')" class="btn-like bg-[#f8f9fa] hover:bg-[#E6B1B9] text-[#666] hover:text-white px-4 py-2 rounded-lg border border-gray-200 hover:border-[#E6B1B9] transition-all duration-300 font-medium text-sm">
+                                            <i class="fa-solid fa-heart mr-2"></i>Me gusta
+                                        </button>
+                                        <span class="likes-count text-[#666] font-medium text-sm">${data.likes || 0} likes</span>
+                                    </div>
+                                    <p class="fecha-comentario text-[#999] text-sm font-light">${fecha}</p>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    console.log("✅ Comentarios cargados exitosamente con fallback");
+                } catch (fallbackError) {
+                    console.error("❌ Error incluso en fallback:", fallbackError);
+                    contenedor.innerHTML = "<p class='text-center text-red-500 py-8'>Error crítico al cargar comentarios. Revisa la configuración de Firebase.</p>";
+                }
+            }
+        }
+
+        // === CARGAR COMENTARIOS COMPLETOS (PANEL FLOTANTE) ===
+        window.cargarComentariosCompletos = async function() {
+            console.log('🔥 cargarComentariosCompletos() iniciado');
+            
+            try {
+                const q = query(collection(db, "comentarios"), orderBy("fecha", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                const contenedor = document.getElementById("listaComentariosCompleta");
+                contenedor.innerHTML = "";
+                
+                if (querySnapshot.empty) {
+                    contenedor.innerHTML = `
+                        <div class="text-center py-12">
+                            <i class="fa-solid fa-comments text-6xl text-gray-300 mb-4"></i>
+                            <p class="text-gray-500 text-lg">Aún no hay comentarios. ¡Sé el primero en opinar!</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let comentariosArray = [];
+                querySnapshot.forEach((docSnap) => {
+                    comentariosArray.push({
+                        id: docSnap.id,
+                        ...docSnap.data()
+                    });
+                });
+                
+                // Ordenar por likes descendente, luego por fecha descendente
+                comentariosArray.sort((a, b) => {
+                    if (b.likes !== a.likes) return b.likes - a.likes;
+                    return b.fecha - a.fecha;
+                });
+                
+                comentariosArray.forEach((data) => {
+                    const fecha = new Date(data.fecha).toLocaleDateString('es-AR', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+                    
+                    contenedor.innerHTML += `
+                        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 mb-4">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="${data.avatar || 'avatarcuatro.png'}" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-[#0097b2]">
+                                <div>
+                                    <div class="font-semibold text-[#222222] text-base">${data.nombre}</div>
+                                    <div class="flex items-center gap-1">
+                                        ${Array.from({length: 5}, (_, i) => i < data.estrellas ?
+                                            '<i class="fa-solid fa-star text-[#FFD700] text-sm"></i>' :
+                                            '<i class="fa-regular fa-star text-gray-300 text-sm"></i>').join('')}
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-[#555] leading-relaxed text-base mb-4 font-light" style="line-height: 1.6;">${data.comentario}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="likes-section flex items-center gap-3">
+                                    <button onclick="darLike('${data.id}')" class="btn-like bg-[#f8f9fa] hover:bg-[#E6B1B9] text-[#666] hover:text-white px-4 py-2 rounded-lg border border-gray-200 hover:border-[#E6B1B9] transition-all duration-300 font-medium text-sm">
+                                        <i class="fa-solid fa-heart mr-2"></i>Me gusta
+                                    </button>
+                                    <span class="likes-count text-[#666] font-medium text-sm">${data.likes} likes</span>
+                                </div>
+                                <p class="fecha-comentario text-[#999] text-sm font-light">${fecha}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                console.log('✅ Comentarios completos cargados:', querySnapshot.size);
+                
+            } catch (error) {
+                console.error('❌ Error cargando comentarios completos:', error);
+                document.getElementById("listaComentariosCompleta").innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fa-solid fa-exclamation-triangle text-6xl text-red-300 mb-4"></i>
+                        <p class="text-red-500 text-lg">Error al cargar comentarios</p>
+                    </div>
+                `;
+            }
+        };
+
+        // === SISTEMA DE LIKES ===
+        window.darLike = async function (commentId) {
+            try {
+                const docRef = doc(db, "comentarios", commentId);
+                await updateDoc(docRef, {
+                    likes: increment(1)
+                });
+                cargarComentarios();
+            } catch (error) {
+                console.error("Error al dar like:", error);
+                alert("Error al dar like. Intenta de nuevo.");
+            }
+        };
+
+        // === FUNCIONES DE LOGIN (placeholder) ===
+        window.openLoginModal = function() {
+            // Login eliminado
+        };
+
+        window.closeLoginModal = function() {
+            // Login eliminado
+        };
+
+        window.loginUser = function() {
+            // Login eliminado
+        };
+
+        // === SELECTOR DE AVATARES ===
+        const avatarOptions = document.querySelectorAll('.avatar-option');
+        avatarOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                avatarOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                document.getElementById('avatar').value = option.dataset.avatar;
+            });
+        });
+
+        // === CARGAR AL INICIAR ===
+        window.addEventListener('load', () => {
+            console.log('%c✅ Candy Paws - Sistema de opiniones PRO listo con Firebase seguro, anti-spam, likes y ranking', 'color:#E6B1B9; font-weight:700; font-size:14px;');
+            updateStars();
+            cargarComentarios();
+        });
+    </script>
+
 </body>
 </html>
