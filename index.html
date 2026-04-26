@@ -1342,11 +1342,11 @@ body::after {
     <button class="sidebar-close" id="sidebarClose" aria-label="Cerrar menú">&#8592;</button>
   </div>
   <div class="sidebar-nav">
-    <button class="sidebar-btn" onclick="openCurtain('comprar')">🛒 Cómo Comprar</button>
-    <button class="sidebar-btn" onclick="openCurtain('encargo')">📦 Cómo hacer un encargue</button>
-    <button class="sidebar-btn" onclick="openCatalog()">🏪 Ir a la tienda</button>
+    <button class="sidebar-btn" onclick="openCurtain('comprar')">Cómo Comprar</button>
+    <button class="sidebar-btn" onclick="openCurtain('encargo')">Cómo hacer un encargue</button>
+    <button class="sidebar-btn" onclick="openCatalog()">Ir a la tienda</button>
     <a class="sidebar-btn" href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank">💬 Contacto</a>
-    <button class="sidebar-btn" onclick="scrollToSocial()">📲 Seguinos en redes</button>
+    <button class="sidebar-btn" onclick="scrollToSocial()">Seguinos en redes</button>
   </div>
 </nav>
 
@@ -1474,7 +1474,7 @@ body::after {
     <textarea
       class="write-textarea"
       id="comentarioText"
-      placeholder="¿Qué te parecieron nuestros productos?"
+      placeholder="Contanos tu experiencia con nuestros productos y la atención de Stefy"
       style="width:100%;height:120px;padding:14px;border-radius:12px;border:1.5px solid #ddd;font-family:'Glacial Indifference',sans-serif;font-size:15px;resize:none;outline:none;transition:border-color 0.2s;background:#fafafa;"
       onfocus="this.style.borderColor='#92185d'"
       onblur="this.style.borderColor='#ddd'"
@@ -1719,17 +1719,17 @@ const PRODUCTS = {
     { img:"gomitascuatro.png", nombre:"Gomitas x 1kg", estado:"Siempre en Stock", precioViejo:"$16.950", precio:"$16.000", info: infoGomitas }
   ],
   galletitas: [
-    { img:"galletasuno.png", nombre:"Snacks Saludables 1/2kg", estado:"Por encargue del sabor que me pidas", precioViejo:"$9.970", precio:"$9.000", info: infoGalletitas },
+    { img:"galletasuno.png", nombre:"Snacks Saludables 1/2kg", estado:"Por encargue personalizado", precioViejo:"$9.970", precio:"$9.000", info: infoGalletitas },
     { img:"galletasdos.png", nombre:"Snacks Saludables 1kg", estado:"Por encargue personalizado", precioViejo:"$18.750", precio:"$17.800", info: infoGalletitas }
   ],
   tortas: [
-    { img:"tortasuno.png", nombre:"Torta nº10", estado:"Por encargue del sabor que me pidas", precioViejo:"$12.750", precio:"$12.000", info: infoTorta(10) },
+    { img:"tortasuno.png", nombre:"Torta nº10", estado:"Por encargue personalizado", precioViejo:"$12.750", precio:"$12.000", info: infoTorta(10) },
     { img:"tortasdos.png", nombre:"Torta nº12", estado:"Por encargue personalizado", precioViejo:"$18.750", precio:"$17.800", info: infoTorta(12) },
     { img:"tortastres.png", nombre:"Torta nº14", estado:"Por encargue personalizado", precioViejo:"$18.750", precio:"$18.000", info: infoTorta(14) },
     { img:"tortascuatro.png", nombre:"Torta nº17", estado:"Por encargue personalizado", precioViejo:"$21.790", precio:"$21.000", info: infoTorta(17) }
   ],
   budines: [
-    { img:"budinuno.png", nombre:"Budín Saludable", estado:"Por encargue del sabor que me pidas", precioViejo:"$10.890", precio:"$10.000", info: infoBudin },
+    { img:"budinuno.png", nombre:"Budín Saludable", estado:"Por encargue personalizado", precioViejo:"$10.890", precio:"$10.000", info: infoBudin },
     { img:"cupcakeuno.png", nombre:"Cup Cake", estado:"Por encargue personalizado", precioViejo:"$2.100", precio:"$1.500 c/u", info: infoCupcake }
   ]
 };
