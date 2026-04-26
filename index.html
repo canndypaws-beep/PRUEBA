@@ -1304,6 +1304,16 @@ body::after {
 .product-actions > button:nth-child(2) { width: calc(50% - 4px); }
 .product-actions > button:nth-child(3) { width: 100%; }
 #btnCarrito:active { transform: scale(0.85); }
+/* FIX 1: curtain-info siempre encima del catálogo */
+#curtain-info { z-index: 1500; }
+/* FIX 2: portada del carrito sin recorte */
+#curtain-carrito .curtain-body img:first-child {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: cover;
+  display: block;
+}
 </style>
 </head>
 <body>
