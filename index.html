@@ -21,23 +21,14 @@
   font-weight: 700;
 }
 
-/* =====================================================
-   PREMIUM DESIGN SYSTEM — CANDY PAWS UPGRADE
-   Paleta: #000 / #fff / #f5f5f5 / #50e03e
-   Solo CSS — lógica JS y Firebase intactos
-   ===================================================== */
-
 :root {
-  /* Core palette */
-  --magenta: #92185d;          /* kept for Firebase/comment star compatibility */
-  --cyan: #50e03e;             /* rebrand accent → green */
+  --magenta: #92185d;
+  --cyan: #50e03e;
   --accent: #50e03e;
   --white: #ffffff;
   --black: #000000;
   --surface: #f5f5f5;
   --green-btn: #50e03e;
-
-  /* Premium tokens */
   --radius-card: 20px;
   --radius-btn:  12px;
   --radius-pill: 40px;
@@ -59,6 +50,9 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* ── TIPOGRAFÍA: peso base más liviano ── */
+  font-weight: 400;
+  line-height: 1.65;
 }
 body::before {
   content: '';
@@ -81,15 +75,17 @@ body::after {
 }
 
 /* ===== TYPOGRAPHY ===== */
-.title-anton {
-  font-family: 'Anton', sans-serif !important;
-  letter-spacing: 1.5px;
-}
-.text-glacial {
-  font-family: 'Glacial Indifference', sans-serif !important;
+.title-anton { font-family: 'Anton', sans-serif !important; letter-spacing: 1.5px; }
+.text-glacial { font-family: 'Glacial Indifference', sans-serif !important; }
+
+/* ── TIPOGRAFÍA GLOBAL: reducir peso visual ── */
+strong { font-weight: 700; }
+p, li, label, span, div {
+  font-weight: 400;
+  line-height: 1.65;
 }
 
-/* ===== HEADER — PREMIUM MINIMAL ===== */
+/* ===== HEADER ===== */
 .header {
   background: var(--white);
   position: sticky;
@@ -120,9 +116,7 @@ body::after {
   border-radius: 8px;
   transition: var(--transition);
 }
-.hamburger-btn:hover {
-  background: var(--surface);
-}
+.hamburger-btn:hover { background: var(--surface); }
 .hamburger-btn span {
   display: block;
   width: 24px;
@@ -138,6 +132,7 @@ body::after {
   letter-spacing: 3px;
   text-align: center;
   text-transform: uppercase;
+  /* Anton es display — no tocar weight */
 }
 .header-logo {
   position: absolute;
@@ -149,11 +144,9 @@ body::after {
   border: 2px solid var(--black);
   transition: var(--transition);
 }
-.header-logo:hover {
-  transform: scale(1.08);
-}
+.header-logo:hover { transform: scale(1.08); }
 
-/* ===== SIDEBAR — PREMIUM BLACK ===== */
+/* ===== SIDEBAR ===== */
 .sidebar-overlay {
   position: fixed;
   inset: 0;
@@ -165,7 +158,6 @@ body::after {
   transition: opacity 0.35s;
 }
 .sidebar-overlay.open { opacity: 1; pointer-events: all; }
-
 .sidebar {
   position: fixed;
   top: 0; left: 0;
@@ -181,7 +173,6 @@ body::after {
   border-right: 1px solid rgba(255,255,255,0.08);
 }
 .sidebar.open { transform: translateX(0); }
-
 .sidebar-head {
   display: flex;
   align-items: center;
@@ -217,10 +208,7 @@ body::after {
   justify-content: center;
   transition: var(--transition);
 }
-.sidebar-close:hover {
-  background: rgba(255,255,255,0.14);
-}
-
+.sidebar-close:hover { background: rgba(255,255,255,0.14); }
 .sidebar-nav {
   padding: 24px 16px;
   display: flex;
@@ -233,9 +221,10 @@ body::after {
   border: 1px solid rgba(255,255,255,0.08);
   color: rgba(255,255,255,0.85);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 14px;
+  font-size: 13px;            /* ── más liviano ── */
+  font-weight: 400;
   letter-spacing: 1px;
-  padding: 14px 18px;
+  padding: 13px 18px;
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
@@ -251,7 +240,7 @@ body::after {
   transform: translateX(3px);
 }
 
-/* ===== RIGHT CURTAIN (generic) ===== */
+/* ===== RIGHT CURTAIN ===== */
 .curtain {
   position: fixed;
   top: 0; right: -110%;
@@ -277,7 +266,7 @@ body::after {
 .curtain-head h2 {
   font-family: 'Anton', sans-serif;
   color: var(--black);
-  font-size: 18px;
+  font-size: 17px;            /* ── un toque más liviano ── */
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -300,17 +289,13 @@ body::after {
   overflow-y: auto;
   flex: 1;
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 15px;
+  font-size: 14.5px;         /* ── más liviano ── */
+  font-weight: 400;
   line-height: 1.85;
-  color: #333;
+  color: #444;               /* ── gris suave, menos negro puro ── */
 }
-.curtain-body ol {
-  padding-left: 22px;
-}
-.curtain-body ol li {
-  margin-bottom: 12px;
-  padding-left: 4px;
-}
+.curtain-body ol { padding-left: 22px; }
+.curtain-body ol li { margin-bottom: 12px; padding-left: 4px; }
 .curtain-footer {
   padding: 18px 22px;
   border-top: 1px solid #e8e8e8;
@@ -324,7 +309,7 @@ body::after {
   border: none;
   border-radius: var(--radius-btn);
   font-family: 'Anton', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 1.5px;
   cursor: pointer;
   transition: var(--transition);
@@ -370,7 +355,7 @@ body::after {
 .catalog-modal-head h2 {
   font-family: 'Anton', sans-serif;
   color: var(--white);
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
@@ -387,39 +372,27 @@ body::after {
   justify-content: center;
   transition: var(--transition);
 }
-.catalog-modal-close:hover {
-  background: rgba(255,255,255,0.18);
-  transform: scale(1.06);
-}
+.catalog-modal-close:hover { background: rgba(255,255,255,0.18); transform: scale(1.06); }
 .catalog-modal-body {
   padding: 28px 22px 36px;
   overflow-y: auto;
   max-height: 80vh;
 }
 .catalog-section-title {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Glacial Indifference', sans-serif;  /* ── más liviano que Anton ── */
+  font-weight: 700;
   color: var(--black);
-  font-size: 16px;
-  letter-spacing: 2px;
+  font-size: 13px;
+  letter-spacing: 2.5px;
   margin: 32px 0 16px;
   padding-bottom: 8px;
-  border-bottom: 2px solid var(--black);
+  border-bottom: 1.5px solid var(--black);
   text-transform: uppercase;
 }
 
 /* ===== PORTADAS ===== */
-.portada-wrap {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  line-height: 0;
-}
-.portada-wrap img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
+.portada-wrap { position: relative; z-index: 2; width: 100%; line-height: 0; }
+.portada-wrap img { width: 100%; height: auto; display: block; object-fit: cover; }
 
 /* ===== MENSAJE FLOTANTE ===== */
 .mensaje-section {
@@ -435,8 +408,8 @@ body::after {
   background: var(--white);
   color: var(--black);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 400;
   padding: 8px 22px;
   border-radius: var(--radius-pill);
   margin-bottom: 10px;
@@ -445,12 +418,7 @@ body::after {
   text-transform: uppercase;
   border: 1px solid rgba(0,0,0,0.08);
 }
-.mensaje-arrows {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 8px;
-}
+.mensaje-arrows { display: flex; flex-direction: column; align-items: center; margin-bottom: 8px; }
 .mensaje-arrows span {
   font-size: 18px;
   color: var(--white);
@@ -465,8 +433,7 @@ body::after {
   50% { transform: translateY(-6px); opacity:1; }
 }
 .mensaje-img {
-  width: 168px;
-  height: 168px;
+  width: 168px; height: 168px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid var(--white);
@@ -474,10 +441,7 @@ body::after {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   animation: float 4s ease-in-out infinite;
 }
-.mensaje-img:hover {
-  transform: scale(1.07);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-}
+.mensaje-img:hover { transform: scale(1.07); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
 @keyframes float {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -491,30 +455,32 @@ body::after {
   max-width: 1200px;
   margin: 0 auto;
 }
+/* ── TIPOGRAFÍA: headings más ligeros ── */
 .section-heading {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(20px, 5vw, 36px);
+  font-family: 'Glacial Indifference', sans-serif;  /* cambio de Anton a Glacial para menor peso */
+  font-weight: 700;
+  font-size: clamp(17px, 4.5vw, 28px);
   color: var(--white);
   text-align: center;
-  margin: 56px 0 32px;
-  text-shadow: 2px 4px 16px rgba(0,0,0,0.55);
-  letter-spacing: 2px;
+  margin: 56px 0 28px;
+  text-shadow: 1px 2px 10px rgba(0,0,0,0.5);
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  line-height: 1.15;
+  line-height: 1.25;
 }
 .section-subheading {
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: clamp(11px, 2.5vw, 13px);
+  font-size: clamp(10px, 2vw, 12px);
   color: var(--accent);
   text-align: center;
-  margin-bottom: 10px;
-  font-weight: 700;
+  margin-bottom: 8px;
+  font-weight: 400;
   text-shadow: 1px 2px 8px rgba(0,0,0,0.5);
   letter-spacing: 3px;
   text-transform: uppercase;
 }
 
-/* ===== PRODUCTS GRID — ALWAYS 2 COLUMNS ===== */
+/* ===== PRODUCTS GRID ===== */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -522,7 +488,7 @@ body::after {
   margin-bottom: 56px;
 }
 
-/* ===== PRODUCT CARD — PREMIUM ===== */
+/* ===== PRODUCT CARD ===== */
 .product-card {
   background: var(--white);
   border-radius: var(--radius-card);
@@ -558,26 +524,27 @@ body::after {
   display: block;
   transition: var(--transition);
 }
-.product-card:hover img {
-  transform: scale(1.02);
-}
+.product-card:hover img { transform: scale(1.02); }
+
+/* ── TIPOGRAFÍA: nombre de producto ── */
 .product-name {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(13px, 3vw, 16px);
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
+  font-size: clamp(12px, 2.8vw, 15px);
   color: var(--black);
-  margin-bottom: 5px;
-  letter-spacing: 0.8px;
-  line-height: 1.2;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+  line-height: 1.25;
   text-transform: uppercase;
 }
 .product-status {
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
-  color: #888;
-  font-style: normal;
+  font-size: 10px;
+  font-weight: 400;
+  color: #999;
   margin-bottom: 10px;
   line-height: 1.4;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 .product-prices {
   display: flex;
@@ -589,14 +556,16 @@ body::after {
 .price-old {
   font-family: 'Glacial Indifference', sans-serif;
   font-size: 11px;
+  font-weight: 400;
   color: #bbb;
   text-decoration: line-through;
 }
 .price-new {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(15px, 3.5vw, 20px);
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
+  font-size: clamp(14px, 3.2vw, 18px);
   color: var(--black);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 .product-actions {
   display: flex;
@@ -608,20 +577,24 @@ body::after {
 .product-actions > button:nth-child(2) { width: calc(50% - 3.5px); }
 .product-actions > button:nth-child(3) { width: 100%; }
 
-/* Comprar → green accent */
+/* ─────────────────────────────────────────
+   BOTONES — CAMBIOS CLAVE
+───────────────────────────────────────── */
+
+/* 1. COMPRAR → verde + texto BLANCO */
 .btn-comprar {
-  background: var(--accent);
-  color: var(--black);
+  background: #50e03e;
+  color: #ffffff !important;
   border: none;
   padding: 10px 6px;
   border-radius: var(--radius-btn);
-  font-family: 'Anton', sans-serif;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
-  font-weight: 700;
 }
 .btn-comprar:hover {
   background: #3ed42d;
@@ -629,26 +602,51 @@ body::after {
   box-shadow: 0 6px 18px rgba(80,224,62,0.38);
 }
 
-/* Info → black minimal */
+/* 2. INFO → blanco + borde negro fino + texto negro */
 .btn-info {
-  background: var(--black);
-  color: var(--white);
-  border: none;
+  background: #ffffff;
+  color: #000000 !important;
+  border: 1px solid rgba(0,0,0,0.18);
   padding: 10px 6px;
   border-radius: var(--radius-btn);
-  font-family: 'Anton', sans-serif;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
 }
 .btn-info:hover {
-  background: #1a1a1a;
+  background: #f5f5f5;
+  border-color: rgba(0,0,0,0.35);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+/* 3. CARRITO (tercer botón) → negro + texto blanco + sin borde */
+.btn-carrito {
+  background: #0a0a0a;
+  color: #ffffff !important;
+  border: none;
+  padding: 10px 6px;
+  border-radius: var(--radius-btn);
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  width: 100%;
+}
+.btn-carrito:hover {
+  background: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+}
+
+/* 4. BUY-OPTIONS: Retirar → negro blanco / Domicilio → verde BLANCO */
 .buy-options {
   display: none;
   grid-template-columns: 1fr 1fr;
@@ -657,41 +655,39 @@ body::after {
   width: 100%;
 }
 .buy-options.show { display: grid; }
+
 .btn-retirar {
-  background: var(--black);
-  color: var(--white);
+  background: #0a0a0a;
+  color: #ffffff !important;
   border: none;
   padding: 9px 4px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
   line-height: 1.3;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
 }
-.btn-retirar:hover {
-  background: #1a1a1a;
-  transform: translateY(-2px);
-}
+.btn-retirar:hover { background: #222; transform: translateY(-2px); }
+
 .btn-domicilio {
-  background: var(--accent);
-  color: var(--black);
+  background: #50e03e;
+  color: #ffffff !important;   /* ── blanco según pedido ── */
   border: none;
   padding: 9px 4px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
   line-height: 1.3;
+  text-transform: uppercase;
 }
-.btn-domicilio:hover {
-  background: #3ed42d;
-  transform: translateY(-2px);
-}
+.btn-domicilio:hover { background: #3ed42d; transform: translateY(-2px); }
 
 /* ===== STEFI MODALS ===== */
 .stefi-backdrop {
@@ -719,22 +715,25 @@ body::after {
   box-shadow: 0 40px 100px rgba(0,0,0,0.4);
   border: 1px solid rgba(0,0,0,0.06);
 }
+/* ── TIPOGRAFÍA: modal Stefi más liviana ── */
 .stefi-box h2 {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
   color: var(--black);
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 20px;
   padding-bottom: 14px;
-  border-bottom: 2px solid var(--black);
-  letter-spacing: 1.5px;
+  border-bottom: 1.5px solid rgba(0,0,0,0.12);
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 .stefi-box p {
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 15px;
-  line-height: 1.9;
-  margin-bottom: 14px;
-  color: #333;
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.85;
+  margin-bottom: 12px;
+  color: #444;
 }
 .stefi-close {
   display: flex;
@@ -751,18 +750,15 @@ body::after {
   border: none;
   padding: 13px 52px;
   border-radius: var(--radius-pill);
-  font-family: 'Anton', sans-serif;
-  font-size: 15px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
   letter-spacing: 2px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
 }
-.stefi-close-btn:hover {
-  background: #1a1a1a;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-}
+.stefi-close-btn:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
 
 /* ===== INFO PRODUCT CURTAIN ===== */
 .info-backdrop {
@@ -789,7 +785,7 @@ body::after {
 }
 .info-head {
   padding: 22px 24px 16px;
-  border-bottom: 2px solid var(--black);
+  border-bottom: 1.5px solid rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -799,9 +795,10 @@ body::after {
   z-index: 2;
 }
 .info-head h3 {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
   color: var(--black);
-  font-size: 17px;
+  font-size: 15px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -822,49 +819,71 @@ body::after {
 .info-content {
   padding: 22px 24px 32px;
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 14.5px;
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1.9;
-  color: #333;
+  color: #444;
 }
 .info-content p { margin-bottom: 12px; }
 
-/* ===== COMMENTS SECTION — PREMIUM ===== */
+/* ==========================================================
+   COMMENTS SECTION — REDISEÑO ESTÉTICO (lógica intacta)
+   ========================================================== */
 .comments-section {
-  background: var(--white);
+  background: #fafafa;
   border-radius: 20px;
-  padding: 44px 28px;
+  padding: 48px 28px;
   margin: 56px 0;
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
   color: var(--black);
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
 }
+/* Título sección */
 .comments-title {
-  font-family: 'Anton', sans-serif;
-  font-size: 24px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
   color: var(--black);
   text-align: center;
-  margin-bottom: 32px;
-  letter-spacing: 2.5px;
+  margin-bottom: 36px;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  /* línea decorativa */
+  position: relative;
+  padding-bottom: 16px;
 }
+.comments-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--black);
+  border-radius: 2px;
+}
+
+/* Avatar selector */
 .avatars-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
-  max-width: 360px;
+  max-width: 320px;
   margin: 0 auto 8px;
   justify-items: center;
 }
 .avatar-vermás-btn {
   display: block;
-  margin: 0 auto 22px;
+  margin: 0 auto 24px;
   background: none;
-  border: 1.5px solid rgba(0,0,0,0.18);
-  color: var(--black);
+  border: 1px solid rgba(0,0,0,0.15);
+  color: #555;
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: 400;
   letter-spacing: 1.5px;
-  padding: 6px 18px;
+  padding: 6px 16px;
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: var(--transition);
@@ -876,178 +895,144 @@ body::after {
   border-color: var(--black);
 }
 
-/* Avatar Drawer (bottom sheet) */
-#avatarDrawer {
-  position: fixed;
-  bottom: -100%;
-  left: 0; right: 0;
-  background: var(--white);
-  color: #222;
-  border-radius: 20px 20px 0 0;
-  box-shadow: 0 -12px 50px rgba(0,0,0,0.2);
-  z-index: 1400;
-  transition: bottom 0.38s cubic-bezier(0.4,0,0.2,1);
-  padding: 22px 20px 36px;
-  max-height: 70vh;
-  overflow-y: auto;
-  border-top: 2px solid var(--black);
-}
-#avatarDrawer.open { bottom: 0; }
-#avatarDrawerOverlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(4px);
-  z-index: 1399;
-  display: none;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-#avatarDrawerOverlay.open { display: block; opacity: 1; }
-.avatar-drawer-handle {
-  width: 36px; height: 3px;
-  background: #ccc;
-  border-radius: 2px;
-  margin: 0 auto 18px;
-}
-.avatar-drawer-title {
-  font-family: 'Anton', sans-serif;
-  font-size: 12px;
-  letter-spacing: 2.5px;
-  color: var(--black);
-  text-align: center;
-  margin-bottom: 18px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.avatar-drawer-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  justify-items: center;
-}
-.avatar-drawer-opt {
-  cursor: pointer;
+/* Comment cards — rediseño visual */
+.comment-card {
+  display: flex;
+  gap: 14px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.05);
   transition: var(--transition);
 }
-.avatar-drawer-opt:active { transform: scale(0.9); }
-.avatar-drawer-opt img {
-  width: 54px; height: 54px;
+.comment-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+}
+.comment-card.featured-card {
+  background: #ffffff;
+  border-left: 3px solid #50e03e;   /* ── verde en vez de negro ── */
+  box-shadow: 0 4px 20px rgba(80,224,62,0.08);
+}
+.comment-avatar {
+  width: 44px; height: 44px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid transparent;
-  box-shadow: var(--shadow-card);
-  transition: var(--transition);
+  border: 2px solid rgba(0,0,0,0.07);
+  flex-shrink: 0;
 }
-.avatar-drawer-opt.selected img {
-  border-color: var(--black);
-  box-shadow: 0 0 0 4px rgba(0,0,0,0.12);
+.comment-body { flex: 1; min-width: 0; }
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.comment-name {
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--black);
+  letter-spacing: 0.3px;
+}
+.comment-stars { color: #f5a623; font-size: 12px; }  /* ── tono más cálido ── */
+.comment-text {
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.like-btn {
+  background: none;
+  border: 1px solid rgba(0,0,0,0.08);
+  cursor: pointer;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: var(--transition);
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+.like-btn:hover { background: #f9f9f9; color: var(--black); border-color: rgba(0,0,0,0.2); }
+.like-btn.liked { color: #e74c3c; background: #fff5f5; border-color: rgba(231,76,60,0.15); }
+.like-btn .like-count { font-size: 11px; }
+.comment-date {
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: #ccc;
+  letter-spacing: 0.3px;
 }
 
-/* Carrito contador */
-#carritoContador {
-  position: absolute;
-  top: -6px; right: -6px;
-  background: #e74c3c;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
+/* Featured label */
+.featured-wrap { margin: 28px 0; display: none; }
+.featured-label {
   font-family: 'Glacial Indifference', sans-serif;
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  display: none;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: #888;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  pointer-events: none;
+  gap: 8px;
 }
-#btnCarritoWrap { position: relative; display: inline-block; }
-@keyframes carritoZoom {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.25); }
+.featured-label::before, .featured-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+/* Empty state */
+.comments-empty {
+  text-align: center;
+  padding: 48px 20px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 400;
+  color: #ccc;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+#all-comments-list { padding: 18px 18px 48px; }
+
+/* Like pop */
+@keyframes likePopAnim {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.5); }
   100% { transform: scale(1); }
 }
+.like-pop { animation: likePopAnim 0.35s ease; }
 
-/* Avatar selector on page */
-.avatar-opt {
-  cursor: pointer;
-  transition: var(--transition);
-}
-.avatar-opt img {
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2.5px solid rgba(0,0,0,0.1);
-  box-shadow: var(--shadow-card);
-  transition: var(--transition);
-  display: block;
-}
-.avatar-opt:hover img {
-  transform: scale(1.06);
-  box-shadow: var(--shadow-hover);
-}
-.avatar-opt.selected img {
-  border-color: var(--black);
-  transform: scale(1.1);
-  box-shadow: 0 0 0 4px rgba(0,0,0,0.12);
-}
-
-/* Form inputs */
-.form-group { margin-bottom: 20px; }
-.form-label {
-  display: block;
-  font-family: 'Glacial Indifference', sans-serif;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--black);
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-.form-input {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1.5px solid rgba(0,0,0,0.15);
-  border-radius: var(--radius-btn);
-  font-family: 'Glacial Indifference', sans-serif;
-  font-size: 15px;
-  transition: var(--transition);
-  outline: none;
-  background: var(--surface);
-}
-.form-input:focus {
-  border-color: var(--black);
-  background: var(--white);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
-}
-
-/* Stars */
-.stars-row {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin: 16px 0;
-}
-.star-btn {
-  font-size: 34px;
-  cursor: pointer;
-  color: #ddd;
-  transition: var(--transition);
-  background: none;
-  border: none;
-  line-height: 1;
-}
-.star-btn.lit { color: #FFD700; }
-.star-btn:hover { transform: scale(1.2); }
-
+/* Write comment btn */
 .write-comment-btn {
   width: 100%;
-  padding: 16px;
+  padding: 15px;
   background: var(--black);
   color: var(--white);
   border: none;
   border-radius: var(--radius-btn);
-  font-family: 'Anton', sans-serif;
-  font-size: 15px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 2px;
   cursor: pointer;
   transition: var(--transition);
@@ -1060,138 +1045,16 @@ body::after {
   box-shadow: 0 10px 28px rgba(0,0,0,0.2);
 }
 
-/* Comment card */
-.comment-card {
-  display: flex;
-  gap: 14px;
-  background: var(--white);
-  padding: 18px;
-  border-radius: 14px;
-  margin-bottom: 14px;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(0,0,0,0.05);
-  transition: var(--transition);
-}
-.comment-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-}
-.comment-card.featured-card {
-  background: var(--surface);
-  border-left: 3px solid var(--black);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
-}
-.comment-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(0,0,0,0.1);
-  flex-shrink: 0;
-}
-.comment-body { flex: 1; min-width: 0; }
-.comment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 8px;
-}
-.comment-name {
-  font-family: 'Glacial Indifference', sans-serif;
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--black);
-  letter-spacing: 0.5px;
-}
-.comment-stars { color: #FFD700; font-size: 12px; }
-.comment-text {
-  font-family: 'Glacial Indifference', sans-serif;
-  font-size: 14px;
-  line-height: 1.7;
-  color: #444;
-  margin-bottom: 10px;
-  word-break: break-word;
-}
-.comment-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.like-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: 'Glacial Indifference', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  color: #999;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: var(--transition);
-  padding: 4px 10px;
-  border-radius: 20px;
-  letter-spacing: 0.5px;
-}
-.like-btn:hover { background: var(--surface); color: var(--black); }
-.like-btn.liked { color: var(--black); background: var(--surface); }
-.like-btn .like-count { font-size: 12px; }
-.comment-date {
-  font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
-  color: #bbb;
-  letter-spacing: 0.3px;
-}
-
-.featured-wrap {
-  margin: 24px 0;
-  display: none;
-}
-.featured-label {
-  font-family: 'Anton', sans-serif;
-  font-size: 11px;
-  letter-spacing: 2.5px;
-  color: var(--black);
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.featured-label::before, .featured-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--black);
-  opacity: 0.15;
-}
-.comments-empty {
-  text-align: center;
-  padding: 48px 20px;
-  font-family: 'Glacial Indifference', sans-serif;
-  color: #bbb;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-}
-#all-comments-list { padding: 18px 18px 48px; }
-
-@keyframes likePopAnim {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.5); }
-  100% { transform: scale(1); }
-}
-.like-pop { animation: likePopAnim 0.35s ease; }
-
+/* See all btn */
 .see-all-btn {
   background: none;
-  border: 1.5px solid var(--black);
-  color: var(--black);
-  padding: 13px 32px;
+  border: 1px solid rgba(0,0,0,0.18);
+  color: #555;
+  padding: 12px 28px;
   border-radius: var(--radius-pill);
-  font-family: 'Anton', sans-serif;
-  font-size: 13px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
   letter-spacing: 2px;
   cursor: pointer;
   display: block;
@@ -1202,9 +1065,44 @@ body::after {
 .see-all-btn:hover {
   background: var(--black);
   color: var(--white);
+  border-color: var(--black);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 }
+
+/* Form inputs */
+.form-group { margin-bottom: 20px; }
+.form-label {
+  display: block;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--black);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.form-input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: var(--radius-btn);
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  transition: var(--transition);
+  outline: none;
+  background: #ffffff;
+}
+.form-input:focus {
+  border-color: var(--black);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+/* Stars */
+.stars-row { display: flex; gap: 10px; justify-content: center; margin: 16px 0; }
+.star-btn { font-size: 32px; cursor: pointer; color: #e0e0e0; transition: var(--transition); background: none; border: none; line-height: 1; }
+.star-btn.lit { color: #f5a623; }
+.star-btn:hover { transform: scale(1.2); }
 
 /* ===== WRITE MODAL ===== */
 .write-backdrop {
@@ -1231,12 +1129,13 @@ body::after {
   border: 1px solid rgba(0,0,0,0.06);
 }
 .write-box h2 {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
   color: var(--black);
-  font-size: 20px;
+  font-size: 17px;
   margin-bottom: 18px;
   padding-bottom: 14px;
-  border-bottom: 2px solid var(--black);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -1244,20 +1143,17 @@ body::after {
   width: 100%;
   height: 130px;
   padding: 14px 16px;
-  border: 1.5px solid rgba(0,0,0,0.15);
+  border: 1px solid rgba(0,0,0,0.12);
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 400;
   resize: vertical;
   outline: none;
   transition: var(--transition);
-  background: var(--surface);
+  background: #fafafa;
 }
-.write-textarea:focus {
-  border-color: var(--black);
-  background: var(--white);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
-}
+.write-textarea:focus { border-color: var(--black); background: var(--white); box-shadow: 0 0 0 3px rgba(0,0,0,0.05); }
 .write-send-btn {
   width: 100%;
   padding: 15px;
@@ -1265,37 +1161,31 @@ body::after {
   color: var(--white);
   border: none;
   border-radius: var(--radius-btn);
-  font-family: 'Anton', sans-serif;
-  font-size: 15px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 2px;
   cursor: pointer;
   margin-top: 16px;
   transition: var(--transition);
   text-transform: uppercase;
 }
-.write-send-btn:hover {
-  background: #1a1a1a;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.2);
-}
+.write-send-btn:hover { background: #1a1a1a; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.2); }
 .write-cancel-btn {
   width: 100%;
   padding: 12px;
   background: none;
   color: #888;
-  border: 1px solid rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.1);
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 400;
   cursor: pointer;
   margin-top: 8px;
   transition: var(--transition);
-  letter-spacing: 0.5px;
 }
-.write-cancel-btn:hover {
-  background: var(--surface);
-  color: var(--black);
-}
+.write-cancel-btn:hover { background: #f5f5f5; color: var(--black); }
 
 /* ===== SUCCESS MODAL ===== */
 .success-backdrop {
@@ -1321,61 +1211,43 @@ body::after {
   box-shadow: 0 40px 100px rgba(0,0,0,0.4);
   border: 1px solid rgba(0,0,0,0.06);
 }
-.success-icon { font-size: 52px; margin-bottom: 16px; }
+.success-icon { font-size: 48px; margin-bottom: 16px; }
 .success-box h3 {
-  font-family: 'Anton', sans-serif;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
   color: var(--black);
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 .success-box p {
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 400;
   color: #666;
   margin-bottom: 24px;
   line-height: 1.7;
 }
 .success-btns { display: flex; gap: 10px; }
 .success-accept {
-  flex: 1;
-  padding: 14px;
-  background: var(--black);
-  color: var(--white);
-  border: none;
-  border-radius: var(--radius-btn);
-  font-family: 'Anton', sans-serif;
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  transition: var(--transition);
-  text-transform: uppercase;
+  flex: 1; padding: 13px;
+  background: var(--black); color: var(--white);
+  border: none; border-radius: var(--radius-btn);
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; cursor: pointer; transition: var(--transition); text-transform: uppercase;
 }
-.success-accept:hover {
-  background: #1a1a1a;
-  transform: translateY(-2px);
-}
+.success-accept:hover { background: #1a1a1a; transform: translateY(-2px); }
 .success-seeall {
-  flex: 1;
-  padding: 14px;
-  background: var(--surface);
-  color: var(--black);
-  border: 1.5px solid rgba(0,0,0,0.15);
-  border-radius: var(--radius-btn);
-  font-family: 'Anton', sans-serif;
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  transition: var(--transition);
-  text-transform: uppercase;
+  flex: 1; padding: 13px;
+  background: #f5f5f5; color: var(--black);
+  border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-btn);
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; cursor: pointer; transition: var(--transition); text-transform: uppercase;
 }
-.success-seeall:hover {
-  background: var(--black);
-  color: var(--white);
-  border-color: var(--black);
-  transform: translateY(-2px);
-}
+.success-seeall:hover { background: var(--black); color: var(--white); border-color: var(--black); transform: translateY(-2px); }
 
 /* ===== SOCIAL SECTION ===== */
 .social-section {
@@ -1388,35 +1260,26 @@ body::after {
   border: 1px solid rgba(0,0,0,0.06);
 }
 .social-section h2 {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(17px, 4vw, 24px);
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
+  font-size: clamp(15px, 3.5vw, 20px);
   color: var(--black);
   margin-bottom: 32px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  line-height: 1.3;
+  line-height: 1.35;
 }
-.social-icons-row {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+.social-icons-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 .social-link {
-  width: 64px;
-  height: 64px;
+  width: 64px; height: 64px;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid rgba(0,0,0,0.1);
+  border: 1.5px solid rgba(0,0,0,0.08);
   display: block;
   transition: var(--transition);
   box-shadow: var(--shadow-card);
 }
-.social-link:hover {
-  transform: scale(1.12) translateY(-3px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--black);
-}
+.social-link:hover { transform: scale(1.12) translateY(-3px); box-shadow: var(--shadow-hover); border-color: var(--black); }
 .social-link img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ===== FOOTER ===== */
@@ -1433,26 +1296,20 @@ body::after {
   border: 2px solid rgba(255,255,255,0.2);
   margin-bottom: 24px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto; margin-right: auto;
   transition: var(--transition);
 }
 .footer-logo:hover { transform: scale(1.06); border-color: rgba(255,255,255,0.4); }
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 18px;
-}
+.footer-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
 .footer-link-btn {
-  background: rgba(255,255,255,0.08);
-  color: var(--white);
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 10px 20px;
+  background: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 18px;
   border-radius: var(--radius-btn);
-  font-family: 'Anton', sans-serif;
-  font-size: 12px;
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 1.5px;
   cursor: pointer;
   text-decoration: none;
@@ -1460,20 +1317,13 @@ body::after {
   transition: var(--transition);
   text-transform: uppercase;
 }
-.footer-link-btn:hover {
-  background: var(--white);
-  color: var(--black);
-  border-color: var(--white);
-  transform: translateY(-2px);
-}
+.footer-link-btn:hover { background: var(--white); color: var(--black); border-color: var(--white); transform: translateY(-2px); }
 
 /* ===== WHATSAPP FLOAT ===== */
 .wa-float {
   position: fixed;
-  bottom: 24px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
+  bottom: 24px; right: 20px;
+  width: 60px; height: 60px;
   border-radius: 50%;
   overflow: hidden;
   z-index: 900;
@@ -1485,16 +1335,12 @@ body::after {
   background: #25D366;
   border: 2px solid rgba(255,255,255,0.3);
 }
-.wa-float:hover {
-  transform: scale(1.1) translateY(-3px);
-  box-shadow: 0 12px 32px rgba(37,211,102,0.6);
-}
+.wa-float:hover { transform: scale(1.1) translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,0.6); }
 .wa-float img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ===== CARRITO FLOTANTE ===== */
 #btnCarrito {
-  width: 60px;
-  height: 60px;
+  width: 60px; height: 60px;
   background: var(--black);
   color: var(--white);
   border-radius: 50%;
@@ -1506,11 +1352,92 @@ body::after {
   transition: var(--transition);
   border: 2px solid rgba(255,255,255,0.1);
 }
-#btnCarrito:hover {
-  background: #1a1a1a;
-  transform: scale(1.08);
-}
+#btnCarrito:hover { background: #1a1a1a; transform: scale(1.08); }
 #btnCarrito:active { transform: scale(0.9); }
+
+/* ===== AVATAR DRAWER ===== */
+#avatarDrawer {
+  position: fixed;
+  bottom: -100%; left: 0; right: 0;
+  background: var(--white);
+  color: #222;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -12px 50px rgba(0,0,0,0.2);
+  z-index: 1400;
+  transition: bottom 0.38s cubic-bezier(0.4,0,0.2,1);
+  padding: 22px 20px 36px;
+  max-height: 70vh;
+  overflow-y: auto;
+  border-top: 2px solid var(--black);
+}
+#avatarDrawer.open { bottom: 0; }
+#avatarDrawerOverlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(4px);
+  z-index: 1399;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#avatarDrawerOverlay.open { display: block; opacity: 1; }
+.avatar-drawer-handle { width: 36px; height: 3px; background: #ddd; border-radius: 2px; margin: 0 auto 18px; }
+.avatar-drawer-title {
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.avatar-drawer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; justify-items: center; }
+.avatar-drawer-opt { cursor: pointer; transition: var(--transition); }
+.avatar-drawer-opt:active { transform: scale(0.9); }
+.avatar-drawer-opt img {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+}
+.avatar-drawer-opt.selected img { border-color: var(--black); box-shadow: 0 0 0 4px rgba(0,0,0,0.12); }
+
+/* Avatar selector on page */
+.avatar-opt { cursor: pointer; transition: var(--transition); }
+.avatar-opt img {
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+  display: block;
+}
+.avatar-opt:hover img { transform: scale(1.06); box-shadow: var(--shadow-hover); }
+.avatar-opt.selected img { border-color: var(--black); transform: scale(1.1); box-shadow: 0 0 0 4px rgba(0,0,0,0.12); }
+
+/* Carrito contador */
+#carritoContador {
+  position: absolute; top: -6px; right: -6px;
+  background: #e74c3c; color: #fff;
+  font-size: 11px; font-weight: 700;
+  font-family: 'Glacial Indifference', sans-serif;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+#btnCarritoWrap { position: relative; display: inline-block; }
+@keyframes carritoZoom {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
 
 /* ===== SPACERS ===== */
 .spacer-sm { height: 24px; }
@@ -1521,37 +1448,22 @@ body::after {
   .products-grid { gap: 12px; }
   .product-card { padding: 12px; }
   .product-card img { margin-bottom: 8px; }
-  .product-name { font-size: 12px; }
-  .price-new { font-size: 14px; }
-  .btn-comprar, .btn-info { font-size: 11px; padding: 9px 4px; }
-  .section-heading { font-size: 18px; margin: 40px 0 22px; }
-  .comments-section { padding: 32px 18px; }
-  .social-section { padding: 36px 18px; }
+  .product-name { font-size: 11px; }
+  .price-new { font-size: 13px; }
+  .btn-comprar, .btn-info, .btn-carrito { font-size: 10px; padding: 8px 4px; }
+  .section-heading { font-size: 15px; margin: 36px 0 20px; }
+  .comments-section { padding: 28px 16px; }
+  .social-section { padding: 32px 16px; }
 }
 
-/* FIX: curtain-info always above catalog */
+/* FIXES */
 #curtain-info { z-index: 1500; }
-
-/* FIX: carrito portada no recortada */
 #curtain-carrito .curtain-body img:first-child {
-  width: 100%;
-  height: auto;
-  max-height: none;
-  object-fit: cover;
-  display: block;
+  width: 100%; height: auto; max-height: none; object-fit: cover; display: block;
 }
-
-/* Carrito curtain item list */
-#curtainListaCarrito > div {
-  border-bottom: 1px solid rgba(0,0,0,0.06) !important;
-}
+#curtainListaCarrito > div { border-bottom: 1px solid rgba(0,0,0,0.06) !important; }
 #curtainListaCarrito > div:last-child { border-bottom: none !important; }
-
-/* Curtain footer — vaciar btn override */
-.curtain-footer [style*="e74c3c"] {
-  background: #e74c3c !important;
-  border-radius: var(--radius-btn) !important;
-}
+.curtain-footer [style*="e74c3c"] { background: #e74c3c !important; border-radius: var(--radius-btn) !important; }
 </style>
 </head>
 <body>
@@ -1567,10 +1479,8 @@ body::after {
   </div>
 </header>
 
-<!-- ===== SIDEBAR OVERLAY ===== -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<!-- ===== SIDEBAR ===== -->
 <nav class="sidebar" id="sidebar">
   <div class="sidebar-head">
     <div class="sidebar-brand">
@@ -1588,7 +1498,7 @@ body::after {
   </div>
 </nav>
 
-<!-- ===== CURTAIN: CÓMO COMPRAR ===== -->
+<!-- CURTAIN: CÓMO COMPRAR -->
 <div class="curtain" id="curtain-comprar">
   <div class="curtain-head">
     <h2>CÓMO COMPRAR</h2>
@@ -1609,7 +1519,7 @@ body::after {
   </div>
 </div>
 
-<!-- ===== CURTAIN: CÓMO ENCARGUE ===== -->
+<!-- CURTAIN: CÓMO ENCARGUE -->
 <div class="curtain" id="curtain-encargo">
   <div class="curtain-head">
     <h2>CÓMO HACER UN ENCARGUE</h2>
@@ -1630,7 +1540,7 @@ body::after {
   </div>
 </div>
 
-<!-- ===== CURTAIN: INFO PRODUCTO ===== -->
+<!-- CURTAIN: INFO PRODUCTO -->
 <div class="curtain" id="curtain-info">
   <div class="curtain-head">
     <h2 id="curtain-info-title">INFORMACIÓN</h2>
@@ -1639,7 +1549,7 @@ body::after {
   <div class="curtain-body" id="curtain-info-body"></div>
 </div>
 
-<!-- ===== CURTAIN: TODOS LOS COMENTARIOS ===== -->
+<!-- CURTAIN: TODOS LOS COMENTARIOS -->
 <div class="curtain" id="curtain-comments">
   <div class="curtain-head">
     <h2>TODOS LOS COMENTARIOS</h2>
@@ -1650,20 +1560,18 @@ body::after {
   </div>
 </div>
 
-<!-- ===== CATALOG MODAL ===== -->
+<!-- CATALOG MODAL -->
 <div class="modal-backdrop" id="catalogBackdrop">
   <div class="catalog-modal">
     <div class="catalog-modal-head">
       <h2>NUESTRA TIENDA</h2>
       <button class="catalog-modal-close" onclick="closeCatalog()">&#10005;</button>
     </div>
-    <div class="catalog-modal-body" id="catalogBody">
-      <!-- Rendered by JS -->
-    </div>
+    <div class="catalog-modal-body" id="catalogBody"></div>
   </div>
 </div>
 
-<!-- ===== STEFI MODAL 1 ===== -->
+<!-- STEFI MODAL 1 -->
 <div class="stefi-backdrop" id="stefi1">
   <div class="stefi-box">
     <h2>¡Hola! Soy Stefi 🐾</h2>
@@ -1683,7 +1591,7 @@ body::after {
   </div>
 </div>
 
-<!-- ===== STEFI MODAL 2 ===== -->
+<!-- STEFI MODAL 2 -->
 <div class="stefi-backdrop" id="stefi2">
   <div class="stefi-box">
     <h2>Acerca de nuestros productos 💛</h2>
@@ -1705,7 +1613,7 @@ body::after {
   </div>
 </div>
 
-<!-- ===== WRITE COMMENT MODAL ===== -->
+<!-- WRITE COMMENT MODAL -->
 <div class="write-backdrop" id="writeBackdrop">
   <div class="write-box">
     <h2>ESCRIBIR COMENTARIO</h2>
@@ -1713,9 +1621,9 @@ body::after {
       class="write-textarea"
       id="comentarioText"
       placeholder="Contanos tu experiencia con nuestros productos y la atención de Stefy"
-      style="width:100%;height:120px;padding:14px;border-radius:12px;border:1.5px solid #ddd;font-family:'Glacial Indifference',sans-serif;font-size:15px;resize:none;outline:none;transition:border-color 0.2s;background:#fafafa;"
+      style="width:100%;height:120px;padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.12);font-family:'Glacial Indifference',sans-serif;font-size:14px;resize:none;outline:none;transition:border-color 0.2s;background:#fafafa;"
       onfocus="this.style.borderColor='#000'"
-      onblur="this.style.borderColor='#ddd'"
+      onblur="this.style.borderColor='rgba(0,0,0,0.12)'"
     ></textarea>
     <div style="margin-top:16px;display:flex;justify-content:center;">
       <div class="g-recaptcha" data-sitekey="6LcWAsQsAAAAAE77NP8tHGW3DwknCVnEC_z9bTAe"></div>
@@ -1726,7 +1634,7 @@ body::after {
   </div>
 </div>
 
-<!-- ===== SUCCESS MODAL ===== -->
+<!-- SUCCESS MODAL -->
 <div class="success-backdrop" id="successBackdrop">
   <div class="success-box">
     <div class="success-icon">🐾</div>
@@ -1742,76 +1650,47 @@ body::after {
 <!-- ===== MAIN ===== -->
 <main style="position:relative;z-index:2;">
 
-  <!-- PORTADA 1 -->
-  <div class="portada-wrap">
-    <img src="portadauno.png" alt="Portada 1">
-  </div>
+  <div class="portada-wrap"><img src="portadauno.png" alt="Portada 1"></div>
+  <div class="portada-wrap"><img src="portadados.png" alt="Portada 2"></div>
 
-  <!-- PORTADA 2 -->
-  <div class="portada-wrap">
-    <img src="portadados.png" alt="Portada 2">
-  </div>
-
-  <!-- MENSAJE FLOTANTE 1 -->
   <div class="mensaje-section" onclick="openStefi(1)">
     <div class="mensaje-hint">✨ Toca para conocerme ✨</div>
-    <div class="mensaje-arrows">
-      <span>▼</span><span>▼</span><span>▼</span>
-    </div>
+    <div class="mensaje-arrows"><span>▼</span><span>▼</span><span>▼</span></div>
     <img src="mensajeweb.png" alt="Mensaje" class="mensaje-img">
   </div>
 
-  <!-- PORTADA 3 -->
-  <div class="portada-wrap">
-    <img src="portadatres.png" alt="Portada 3">
-  </div>
+  <div class="portada-wrap"><img src="portadatres.png" alt="Portada 3"></div>
 
-  <!-- SECCIÓN GOMITAS -->
   <div class="section-wrap">
     <h2 class="section-heading">GOMITAS DE COLÁGENO 100% NATURAL</h2>
     <div class="products-grid" id="grid-gomitas"></div>
   </div>
 
-  <!-- PORTADA 4 -->
-  <div class="portada-wrap">
-    <img src="portadacuatro.png" alt="Portada 4">
-  </div>
+  <div class="portada-wrap"><img src="portadacuatro.png" alt="Portada 4"></div>
 
-  <!-- SECCIÓN GALLETITAS -->
   <div class="section-wrap">
     <p class="section-subheading">LO MEJOR PARA TU MASCOTA</p>
     <h2 class="section-heading">SNACKS SALUDABLES</h2>
     <div class="products-grid" id="grid-galletitas"></div>
   </div>
 
-  <!-- PORTADA 5 -->
-  <div class="portada-wrap">
-    <img src="portadacinco.png" alt="Portada 5">
-  </div>
+  <div class="portada-wrap"><img src="portadacinco.png" alt="Portada 5"></div>
 
-  <!-- SECCIÓN TORTAS -->
   <div class="section-wrap">
     <h2 class="section-heading">TORTAS 100% NATURAL, SIN CONSERVANTES</h2>
     <div class="products-grid" id="grid-tortas"></div>
   </div>
 
-  <!-- PORTADA 6 -->
-  <div class="portada-wrap">
-    <img src="portadaseis.png" alt="Portada 6">
-  </div>
+  <div class="portada-wrap"><img src="portadaseis.png" alt="Portada 6"></div>
 
-  <!-- SECCIÓN BUDINES Y CUPCAKES -->
   <div class="section-wrap">
     <h2 class="section-heading">CUP CAKE &amp; BUDÍN 100% NATURAL</h2>
     <div class="products-grid" id="grid-budines"></div>
   </div>
 
-  <!-- MENSAJE FLOTANTE 2 -->
   <div class="mensaje-section" onclick="openStefi(2)">
     <div class="mensaje-hint">✨ Toca para más información ✨</div>
-    <div class="mensaje-arrows">
-      <span>▼</span><span>▼</span><span>▼</span>
-    </div>
+    <div class="mensaje-arrows"><span>▼</span><span>▼</span><span>▼</span></div>
     <img src="mensajeweb.png" alt="Mensaje" class="mensaje-img">
   </div>
 
@@ -1820,7 +1699,7 @@ body::after {
     <div class="comments-section">
       <h2 class="comments-title">CONTANOS TU EXPERIENCIA</h2>
 
-      <h3 style="text-align:center;margin-bottom:14px;font-family:'Glacial Indifference',sans-serif;font-size:12px;color:#888;font-weight:700;letter-spacing:2px;text-transform:uppercase;">ELEGÍ TU AVATAR</h3>
+      <h3 style="text-align:center;margin-bottom:14px;font-family:'Glacial Indifference',sans-serif;font-size:11px;color:#aaa;font-weight:400;letter-spacing:2px;text-transform:uppercase;">ELEGÍ TU AVATAR</h3>
       <div class="avatars-row" id="avatarsRow"></div>
       <button class="avatar-vermás-btn" onclick="abrirAvatarDrawer()">+ ver más avatares</button>
 
@@ -1842,7 +1721,6 @@ body::after {
 
       <button class="write-comment-btn" onclick="openWriteModal()">✍️ Escribir comentario</button>
 
-      <!-- Comentario destacado -->
       <div class="featured-wrap" id="featuredWrap">
         <div class="featured-label">⭐ Comentario destacado</div>
         <div id="featuredComment"></div>
@@ -1872,7 +1750,7 @@ body::after {
 
 </main>
 
-<!-- ===== FOOTER ===== -->
+<!-- FOOTER -->
 <footer class="footer">
   <img src="logoweb.png" alt="Logo Candy Paws" class="footer-logo">
   <div class="footer-links">
@@ -1883,12 +1761,14 @@ body::after {
   </div>
 </footer>
 
-<!-- ===== WHATSAPP FLOAT ===== -->
+<!-- WA FLOAT -->
 <a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="wa-float" aria-label="WhatsApp">
   <img src="whatsappweb.png" alt="WhatsApp">
 </a>
+
+<!-- CARRITO FLOTANTE -->
 <div onclick="abrirCarrito()" style="position:fixed;bottom:100px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:999;cursor:pointer;">
-  <span style="font-size:11px;color:#fff;margin-bottom:4px;opacity:0.9;text-shadow:0 1px 3px rgba(0,0,0,0.8);letter-spacing:0.5px;">ver productos seleccionados</span>
+  <span style="font-size:10px;color:#fff;margin-bottom:4px;opacity:0.85;text-shadow:0 1px 3px rgba(0,0,0,0.8);letter-spacing:0.5px;font-family:'Glacial Indifference',sans-serif;">ver productos seleccionados</span>
   <div id="btnCarritoWrap" style="position:relative;display:inline-block;">
     <div id="btnCarrito" style="width:60px;height:60px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 6px 24px rgba(0,0,0,0.35);transition:all 0.28s cubic-bezier(0.4,0,0.2,1);border:2px solid rgba(255,255,255,0.1);">🛒</div>
     <div id="carritoContador" style="position:absolute;top:-6px;right:-6px;background:#e74c3c;color:#fff;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:none;align-items:center;justify-content:center;pointer-events:none;"></div>
@@ -1915,13 +1795,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* ───── STATE ───── */
 let currentRating = 5;
 let selectedAvatarImg = "avataruno.png";
 let allComments = [];
 let likedIds = JSON.parse(localStorage.getItem('cp_liked') || '[]');
 
-/* ───── PRODUCTS DATA ───── */
 const infoGomitas = `<p>Están elaboradas con colágeno natural y ayudan especialmente a las articulaciones y a dejar el pelaje más brillante y hermoso.</p>
 <p><strong>Sabores que tengo siempre:</strong><br>• Pollo<br>• Hígado<br>Y por encargo puedo hacerlas del sabor que ustedes me pidan.</p>
 <p>Son perfectas para premiar todos los días, para entrenar o simplemente para que compartan un momento rico con nosotros.</p>
@@ -1972,7 +1850,7 @@ const PRODUCTS = {
   ]
 };
 
-/* ───── RENDER PRODUCT CARD ───── */
+/* ── productCardHTML — botón carrito con clase btn-carrito ── */
 function productCardHTML(p, uid) {
   return `
   <div class="product-card">
@@ -1986,19 +1864,17 @@ function productCardHTML(p, uid) {
     <div class="product-actions">
       <button class="btn-comprar" onclick="toggleBuy(this)">Comprar</button>
       <button class="btn-info" onclick="showInfo('${uid}')">Info</button>
-      <button class="btn-info" onclick="agregarAlCarrito('${p.nombre.replace(/'/g,"\\'")}', '${p.precio}')">🛒 Carrito</button>
+      <button class="btn-carrito" onclick="agregarAlCarrito('${p.nombre.replace(/'/g,"\\'")}', '${p.precio}')">🛒 Carrito</button>
     </div>
     <div class="buy-options" id="buy-${uid}">
-      <button class="btn-retirar" onclick="sendWA('${p.nombre.replace(/'/g,"\\'")}','Paso a Retirar')">Paso a Retirar</button>
-      <button class="btn-domicilio" onclick="sendWA('${p.nombre.replace(/'/g,"\\'")}','Recibir a Domicilio')">Recibir a Domicilio</button>
+      <button class="btn-retirar" onclick="sendWA('${p.nombre.replace(/'/g,"\\'")}','Paso a Retirar'); setTipoEntrega('retirar')">Paso a Retirar</button>
+      <button class="btn-domicilio" onclick="sendWA('${p.nombre.replace(/'/g,"\\'")}','Recibir a Domicilio'); setTipoEntrega('domicilio')">Recibir a Domicilio</button>
     </div>
   </div>`;
 }
 
-/* ───── BUILD ALL GRIDS ───── */
 function buildGrids() {
   const allProductsForInfo = {};
-
   function renderSection(key, gridId) {
     const html = PRODUCTS[key].map((p, i) => {
       const uid = `${key}-${i}`;
@@ -2007,14 +1883,11 @@ function buildGrids() {
     }).join('');
     const el = document.getElementById(gridId);
     if (el) el.innerHTML = html;
-    return html;
   }
-
   renderSection('gomitas', 'grid-gomitas');
   renderSection('galletitas', 'grid-galletitas');
   renderSection('tortas', 'grid-tortas');
   renderSection('budines', 'grid-budines');
-
   window._productInfo = allProductsForInfo;
   buildCatalogModal();
 }
@@ -2030,8 +1903,7 @@ function buildCatalogModal() {
   ];
   let html = '';
   sections.forEach(s => {
-    html += `<div class="catalog-section-title">${s.label}</div>`;
-    html += `<div class="products-grid">`;
+    html += `<div class="catalog-section-title">${s.label}</div><div class="products-grid">`;
     PRODUCTS[s.key].forEach((p, i) => {
       const uid = `cat-${s.key}-${i}`;
       window._productInfo = window._productInfo || {};
@@ -2043,7 +1915,6 @@ function buildCatalogModal() {
   body.innerHTML = html;
 }
 
-/* ───── GLOBAL HANDLERS ───── */
 window.toggleBuy = function(btn) {
   const card = btn.closest('.product-card');
   const opts = card.querySelector('.buy-options');
@@ -2063,14 +1934,13 @@ window.showInfo = function(uid) {
   openCurtain('info');
 };
 
-/* ───── SIDEBAR ───── */
+/* SIDEBAR */
 document.getElementById('hamburgerBtn').addEventListener('click', () => {
   document.getElementById('sidebar').classList.add('open');
   document.getElementById('sidebarOverlay').classList.add('open');
 });
 document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
 document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
-
 function closeSidebar() {
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('sidebarOverlay').classList.remove('open');
@@ -2084,7 +1954,6 @@ window.openCurtain = function(id) {
 window.closeCurtain = function(id) {
   document.getElementById('curtain-' + id).classList.remove('open');
 };
-
 window.openCatalog = function() {
   closeSidebar();
   buildCatalogModal();
@@ -2096,30 +1965,19 @@ window.closeCatalog = function() {
 document.getElementById('catalogBackdrop').addEventListener('click', function(e) {
   if (e.target === this) window.closeCatalog();
 });
-
-window.openStefi = function(n) {
-  document.getElementById('stefi' + n).classList.add('open');
-};
-window.closeStefi = function(n) {
-  document.getElementById('stefi' + n).classList.remove('open');
-};
+window.openStefi = function(n) { document.getElementById('stefi' + n).classList.add('open'); };
+window.closeStefi = function(n) { document.getElementById('stefi' + n).classList.remove('open'); };
 document.querySelectorAll('.stefi-backdrop').forEach(el => {
-  el.addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('open');
-  });
+  el.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('open'); });
 });
-
 window.scrollToSocial = function() {
   closeSidebar();
   document.getElementById('social').scrollIntoView({ behavior:'smooth' });
 };
 
-/* ───── AVATARS ───── */
+/* AVATARS */
 function buildAvatars() {
-  const avs = [
-    {img:'avataruno.png'},{img:'avatardos.png'},
-    {img:'avatartres.png'},{img:'avatarcuatro.png'}
-  ];
+  const avs = [{img:'avataruno.png'},{img:'avatardos.png'},{img:'avatartres.png'},{img:'avatarcuatro.png'}];
   const row = document.getElementById('avatarsRow');
   row.innerHTML = avs.map((a,i) => `
     <div class="avatar-opt${i===0?' selected':''}" data-img="${a.img}" onclick="selectAvatar(this)">
@@ -2132,14 +1990,11 @@ window.selectAvatar = function(el) {
   selectedAvatarImg = el.dataset.img;
 };
 
-/* ───── STARS ───── */
+/* STARS */
 function buildStars() {
   const btns = document.querySelectorAll('#starsRow .star-btn');
   btns.forEach(b => {
-    b.addEventListener('click', () => {
-      currentRating = parseInt(b.dataset.v);
-      updateStars();
-    });
+    b.addEventListener('click', () => { currentRating = parseInt(b.dataset.v); updateStars(); });
   });
   updateStars();
 }
@@ -2149,7 +2004,7 @@ function updateStars() {
   });
 }
 
-/* ───── WRITE MODAL ───── */
+/* WRITE MODAL */
 window.openWriteModal = function() {
   document.getElementById('comentarioText').value = '';
   document.getElementById('writeBackdrop').classList.add('open');
@@ -2163,56 +2018,38 @@ document.getElementById('writeBackdrop').addEventListener('click', function(e) {
   if (e.target === this) window.closeWriteModal();
 });
 
-/* ───── SUBMIT COMMENT ───── */
+/* SUBMIT COMMENT */
 window.submitComment = async function() {
   const nombre = (document.getElementById('nombreInput').value || 'Anónimo').trim();
   const comentario = (document.getElementById('comentarioText').value || '').trim();
   if (comentario.length < 5) { alert('Por favor escribí un comentario más largo.'); return; }
-
   const recaptchaResponse = grecaptcha.getResponse();
   const recaptchaError = document.getElementById('recaptchaError');
-  if (!recaptchaResponse) {
-    recaptchaError.style.display = 'block';
-    return;
-  }
+  if (!recaptchaResponse) { recaptchaError.style.display = 'block'; return; }
   recaptchaError.style.display = 'none';
-
   const sendBtn = document.querySelector('.write-send-btn');
-  sendBtn.disabled = true;
-  sendBtn.textContent = 'Enviando...';
-
+  sendBtn.disabled = true; sendBtn.textContent = 'Enviando...';
   try {
     await addDoc(collection(db, 'comentarios'), {
-      nombre,
-      comentario,
-      estrellas: currentRating,
-      avatarImg: selectedAvatarImg,
-      fecha: Date.now(),
-      likes: 0,
-      lastLike: 0
+      nombre, comentario, estrellas: currentRating,
+      avatarImg: selectedAvatarImg, fecha: Date.now(), likes: 0, lastLike: 0
     });
     window.closeWriteModal();
     document.getElementById('successBackdrop').classList.add('open');
   } catch(e) {
-    alert('Error al guardar. Intentá de nuevo.');
-    console.error(e);
+    alert('Error al guardar. Intentá de nuevo.'); console.error(e);
   } finally {
-    sendBtn.disabled = false;
-    sendBtn.textContent = 'Enviar comentario';
+    sendBtn.disabled = false; sendBtn.textContent = 'Enviar comentario';
   }
 };
 
-window.closeSuccess = function() {
-  document.getElementById('successBackdrop').classList.remove('open');
-};
+window.closeSuccess = function() { document.getElementById('successBackdrop').classList.remove('open'); };
 
-/* ───── LIKE COMMENT ───── */
+/* LIKE */
 window.likeComment = async function(id, btn) {
   if (likedIds.includes(id)) return;
-
   likedIds.push(id);
   localStorage.setItem('cp_liked', JSON.stringify(likedIds));
-
   if (btn) {
     btn.classList.add('liked');
     const countEl = btn.querySelector('.like-count');
@@ -2220,13 +2057,9 @@ window.likeComment = async function(id, btn) {
     btn.classList.add('like-pop');
     setTimeout(() => btn.classList.remove('like-pop'), 400);
   }
-
   try {
     const ref = doc(db, 'comentarios', id);
-    await updateDoc(ref, {
-      likes: increment(1),
-      lastLike: Date.now()
-    });
+    await updateDoc(ref, { likes: increment(1), lastLike: Date.now() });
   } catch(e) {
     likedIds = likedIds.filter(x => x !== id);
     localStorage.setItem('cp_liked', JSON.stringify(likedIds));
@@ -2234,7 +2067,6 @@ window.likeComment = async function(id, btn) {
   }
 };
 
-/* ───── RELATIVE TIME ───── */
 function relTime(ts) {
   if (!ts) return '';
   const diff = Date.now() - ts;
@@ -2248,7 +2080,6 @@ function relTime(ts) {
   return `hace ${Math.floor(d / 30)} mes(es)`;
 }
 
-/* ───── BUILD COMMENT CARD ───── */
 function buildCommentCard(c, isFeatured) {
   const isLiked = likedIds.includes(c.id);
   const stars = '★'.repeat(Math.min(5, c.estrellas || 0));
@@ -2272,7 +2103,6 @@ function buildCommentCard(c, isFeatured) {
   </div>`;
 }
 
-/* ───── RENDER FEATURED ───── */
 function renderFeatured() {
   const fw = document.getElementById('featuredWrap');
   const fc = document.getElementById('featuredComment');
@@ -2282,7 +2112,6 @@ function renderFeatured() {
   fw.style.display = 'block';
 }
 
-/* ───── RENDER ALL COMMENTS ───── */
 function renderAllComments() {
   const list = document.getElementById('all-comments-list');
   if (allComments.length === 0) {
@@ -2292,28 +2121,17 @@ function renderAllComments() {
   list.innerHTML = allComments.map(c => buildCommentCard(c, false)).join('');
 }
 
-/* ───── REAL-TIME LISTENER ───── */
 function initCommentsListener() {
-  const qByDate = query(
-    collection(db, 'comentarios'),
-    orderBy('fecha', 'desc')
-  );
-
+  const qByDate = query(collection(db, 'comentarios'), orderBy('fecha', 'desc'));
   onSnapshot(qByDate, (snapshot) => {
     allComments = [];
     snapshot.forEach(d => allComments.push({ id: d.id, ...d.data() }));
     renderFeatured();
     const curtain = document.getElementById('curtain-comments');
-    if (curtain && curtain.classList.contains('open')) {
-      renderAllComments();
-    }
-  }, (err) => {
-    console.error('Comments listener error:', err);
-    loadCommentsFallback();
-  });
+    if (curtain && curtain.classList.contains('open')) renderAllComments();
+  }, (err) => { console.error('Comments listener error:', err); loadCommentsFallback(); });
 }
 
-/* ───── FALLBACK ───── */
 async function loadCommentsFallback() {
   try {
     const q = query(collection(db, 'comentarios'), orderBy('fecha', 'desc'));
@@ -2324,14 +2142,24 @@ async function loadCommentsFallback() {
   } catch(e) { console.error(e); }
 }
 
-/* ───── INIT ───── */
 buildGrids();
 buildAvatars();
 buildStars();
 initCommentsListener();
 </script>
+
+<!-- ===== CARRITO AVANZADO + LÓGICA DE ENVÍO ===== -->
 <script>
-/* ===== CARRITO AVANZADO ===== */
+/* Estado global de tipo de entrega */
+window._tipoEntrega = 'retirar'; // default: sin envío
+const COSTO_ENVIO = 1500;
+
+window.setTipoEntrega = function(tipo) {
+  window._tipoEntrega = tipo;
+  /* Si el carrito está abierto, re-renderizar para actualizar el total */
+  renderizarCurtainCarrito();
+};
+
 function _getCarrito() { return JSON.parse(localStorage.getItem("carritoCandy")) || []; }
 function _setCarrito(c) { localStorage.setItem("carritoCandy", JSON.stringify(c)); }
 
@@ -2365,36 +2193,77 @@ function animarCarrito() {
 function enviarCarritoWhatsApp() {
   const c = _getCarrito();
   if (c.length === 0) { alert("El carrito está vacío"); return; }
+  const esEnvio = window._tipoEntrega === 'domicilio';
   let msg = "Hola Stefi! Quiero comprar:%0A%0A";
   c.forEach((p, i) => { msg += `${i+1}. ${p.nombre} x${p.cantidad||1} - ${p.precio}%0A`; });
+  if (esEnvio) msg += `%0A🚚 Modalidad: Recibir a Domicilio (+$${COSTO_ENVIO.toLocaleString()} envío)`;
+  else msg += `%0A🏠 Modalidad: Paso a Retirar`;
   window.open(`https://wa.me/5492396512544?text=${msg}`, "_blank");
 }
 
 function vaciarCarrito() { _setCarrito([]); actualizarContador(); }
-function vaciarCarritoModal() { _setCarrito([]); actualizarContador(); renderizarCurtainCarrito(); }
+function vaciarCarritoModal() { _setCarrito([]); window._tipoEntrega = 'retirar'; actualizarContador(); renderizarCurtainCarrito(); }
 
+/* ── _renderLista: muestra total con desglose de envío ── */
 function _renderLista(containerId, totalId, conEliminar) {
   const c = _getCarrito();
   const lista = document.getElementById(containerId);
   const totalEl = document.getElementById(totalId);
   if (!lista) return;
   let suma = 0;
+
   if (c.length === 0) {
-    lista.innerHTML = `<p style="color:#888;font-family:'Glacial Indifference',sans-serif;padding:16px 0;font-size:15px;">El carrito está vacío.</p>`;
-    if (totalEl) totalEl.innerText = "";
+    lista.innerHTML = `<p style="color:#aaa;font-family:'Glacial Indifference',sans-serif;padding:20px 0;font-size:14px;text-align:center;">El carrito está vacío.</p>`;
+    if (totalEl) totalEl.innerHTML = "";
   } else {
+    /* Subtotal de productos */
     lista.innerHTML = c.map((p, i) => {
       const num = parseInt((p.precio||"").replace(/\D/g,"")) || 0;
       suma += num * (p.cantidad||1);
       return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.06);font-family:'Glacial Indifference',sans-serif;gap:8px;">
         <div style="flex:1;min-width:0;">
-          <div style="font-size:14px;font-weight:700;color:#111;letter-spacing:0.3px;">${p.nombre}</div>
-          <div style="font-size:12px;color:#999;margin-top:2px;">${p.precio} × ${p.cantidad||1}</div>
+          <div style="font-size:13px;font-weight:700;color:#111;letter-spacing:0.2px;">${p.nombre}</div>
+          <div style="font-size:11px;color:#aaa;margin-top:2px;font-weight:400;">${p.precio} × ${p.cantidad||1}</div>
         </div>
-        ${conEliminar ? `<button onclick="eliminarProducto(${i})" style="background:none;border:none;cursor:pointer;font-size:15px;padding:0 4px;flex-shrink:0;opacity:0.5;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.5">❌</button>` : ""}
+        ${conEliminar ? `<button onclick="eliminarProducto(${i})" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0 4px;flex-shrink:0;opacity:0.4;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.4">✕</button>` : ""}
       </div>`;
     }).join("");
-    if (totalEl) totalEl.innerText = "Total: $" + suma.toLocaleString();
+
+    /* Total con lógica de envío */
+    if (totalEl) {
+      const esEnvio = window._tipoEntrega === 'domicilio';
+      const totalFinal = suma + (esEnvio ? COSTO_ENVIO : 0);
+
+      let totalHTML = `
+        <div style="border-top:1.5px solid rgba(0,0,0,0.08);margin-top:4px;padding-top:14px;">
+          <div style="display:flex;justify-content:space-between;font-family:'Glacial Indifference',sans-serif;font-size:13px;color:#888;font-weight:400;margin-bottom:6px;">
+            <span>Subtotal (${c.reduce((s,p)=>s+(p.cantidad||1),0)} productos)</span>
+            <span>$${suma.toLocaleString()}</span>
+          </div>`;
+
+      if (esEnvio) {
+        totalHTML += `
+          <div style="display:flex;justify-content:space-between;font-family:'Glacial Indifference',sans-serif;font-size:13px;color:#50e03e;font-weight:700;margin-bottom:10px;">
+            <span>🚚 Envío a domicilio</span>
+            <span>+$${COSTO_ENVIO.toLocaleString()}</span>
+          </div>`;
+      } else {
+        totalHTML += `
+          <div style="display:flex;justify-content:space-between;font-family:'Glacial Indifference',sans-serif;font-size:13px;color:#888;font-weight:400;margin-bottom:10px;">
+            <span>🏠 Retiro en local</span>
+            <span style="color:#50e03e;">Gratis</span>
+          </div>`;
+      }
+
+      totalHTML += `
+          <div style="display:flex;justify-content:space-between;font-family:'Glacial Indifference',sans-serif;font-size:16px;font-weight:700;color:#111;border-top:1px solid rgba(0,0,0,0.06);padding-top:10px;">
+            <span>TOTAL</span>
+            <span>$${totalFinal.toLocaleString()}${esEnvio ? ' <span style="font-size:11px;font-weight:400;color:#888;">(incl. envío)</span>' : ''}</span>
+          </div>
+        </div>`;
+
+      totalEl.innerHTML = totalHTML;
+    }
   }
 }
 
@@ -2470,7 +2339,7 @@ function seleccionarAvatarExtra(img, el) {
 }
 </script>
 
-<!-- ===== AVATAR DRAWER ===== -->
+<!-- AVATAR DRAWER -->
 <div id="avatarDrawerOverlay" onclick="cerrarAvatarDrawer()"></div>
 <div id="avatarDrawer">
   <div class="avatar-drawer-handle"></div>
@@ -2478,17 +2347,17 @@ function seleccionarAvatarExtra(img, el) {
   <div class="avatar-drawer-grid" id="avatarDrawerGrid"></div>
 </div>
 
-<!-- ===== CURTAIN CARRITO ===== -->
+<!-- CURTAIN CARRITO -->
 <div class="curtain" id="curtain-carrito">
   <div class="curtain-head">
     <h2>MI CARRITO</h2>
     <button class="curtain-close" onclick="closeCurtain('carrito')">&#10005;</button>
   </div>
   <div class="curtain-body" style="padding:0;">
-    <img src="portadadiez.png" alt="Carrito" style="width:100%;height:140px;object-fit:cover;display:block;">
+    <img src="portadadiez.png" alt="Carrito" style="width:100%;height:120px;object-fit:cover;display:block;">
     <div style="padding:18px 22px;">
       <div id="curtainListaCarrito"></div>
-      <p id="curtainTotalCarrito" style="font-weight:700;margin-top:14px;font-size:16px;color:#111;font-family:'Glacial Indifference',sans-serif;letter-spacing:0.5px;"></p>
+      <div id="curtainTotalCarrito"></div>
     </div>
   </div>
   <div class="curtain-footer" style="display:flex;flex-direction:column;gap:8px;">
