@@ -471,11 +471,11 @@ p, li, label, span, div {
 .section-subheading {
   font-family: 'Glacial Indifference', sans-serif;
   font-size: clamp(10px, 2vw, 12px);
-  color: var(--accent);
+  color: #000000;
   text-align: center;
   margin-bottom: 8px;
   font-weight: 400;
-  text-shadow: 1px 2px 8px rgba(0,0,0,0.5);
+  text-shadow: none;
   letter-spacing: 3px;
   text-transform: uppercase;
 }
@@ -1300,22 +1300,32 @@ p, li, label, span, div {
   transition: var(--transition);
 }
 .footer-logo:hover { transform: scale(1.06); border-color: rgba(255,255,255,0.4); }
-.footer-links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.footer-links { 
+  display: flex; 
+  justify-content: center; 
+  gap: 6px; 
+  flex-wrap: nowrap;
+  margin-top: 18px;
+  flex-shrink: 1;
+}
 .footer-link-btn {
   background: rgba(255,255,255,0.07);
   color: rgba(255,255,255,0.8);
   border: 1px solid rgba(255,255,255,0.1);
-  padding: 10px 18px;
+  padding: 8px 10px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
+  font-size: 9px;
   font-weight: 400;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
   transition: var(--transition);
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
 }
 .footer-link-btn:hover { background: var(--white); color: var(--black); border-color: var(--white); transform: translateY(-2px); }
 
@@ -1327,15 +1337,15 @@ p, li, label, span, div {
   border-radius: 50%;
   overflow: hidden;
   z-index: 900;
-  box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+  box-shadow: none;
   transition: var(--transition);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #25D366;
-  border: 2px solid rgba(255,255,255,0.3);
+  background: transparent;
+  border: none;
 }
-.wa-float:hover { transform: scale(1.1) translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,0.6); }
+.wa-float:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 .wa-float img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* ===== CARRITO FLOTANTE ===== */
@@ -1442,6 +1452,73 @@ p, li, label, span, div {
 /* ===== SPACERS ===== */
 .spacer-sm { height: 24px; }
 .spacer-md { height: 48px; }
+
+/* ===== MODAL SELECCIÓN TIPO ENTREGA ===== */
+.delivery-selector-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1800;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.delivery-selector-backdrop.open { display: flex; }
+.delivery-selector-box {
+  background: var(--white);
+  color: var(--black);
+  border-radius: 20px;
+  max-width: 380px;
+  width: 100%;
+  padding: 32px 26px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.06);
+  text-align: center;
+}
+.delivery-selector-box h3 {
+  font-family: 'Glacial Indifference', sans-serif;
+  font-weight: 700;
+  color: var(--black);
+  font-size: 16px;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.delivery-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.delivery-option-btn {
+  padding: 16px 20px;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius-btn);
+  background: var(--white);
+  color: var(--black);
+  font-family: 'Glacial Indifference', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+}
+.delivery-option-btn:hover {
+  border-color: var(--black);
+  background: #f5f5f5;
+  transform: translateY(-2px);
+}
+.delivery-option-btn.primary {
+  background: #50e03e;
+  color: #ffffff;
+  border-color: #50e03e;
+}
+.delivery-option-btn.primary:hover {
+  background: #3ed42d;
+  border-color: #3ed42d;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 420px) {
@@ -1864,7 +1941,7 @@ function productCardHTML(p, uid) {
     <div class="product-actions">
       <button class="btn-comprar" onclick="toggleBuy(this)">Comprar</button>
       <button class="btn-info" onclick="showInfo('${uid}')">Info</button>
-      <button class="btn-carrito" onclick="agregarAlCarrito('${p.nombre.replace(/'/g,"\\'")}', '${p.precio}')">🛒 Carrito</button>
+      <button class="btn-carrito" onclick="mostrarSelectorEntrega('${p.nombre.replace(/'/g,"\\'")}', '${p.precio}')">🛒 Carrito</button>
     </div>
     <div class="buy-options" id="buy-${uid}">
       <button class="btn-retirar" onclick="sendWA('${p.nombre.replace(/'/g,"\\'")}','Paso a Retirar'); setTipoEntrega('retirar')">Paso a Retirar</button>
@@ -2152,6 +2229,9 @@ initCommentsListener();
 <script>
 /* Estado global de tipo de entrega */
 window._tipoEntrega = 'retirar'; // default: sin envío
+window._tipoEntregaBloqueado = false; // indica si el tipo de entrega está bloqueado
+window._currentProductName = '';
+window._currentProductPrice = '';
 const COSTO_ENVIO = 1500;
 
 window.setTipoEntrega = function(tipo) {
@@ -2162,6 +2242,40 @@ window.setTipoEntrega = function(tipo) {
 
 function _getCarrito() { return JSON.parse(localStorage.getItem("carritoCandy")) || []; }
 function _setCarrito(c) { localStorage.setItem("carritoCandy", JSON.stringify(c)); }
+
+/* Mostrar selector de tipo de entrega */
+window.mostrarSelectorEntrega = function(nombre, precio) {
+  window._currentProductName = nombre;
+  window._currentProductPrice = precio;
+  
+  /* Si el tipo de entrega está bloqueado, agregar directamente con ese tipo */
+  if (window._tipoEntregaBloqueado) {
+    agregarAlCarrito(window._currentProductName, window._currentProductPrice);
+    return;
+  }
+  
+  /* Si no está bloqueado, mostrar el selector */
+  const backdrop = document.getElementById('deliverySelectorBackdrop');
+  if (backdrop) backdrop.classList.add('open');
+};
+
+/* Seleccionar tipo de entrega y agregar al carrito */
+window.selectDeliveryType = function(tipo, productName, productPrice) {
+  const backdrop = document.getElementById('deliverySelectorBackdrop');
+  if (backdrop) backdrop.classList.remove('open');
+  
+  /* Obtener el carrito actual */
+  const c = _getCarrito();
+  
+  /* Si el carrito está vacío, esta es la primera selección - bloquear el tipo */
+  if (c.length === 0) {
+    window._tipoEntrega = tipo;
+    window._tipoEntregaBloqueado = true;
+  }
+  
+  /* Agregar el producto al carrito */
+  agregarAlCarrito(window._currentProductName, window._currentProductPrice);
+};
 
 function agregarAlCarrito(nombre, precio) {
   let c = _getCarrito();
@@ -2201,8 +2315,18 @@ function enviarCarritoWhatsApp() {
   window.open(`https://wa.me/5492396512544?text=${msg}`, "_blank");
 }
 
-function vaciarCarrito() { _setCarrito([]); actualizarContador(); }
-function vaciarCarritoModal() { _setCarrito([]); window._tipoEntrega = 'retirar'; actualizarContador(); renderizarCurtainCarrito(); }
+function vaciarCarrito() { 
+  _setCarrito([]); 
+  actualizarContador(); 
+}
+
+function vaciarCarritoModal() { 
+  _setCarrito([]); 
+  window._tipoEntrega = 'retirar'; 
+  window._tipoEntregaBloqueado = false;
+  actualizarContador(); 
+  renderizarCurtainCarrito(); 
+}
 
 /* ── _renderLista: muestra total con desglose de envío ── */
 function _renderLista(containerId, totalId, conEliminar) {
@@ -2338,6 +2462,17 @@ function seleccionarAvatarExtra(img, el) {
   setTimeout(cerrarAvatarDrawer, 180);
 }
 </script>
+
+<!-- DELIVERY SELECTOR MODAL -->
+<div class="delivery-selector-backdrop" id="deliverySelectorBackdrop">
+  <div class="delivery-selector-box">
+    <h3>¿Cómo querés recibir tu compra?</h3>
+    <div class="delivery-options">
+      <button class="delivery-option-btn" onclick="selectDeliveryType('retirar', 'currentProductName', 'currentProductPrice')">🏠 Paso a Retirar</button>
+      <button class="delivery-option-btn primary" onclick="selectDeliveryType('domicilio', 'currentProductName', 'currentProductPrice')">🚚 Recibir a Domicilio</button>
+    </div>
+  </div>
+</div>
 
 <!-- AVATAR DRAWER -->
 <div id="avatarDrawerOverlay" onclick="cerrarAvatarDrawer()"></div>
