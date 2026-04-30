@@ -522,7 +522,7 @@ p, li, label, span, div {
   background: var(--white);
   border-radius: var(--radius-card);
   border: 1.5px solid rgba(0,0,0,0.1);
-  padding: 16px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-card);
@@ -549,7 +549,7 @@ p, li, label, span, div {
   object-fit: cover;
   border-radius: 12px;
   border: 1.5px solid rgba(0,0,0,0.08);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: block;
   transition: var(--transition);
 }
@@ -558,27 +558,33 @@ p, li, label, span, div {
 .product-name {
   font-family: 'Glacial Indifference', sans-serif;
   font-weight: 700;
-  font-size: clamp(12px, 2.8vw, 15px);
+  font-size: clamp(11px, 2.6vw, 14px);
   color: var(--black);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   letter-spacing: 0.5px;
   line-height: 1.25;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .product-status {
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 400;
   color: #999;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   line-height: 1.4;
   letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .product-prices {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 .price-old {
@@ -610,12 +616,12 @@ p, li, label, span, div {
   background: #50e03e;
   color: #ffffff !important;
   border: none;
-  padding: 10px 6px;
+  padding: 9px 5px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
@@ -623,6 +629,10 @@ p, li, label, span, div {
   align-items: center;
   justify-content: center;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 28px;
 }
 .btn-comprar:hover {
   background: #3ed42d;
@@ -634,12 +644,12 @@ p, li, label, span, div {
   background: #ffffff;
   color: #000000 !important;
   border: 1px solid rgba(0,0,0,0.18);
-  padding: 10px 6px;
+  padding: 9px 5px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
@@ -647,6 +657,10 @@ p, li, label, span, div {
   align-items: center;
   justify-content: center;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 28px;
 }
 .btn-info:hover {
   background: #f5f5f5;
@@ -659,12 +673,12 @@ p, li, label, span, div {
   background: #0a0a0a;
   color: #ffffff !important;
   border: none;
-  padding: 10px 6px;
+  padding: 9px 5px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
@@ -673,6 +687,11 @@ p, li, label, span, div {
   align-items: center;
   justify-content: center;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 3px;
+  min-height: 28px;
 }
 .btn-carrito:hover {
   background: #222;
@@ -707,6 +726,9 @@ p, li, label, span, div {
   align-items: center;
   justify-content: center;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .btn-retirar:hover { background: #222; transform: translateY(-2px); }
 
@@ -1606,6 +1628,9 @@ p, li, label, span, div {
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .delivery-option-btn:hover {
   border-color: var(--black);
@@ -1627,9 +1652,10 @@ p, li, label, span, div {
   .products-grid { gap: 12px; }
   .product-card { padding: 12px; }
   .product-card img { margin-bottom: 8px; }
-  .product-name { font-size: 11px; }
+  .product-name { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .product-status { font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .price-new { font-size: 13px; }
-  .btn-comprar, .btn-info, .btn-carrito { font-size: 10px; padding: 8px 4px; }
+  .btn-comprar, .btn-info, .btn-carrito { font-size: 10px; padding: 8px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .section-heading { font-size: 15px; margin: 36px 0 20px; }
   .comments-section { padding: 28px 16px; }
   .social-section { padding: 32px 16px; }
