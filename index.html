@@ -1649,120 +1649,40 @@ p, li, label, span, div {
 #curtainListaCarrito > div:last-child { border-bottom: none !important; }
 .curtain-footer [style*="e74c3c"] { background: #e74c3c !important; border-radius: var(--radius-btn) !important; }
 
-/* ===== AESTHETIC PATCHES ===== */
+/* ===== AESTHETIC PATCHES v2 ===== */
 
-/* --- 1. reCAPTCHA responsive y centrado --- */
-.recaptcha-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
-  margin: 16px 0 8px;
-}
-.recaptcha-wrap .g-recaptcha {
-  transform: scale(0.88);
-  transform-origin: center top;
-  display: inline-block;
-}
-@media (max-width: 420px) {
-  .recaptcha-wrap .g-recaptcha {
-    transform: scale(0.72);
-    transform-origin: center top;
-  }
-}
-
-/* --- 2 & 4. Catálogo flotante y carrito — glass blur --- */
-.catalog-modal {
-  background: rgba(245,245,245,0.80) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
-  border: 1px solid rgba(255,255,255,0.28) !important;
-}
-
-/* Carrito curtain: misma estética glass que catálogo */
-#curtain-carrito {
-  background: rgba(255,255,255,0.78) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
-  border-left: 1px solid rgba(255,255,255,0.25) !important;
-}
-#curtain-carrito .curtain-head {
-  background: rgba(0,0,0,0.88) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.10) !important;
-}
-#curtain-carrito .curtain-head h2 { color: #fff !important; }
-#curtain-carrito .curtain-body { background: transparent !important; }
-#curtain-carrito .curtain-footer {
-  background: rgba(255,255,255,0.70) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border-top: 1px solid rgba(0,0,0,0.07) !important;
-}
-
-/* --- 2. mensajeweb modal (stefi-backdrop) — ya tiene glass, refuerzo --- */
-.stefi-box, .stefi-box.open {
-  background: rgba(255,255,255,0.82) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255,255,255,0.30) !important;
-}
-
-/* --- 3. Botón principal del carrito: negro, texto blanco, fino --- */
-#curtain-carrito .curtain-action-btn:first-child,
-#curtain-carrito .curtain-footer > button:first-child {
-  background: #000000 !important;
-  color: #ffffff !important;
-  font-size: 11px !important;
-  font-weight: 400 !important;
-  letter-spacing: 1.5px !important;
-  padding: 11px 16px !important;
-  border-radius: var(--radius-btn) !important;
-  border: none !important;
-}
-#curtain-carrito .curtain-action-btn:first-child:hover,
-#curtain-carrito .curtain-footer > button:first-child:hover {
-  background: #1a1a1a !important;
-}
-
-/* Botón "Vaciar carrito": blanco, borde negro, texto rojo, delicado */
-#curtain-carrito .curtain-footer > button:last-child,
-#btn-vaciar-carrito {
-  background: #ffffff !important;
-  color: #c0392b !important;
-  border: 1.5px solid #000000 !important;
-  font-size: 11px !important;
-  font-weight: 400 !important;
-  letter-spacing: 1.2px !important;
-  padding: 10px 16px !important;
-  border-radius: var(--radius-btn) !important;
-}
-#curtain-carrito .curtain-footer > button:last-child:hover,
-#btn-vaciar-carrito:hover {
-  background: #fff5f5 !important;
-  border-color: #c0392b !important;
-}
-
-/* --- 5. Productos dentro del carrito: imagen + nombre + cantidad + precio --- */
+/* ─── 1. IMÁGENES EN EL CARRITO: fijas, pequeñas, alineadas ─── */
 .carrito-item-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 0;
+  padding: 10px 0;
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .carrito-item-row:last-child { border-bottom: none; }
+
+/* Imagen siempre 70×70, recortada, alineada izquierda */
 .carrito-item-img {
-  width: 52px;
-  height: 52px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 1px solid rgba(0,0,0,0.08);
-  flex-shrink: 0;
+  width: 70px !important;
+  height: 70px !important;
+  min-width: 70px !important;
+  max-width: 70px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(0,0,0,0.08) !important;
+  flex-shrink: 0 !important;
   background: #f5f5f5;
+  display: block !important;
 }
+/* Bloquear cualquier img suelta dentro del curtain-body del carrito que no sea el banner */
+#curtain-carrito .curtain-body img:not(.carrito-item-img) {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+  max-width: 100%;
+}
+
 .carrito-item-info { flex: 1; min-width: 0; }
 .carrito-item-nombre {
   font-size: 12px;
@@ -1777,7 +1697,7 @@ p, li, label, span, div {
 .carrito-item-meta {
   font-size: 11px;
   color: #aaa;
-  margin-top: 2px;
+  margin-top: 3px;
   font-weight: 400;
   font-family: 'Glacial Indifference', sans-serif;
 }
@@ -1791,33 +1711,216 @@ p, li, label, span, div {
   opacity: 0.35;
   transition: opacity 0.2s;
   color: #000;
+  line-height: 1;
 }
 .carrito-item-del:hover { opacity: 1; }
 
-/* --- 6. Tipografía de botones: más fina, más chica, centrada --- */
-.btn-comprar, .btn-info, .btn-carrito,
-.btn-retirar, .btn-domicilio,
-.curtain-action-btn,
-.write-comment-btn, .write-send-btn, .write-cancel-btn,
-.see-all-btn, .success-accept, .success-seeall,
-.delivery-option-btn, .stefi-close-btn {
-  font-weight: 400 !important;
-  font-size: 10px !important;
-  letter-spacing: 0.9px !important;
-  display: flex !important;
+/* ─── 2 & 3. TODOS LOS MODALES Y CUADROS FLOTANTES: blur + transparente ─── */
+
+/* Catálogo flotante */
+.catalog-modal {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+}
+.catalog-modal-head {
+  background: rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+.catalog-modal-body {
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* Carrito lateral */
+#curtain-carrito {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-left: 1px solid rgba(255,255,255,0.15) !important;
+}
+#curtain-carrito .curtain-head {
+  background: rgba(0,0,0,0.60) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.10) !important;
+}
+#curtain-carrito .curtain-head h2 { color: #fff !important; }
+#curtain-carrito .curtain-body {
+  background: transparent !important;
+}
+#curtain-carrito .curtain-footer {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-top: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+/* Modales Stefi / mensajeweb */
+.stefi-backdrop, .stefy-backdrop {
+  background: rgba(0,0,0,0.55) !important;
+}
+.stefi-box {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+.stefi-box h2 { color: #fff !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
+.stefi-box p { color: rgba(255,255,255,0.88) !important; }
+
+/* Modal write-comment */
+.write-box {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+.write-box h2 { color: #fff !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
+
+/* Modal success */
+.success-box {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+.success-box h3 { color: #fff !important; }
+.success-box p { color: rgba(255,255,255,0.85) !important; }
+
+/* Modal info producto */
+.info-box {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+.info-head {
+  background: rgba(0,0,0,0.50) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-bottom-color: rgba(255,255,255,0.10) !important;
+}
+.info-head h3 { color: #fff !important; }
+.info-content { color: rgba(255,255,255,0.88) !important; }
+
+/* Modal delivery selector */
+.delivery-selector-box {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+}
+.delivery-selector-box h3 { color: #fff !important; }
+
+/* Curtains laterales (Cómo Comprar, Encargue, Info, Comentarios) */
+.curtain {
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+.curtain-head {
+  background: rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-bottom-color: rgba(255,255,255,0.10) !important;
+}
+.curtain-head h2 { color: #fff !important; }
+.curtain-body {
+  background: rgba(255,255,255,0.04) !important;
+  color: rgba(255,255,255,0.90) !important;
+}
+.curtain-footer {
+  background: rgba(255,255,255,0.06) !important;
+  border-top-color: rgba(255,255,255,0.10) !important;
+}
+
+/* ─── 4 & 7. BOTONES: toda la web — más chicos, finos, centrados ─── */
+button {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   text-align: center !important;
 }
-/* Excepciones tamaño más cómodo en botones grandes */
-.write-comment-btn, .write-send-btn {
+
+/* Botones de productos (más compactos) */
+.btn-comprar, .btn-info, .btn-carrito,
+.btn-retirar, .btn-domicilio {
   font-size: 11px !important;
-}
-.curtain-action-btn {
-  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.7px !important;
+  padding: 9px 6px !important;
 }
 
-/* --- 7. Alineación general: botones del carrito curtain en fila --- */
+/* Botones de sidebar */
+.sidebar-btn {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+/* Botones de curtain / modales */
+.curtain-action-btn,
+.write-comment-btn, .write-send-btn,
+.success-accept, .success-seeall,
+.stefi-close-btn, .delivery-option-btn,
+.see-all-btn, .avatar-vermás-btn {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+}
+
+.write-cancel-btn {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+/* ─── 5. BOTONES DEL CARRITO ─── */
+/* Principal: negro, texto blanco, compacto */
+#curtain-carrito .curtain-footer > button:first-child {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1.2px !important;
+  padding: 12px 16px !important;
+  border-radius: var(--radius-btn) !important;
+}
+#curtain-carrito .curtain-footer > button:first-child:hover {
+  background: #1a1a1a !important;
+}
+
+/* Vaciar carrito: blanco, borde negro, texto rojo */
+#curtain-carrito .curtain-footer > button:last-child {
+  background: #ffffff !important;
+  color: red !important;
+  border: 1px solid #000000 !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+  padding: 11px 16px !important;
+  border-radius: var(--radius-btn) !important;
+}
+#curtain-carrito .curtain-footer > button:last-child:hover {
+  background: #fff5f5 !important;
+  border-color: red !important;
+}
+
+/* Footer carrito: columna, sin solapamiento */
 #curtain-carrito .curtain-footer {
   display: flex !important;
   flex-direction: column !important;
@@ -1825,12 +1928,52 @@ p, li, label, span, div {
   padding: 14px 18px !important;
 }
 
-/* Íconos y spans dentro de botones centrados */
-button > span, button > svg {
+/* ─── 6. reCAPTCHA: centrado, escala 0.80, sin desborde ─── */
+.recaptcha-wrap {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  margin: 14px 0 6px !important;
+}
+.recaptcha-wrap .g-recaptcha,
+.g-recaptcha {
+  display: flex !important;
+  justify-content: center !important;
+  transform: scale(0.80) !important;
+  transform-origin: center top !important;
+}
+@media (max-width: 480px) {
+  .recaptcha-wrap .g-recaptcha,
+  .g-recaptcha {
+    transform: scale(0.68) !important;
+    transform-origin: center top !important;
+  }
+}
+
+/* ─── 7. ALINEACIÓN GENERAL ─── */
+button > span, button > svg, button > img {
   vertical-align: middle;
   display: inline-flex;
   align-items: center;
 }
+/* Inputs y textareas en modales glass con color legible */
+.write-textarea, .form-input {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.25) !important;
+  color: #fff !important;
+}
+.write-textarea::placeholder, .form-input::placeholder {
+  color: rgba(255,255,255,0.45) !important;
+}
+.write-textarea:focus, .form-input:focus {
+  border-color: rgba(255,255,255,0.5) !important;
+  background: rgba(255,255,255,0.20) !important;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.08) !important;
+}
+/* Labels en modales glass */
+.form-label { color: rgba(255,255,255,0.85) !important; }
 </style>
 </head>
 <body>
