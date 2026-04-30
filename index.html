@@ -430,7 +430,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 .catalog-modal-body {
   padding: 28px 22px 36px;
   overflow-y: auto;
-  max-height: 80vh;
+  max-height: 86vh;
 }
 /* CAMBIO 2: Lucky Bones en catalog section title */
 .catalog-section-title {
@@ -546,6 +546,8 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   gap: 14px;
   margin-bottom: 48px;
   width: 100%;
+  max-width: 1260px;
+  margin-inline: auto;
 }
 
 /* ===== PRODUCT CARD ===== */
@@ -553,7 +555,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   background: var(--white);
   border-radius: var(--radius-card);
   border: 1.2px solid rgba(0,0,0,0.08);
-  padding: 8px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-card);
@@ -561,6 +563,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   position: relative;
   overflow: hidden;
   min-height: 100%;
+  min-width: 0;
 }
 .product-card::after {
   content: '';
@@ -578,7 +581,9 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 .product-card img {
   width: 100%;
   aspect-ratio: 1 / 1;
+  max-height: 170px;
   object-fit: cover;
+  object-position: center;
   border-radius: 12px;
   border: 1.5px solid rgba(0,0,0,0.08);
   margin-bottom: 6px;
@@ -1668,25 +1673,55 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 420px) {
+@media (max-width: 768px) {
   .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .product-card { padding: 8px; }
-  .product-card img { margin-bottom: 6px; }
-  .product-name { font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .product-card img { max-height: 160px; margin-bottom: 6px; }
+  .product-name { font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .product-status { font-size: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .price-new { font-size: 11px; }
-  .btn-comprar, .btn-info, .btn-carrito { font-size: 8px; padding: 8px 6px; white-space: normal; overflow: visible; }
-  .product-actions { gap: 6px; }
-  .section-heading { font-size: 14px; margin: 30px 0 18px; }
+  .price-new { font-size: 12px; }
+  .btn-comprar, .btn-info, .btn-carrito { font-size: 9px; padding: 7px 8px; }
+  .product-actions { gap: 6px; width: 100%; }
+  .section-heading { font-size: 16px; margin: 34px 0 20px; }
   .comments-section { padding: 24px 14px; }
   .social-section { padding: 28px 14px; }
   .avatars-row { gap: 10px; max-width: 100%; }
   .avatar-vermás-btn { min-width: 140px; padding: 7px 12px; font-size: 10px; }
-  /* CAMBIO 1: modal centrado en mobile */
-  .stefi-box, .write-box, .success-box, .delivery-selector-box {
-    width: 95%;
-    padding: 24px 16px;
-  }
+  .mensaje-section { padding: 42px 18px; }
+  .mensaje-img { width: 140px; height: 140px; }
+  .catalog-modal { width: min(100%, 92vw); margin: 0 12px; }
+  .catalog-modal-body { padding: 22px 18px 28px; }
+}
+
+@media (max-width: 600px) {
+  .products-grid { gap: 8px; }
+  .product-card img { max-height: 150px; }
+  .btn-comprar, .btn-info, .btn-carrito { font-size: 9px; padding: 6px 8px; min-height: 32px; }
+  .product-actions { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .avatars-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .avatar-opt img { width: 54px; height: 54px; }
+  .mensaje-section { padding: 34px 16px; }
+  .mensaje-img { width: 128px; height: 128px; }
+  .section-heading { margin: 30px 0 18px; }
+}
+
+@media (max-width: 420px) {
+  .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .product-card { padding: 6px; }
+  .product-card img { max-height: 140px; }
+  .product-name { font-size: 9px; }
+  .product-status { font-size: 8px; }
+  .price-new { font-size: 11px; }
+  .btn-comprar, .btn-info, .btn-carrito { font-size: 8px; padding: 6px 6px; }
+  .product-actions { gap: 5px; }
+  .section-heading { font-size: 14px; margin: 28px 0 16px; }
+  .comments-section { padding: 20px 12px; }
+  .social-section { padding: 24px 12px; }
+  .avatars-row { gap: 8px; }
+  .avatar-vermás-btn { min-width: 130px; padding: 6px 10px; font-size: 9px; }
+  .mensaje-section { padding: 30px 14px; }
+  .mensaje-img { width: 120px; height: 120px; }
+  .catalog-modal-body { padding: 18px 16px 22px; }
 }
 
 /* FIXES */
