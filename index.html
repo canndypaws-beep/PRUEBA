@@ -93,6 +93,11 @@ p, li, label, span, div {
   font-weight: 400;
   line-height: 1.65;
 }
+h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-title, .social-section h2, .catalog-modal-head h2, .write-box h2, .success-box h3, .info-head h3, .curtain-head h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* ===== HEADER ===== */
 .header {
@@ -506,6 +511,9 @@ p, li, label, span, div {
   padding: 0 18px;
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .section-heading {
   font-family: 'Glacial Indifference', sans-serif;
@@ -534,24 +542,25 @@ p, li, label, span, div {
 /* ===== PRODUCTS GRID ===== */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  margin-bottom: 56px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 48px;
+  width: 100%;
 }
 
 /* ===== PRODUCT CARD ===== */
 .product-card {
   background: var(--white);
   border-radius: var(--radius-card);
-  border: 1.5px solid rgba(0,0,0,0.1);
-  padding: 10px;
+  border: 1.2px solid rgba(0,0,0,0.08);
+  padding: 8px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-card);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-  height: 100%;
+  min-height: 100%;
 }
 .product-card::after {
   content: '';
@@ -581,7 +590,7 @@ p, li, label, span, div {
 .product-name {
   font-family: 'Glacial Indifference', sans-serif;
   font-weight: 700;
-  font-size: clamp(10px, 2.4vw, 13px);
+  font-size: 11px;
   color: var(--black);
   margin-bottom: 2px;
   letter-spacing: 0.5px;
@@ -593,11 +602,11 @@ p, li, label, span, div {
 }
 .product-status {
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 400;
   color: #999;
   margin-bottom: 6px;
-  line-height: 1.3;
+  line-height: 1.2;
   letter-spacing: 0.3px;
   white-space: nowrap;
   overflow: hidden;
@@ -1660,16 +1669,19 @@ p, li, label, span, div {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 420px) {
-  .products-grid { gap: 12px; }
-  .product-card { padding: 10px; }
+  .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .product-card { padding: 8px; }
   .product-card img { margin-bottom: 6px; }
-  .product-name { font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .product-name { font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .product-status { font-size: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .price-new { font-size: 12px; }
-  .btn-comprar, .btn-info, .btn-carrito { font-size: 9px; padding: 10px 6px; white-space: normal; overflow: visible; }
-  .section-heading { font-size: 15px; margin: 36px 0 20px; }
-  .comments-section { padding: 28px 16px; }
-  .social-section { padding: 32px 16px; }
+  .price-new { font-size: 11px; }
+  .btn-comprar, .btn-info, .btn-carrito { font-size: 8px; padding: 8px 6px; white-space: normal; overflow: visible; }
+  .product-actions { gap: 6px; }
+  .section-heading { font-size: 14px; margin: 30px 0 18px; }
+  .comments-section { padding: 24px 14px; }
+  .social-section { padding: 28px 14px; }
+  .avatars-row { gap: 10px; max-width: 100%; }
+  .avatar-vermás-btn { min-width: 140px; padding: 7px 12px; font-size: 10px; }
   /* CAMBIO 1: modal centrado en mobile */
   .stefi-box, .write-box, .success-box, .delivery-selector-box {
     width: 95%;
@@ -2015,6 +2027,14 @@ button > span, button > svg, button > img {
 /* Override: Labels en sección de comentarios */
 .comments-section .form-label {
   color: var(--black) !important;
+}
+.comments-section .form-input {
+  background: #ffffff !important;
+  border-color: rgba(0,0,0,0.14) !important;
+  color: #000000 !important;
+}
+.comments-section .form-input::placeholder {
+  color: rgba(0,0,0,0.35) !important;
 }
 </style>
 </head>
