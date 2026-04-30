@@ -1648,6 +1648,189 @@ p, li, label, span, div {
 #curtainListaCarrito > div { border-bottom: 1px solid rgba(0,0,0,0.06) !important; }
 #curtainListaCarrito > div:last-child { border-bottom: none !important; }
 .curtain-footer [style*="e74c3c"] { background: #e74c3c !important; border-radius: var(--radius-btn) !important; }
+
+/* ===== AESTHETIC PATCHES ===== */
+
+/* --- 1. reCAPTCHA responsive y centrado --- */
+.recaptcha-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  margin: 16px 0 8px;
+}
+.recaptcha-wrap .g-recaptcha {
+  transform: scale(0.88);
+  transform-origin: center top;
+  display: inline-block;
+}
+@media (max-width: 420px) {
+  .recaptcha-wrap .g-recaptcha {
+    transform: scale(0.72);
+    transform-origin: center top;
+  }
+}
+
+/* --- 2 & 4. Catálogo flotante y carrito — glass blur --- */
+.catalog-modal {
+  background: rgba(245,245,245,0.80) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border: 1px solid rgba(255,255,255,0.28) !important;
+}
+
+/* Carrito curtain: misma estética glass que catálogo */
+#curtain-carrito {
+  background: rgba(255,255,255,0.78) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border-left: 1px solid rgba(255,255,255,0.25) !important;
+}
+#curtain-carrito .curtain-head {
+  background: rgba(0,0,0,0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.10) !important;
+}
+#curtain-carrito .curtain-head h2 { color: #fff !important; }
+#curtain-carrito .curtain-body { background: transparent !important; }
+#curtain-carrito .curtain-footer {
+  background: rgba(255,255,255,0.70) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-top: 1px solid rgba(0,0,0,0.07) !important;
+}
+
+/* --- 2. mensajeweb modal (stefi-backdrop) — ya tiene glass, refuerzo --- */
+.stefi-box, .stefi-box.open {
+  background: rgba(255,255,255,0.82) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.30) !important;
+}
+
+/* --- 3. Botón principal del carrito: negro, texto blanco, fino --- */
+#curtain-carrito .curtain-action-btn:first-child,
+#curtain-carrito .curtain-footer > button:first-child {
+  background: #000000 !important;
+  color: #ffffff !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.5px !important;
+  padding: 11px 16px !important;
+  border-radius: var(--radius-btn) !important;
+  border: none !important;
+}
+#curtain-carrito .curtain-action-btn:first-child:hover,
+#curtain-carrito .curtain-footer > button:first-child:hover {
+  background: #1a1a1a !important;
+}
+
+/* Botón "Vaciar carrito": blanco, borde negro, texto rojo, delicado */
+#curtain-carrito .curtain-footer > button:last-child,
+#btn-vaciar-carrito {
+  background: #ffffff !important;
+  color: #c0392b !important;
+  border: 1.5px solid #000000 !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.2px !important;
+  padding: 10px 16px !important;
+  border-radius: var(--radius-btn) !important;
+}
+#curtain-carrito .curtain-footer > button:last-child:hover,
+#btn-vaciar-carrito:hover {
+  background: #fff5f5 !important;
+  border-color: #c0392b !important;
+}
+
+/* --- 5. Productos dentro del carrito: imagen + nombre + cantidad + precio --- */
+.carrito-item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.carrito-item-row:last-child { border-bottom: none; }
+.carrito-item-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,0.08);
+  flex-shrink: 0;
+  background: #f5f5f5;
+}
+.carrito-item-info { flex: 1; min-width: 0; }
+.carrito-item-nombre {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Glacial Indifference', sans-serif;
+}
+.carrito-item-meta {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 2px;
+  font-weight: 400;
+  font-family: 'Glacial Indifference', sans-serif;
+}
+.carrito-item-del {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0 4px;
+  flex-shrink: 0;
+  opacity: 0.35;
+  transition: opacity 0.2s;
+  color: #000;
+}
+.carrito-item-del:hover { opacity: 1; }
+
+/* --- 6. Tipografía de botones: más fina, más chica, centrada --- */
+.btn-comprar, .btn-info, .btn-carrito,
+.btn-retirar, .btn-domicilio,
+.curtain-action-btn,
+.write-comment-btn, .write-send-btn, .write-cancel-btn,
+.see-all-btn, .success-accept, .success-seeall,
+.delivery-option-btn, .stefi-close-btn {
+  font-weight: 400 !important;
+  font-size: 10px !important;
+  letter-spacing: 0.9px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+/* Excepciones tamaño más cómodo en botones grandes */
+.write-comment-btn, .write-send-btn {
+  font-size: 11px !important;
+}
+.curtain-action-btn {
+  font-size: 11px !important;
+}
+
+/* --- 7. Alineación general: botones del carrito curtain en fila --- */
+#curtain-carrito .curtain-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 14px 18px !important;
+}
+
+/* Íconos y spans dentro de botones centrados */
+button > span, button > svg {
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+}
 </style>
 </head>
 <body>
@@ -1811,7 +1994,7 @@ p, li, label, span, div {
       onfocus="this.style.borderColor='#000'"
       onblur="this.style.borderColor='rgba(0,0,0,0.12)'"
     ></textarea>
-    <div style="margin-top:16px;display:flex;justify-content:center;">
+    <div class="recaptcha-wrap">
       <div class="g-recaptcha" data-sitekey="6LcWAsQsAAAAAE77NP8tHGW3DwknCVnEC_z9bTAe"></div>
     </div>
     <p id="recaptchaError" style="display:none;color:#c0392b;font-family:'Glacial Indifference',sans-serif;font-size:13px;text-align:center;margin-top:8px;font-weight:700;">⚠️ Verificá que no sos un robot</p>
@@ -2403,7 +2586,12 @@ function agregarAlCarrito(nombre, precio) {
   let c = _getCarrito();
   const idx = c.findIndex(p => p.nombre === nombre);
   if (idx >= 0) { c[idx].cantidad = (c[idx].cantidad || 1) + 1; }
-  else { c.push({ nombre, precio, cantidad: 1 }); }
+  else {
+    // Buscar imagen del producto en _productInfo
+    const allInfo = window._productInfo || {};
+    const imgSrc = Object.values(allInfo).find(p => p.nombre === nombre)?.img || "";
+    c.push({ nombre, precio, cantidad: 1, img: imgSrc });
+  }
   _setCarrito(c);
   actualizarContador();
   animarCarrito();
@@ -2461,12 +2649,17 @@ function _renderLista(containerId, totalId, conEliminar) {
     lista.innerHTML = c.map((p, i) => {
       const num = parseInt((p.precio||"").replace(/\D/g,"")) || 0;
       suma += num * (p.cantidad||1);
-      return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.06);font-family:'Glacial Indifference',sans-serif;gap:8px;">
-        <div style="flex:1;min-width:0;">
-          <div style="font-size:13px;font-weight:700;color:#111;letter-spacing:0.2px;">${p.nombre}</div>
-          <div style="font-size:11px;color:#aaa;margin-top:2px;font-weight:400;">${p.precio} × ${p.cantidad||1}</div>
+      const imgSrc = p.img || "";
+      const imgHtml = imgSrc
+        ? `<img src="${imgSrc}" alt="${p.nombre}" class="carrito-item-img" onerror="this.style.display='none'">`
+        : `<div class="carrito-item-img" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:20px;">🛒</div>`;
+      return `<div class="carrito-item-row">
+        ${imgHtml}
+        <div class="carrito-item-info">
+          <div class="carrito-item-nombre">${p.nombre}</div>
+          <div class="carrito-item-meta">${p.precio} &times; ${p.cantidad||1}</div>
         </div>
-        ${conEliminar ? `<button onclick="eliminarProducto(${i})" style="background:none;border:none;cursor:pointer;font-size:14px;padding:0 4px;flex-shrink:0;opacity:0.4;transition:opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.4">✕</button>` : ""}
+        ${conEliminar ? `<button class="carrito-item-del" onclick="eliminarProducto(${i})" title="Eliminar">✕</button>` : ""}
       </div>`;
     }).join("");
 
