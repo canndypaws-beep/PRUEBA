@@ -522,13 +522,14 @@ p, li, label, span, div {
   background: var(--white);
   border-radius: var(--radius-card);
   border: 1.5px solid rgba(0,0,0,0.1);
-  padding: 12px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-card);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 .product-card::after {
   content: '';
@@ -549,7 +550,7 @@ p, li, label, span, div {
   object-fit: cover;
   border-radius: 12px;
   border: 1.5px solid rgba(0,0,0,0.08);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   display: block;
   transition: var(--transition);
 }
@@ -558,11 +559,11 @@ p, li, label, span, div {
 .product-name {
   font-family: 'Glacial Indifference', sans-serif;
   font-weight: 700;
-  font-size: clamp(11px, 2.6vw, 14px);
+  font-size: clamp(10px, 2.4vw, 13px);
   color: var(--black);
-  margin-bottom: 3px;
+  margin-bottom: 2px;
   letter-spacing: 0.5px;
-  line-height: 1.25;
+  line-height: 1.2;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
@@ -570,11 +571,11 @@ p, li, label, span, div {
 }
 .product-status {
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 400;
   color: #999;
-  margin-bottom: 8px;
-  line-height: 1.4;
+  margin-bottom: 6px;
+  line-height: 1.3;
   letter-spacing: 0.3px;
   white-space: nowrap;
   overflow: hidden;
@@ -584,7 +585,7 @@ p, li, label, span, div {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   flex-wrap: wrap;
 }
 .price-old {
@@ -597,29 +598,29 @@ p, li, label, span, div {
 .price-new {
   font-family: 'Glacial Indifference', sans-serif;
   font-weight: 700;
-  font-size: clamp(14px, 3.2vw, 18px);
+  font-size: clamp(12px, 3vw, 16px);
   color: var(--black);
   letter-spacing: 0.3px;
 }
 .product-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
   margin-top: auto;
 }
-.product-actions > button:nth-child(1),
-.product-actions > button:nth-child(2) { width: calc(50% - 3.5px); }
-.product-actions > button:nth-child(3) { width: 100%; }
+.product-actions > button:nth-child(3) {
+  grid-column: span 2;
+}
 
 /* CAMBIO 4: centrado en todos los botones */
 .btn-comprar {
   background: #50e03e;
   color: #ffffff !important;
   border: none;
-  padding: 9px 5px;
+  padding: 10px 6px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -629,10 +630,10 @@ p, li, label, span, div {
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-height: 28px;
+  white-space: normal;
+  line-height: 1.2;
+  min-height: 32px;
+  overflow: visible;
 }
 .btn-comprar:hover {
   background: #3ed42d;
@@ -644,10 +645,10 @@ p, li, label, span, div {
   background: #ffffff;
   color: #000000 !important;
   border: 1px solid rgba(0,0,0,0.18);
-  padding: 9px 5px;
+  padding: 10px 6px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -657,10 +658,10 @@ p, li, label, span, div {
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-height: 28px;
+  white-space: normal;
+  line-height: 1.2;
+  min-height: 32px;
+  overflow: visible;
 }
 .btn-info:hover {
   background: #f5f5f5;
@@ -673,25 +674,25 @@ p, li, label, span, div {
   background: #0a0a0a;
   color: #ffffff !important;
   border: none;
-  padding: 9px 5px;
+  padding: 10px 6px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.2;
   gap: 3px;
-  min-height: 28px;
+  min-height: 32px;
+  overflow: visible;
+  grid-column: span 2;
 }
 .btn-carrito:hover {
   background: #222;
@@ -702,8 +703,8 @@ p, li, label, span, div {
 .buy-options {
   display: none;
   grid-template-columns: 1fr 1fr;
-  gap: 7px;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: 6px;
   width: 100%;
 }
 .buy-options.show { display: grid; }
@@ -712,23 +713,23 @@ p, li, label, span, div {
   background: #0a0a0a;
   color: #ffffff !important;
   border: none;
-  padding: 9px 4px;
+  padding: 10px 4px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
-  line-height: 1.3;
+  line-height: 1.2;
   letter-spacing: 0.3px;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  min-height: 30px;
+  overflow: visible;
 }
 .btn-retirar:hover { background: #222; transform: translateY(-2px); }
 
@@ -736,19 +737,22 @@ p, li, label, span, div {
   background: #50e03e;
   color: #ffffff !important;
   border: none;
-  padding: 9px 4px;
+  padding: 10px 4px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
-  line-height: 1.3;
+  line-height: 1.2;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  white-space: normal;
+  min-height: 30px;
+  overflow: visible;
 }
 .btn-domicilio:hover { background: #3ed42d; transform: translateY(-2px); }
 
@@ -1650,12 +1654,12 @@ p, li, label, span, div {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 420px) {
   .products-grid { gap: 12px; }
-  .product-card { padding: 12px; }
-  .product-card img { margin-bottom: 8px; }
-  .product-name { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .product-status { font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .price-new { font-size: 13px; }
-  .btn-comprar, .btn-info, .btn-carrito { font-size: 10px; padding: 8px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .product-card { padding: 10px; }
+  .product-card img { margin-bottom: 6px; }
+  .product-name { font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .product-status { font-size: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .price-new { font-size: 12px; }
+  .btn-comprar, .btn-info, .btn-carrito { font-size: 9px; padding: 10px 6px; white-space: normal; overflow: visible; }
   .section-heading { font-size: 15px; margin: 36px 0 20px; }
   .comments-section { padding: 28px 16px; }
   .social-section { padding: 32px 16px; }
