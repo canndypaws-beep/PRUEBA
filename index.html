@@ -665,6 +665,33 @@ p, li, label, span, div {
   color: #999 !important;
 }
 
+.toast-carrito {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ffffff;
+  color: #000;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 10001;
+}
+
+.toast-carrito.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-carrito::before {
+  content: "✔ ";
+  color: green;
+  font-weight: bold;
+}
+
 .btn-carrito {
   display: flex !important;
   grid-column: 1 / -1 !important;
@@ -3125,6 +3152,24 @@ function agregarAlCarrito(nombre, precio) {
   _setCarrito(c);
   actualizarContador();
   animarCarrito();
+  mostrarConfirmacionCarrito();
+}
+
+function mostrarConfirmacionCarrito() {
+  const toast = document.createElement("div");
+  toast.className = "toast-carrito";
+  toast.innerHTML = "✔ Su producto ha sido agregado al carrito";
+  toast.style.zIndex = "10001";
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("visible");
+  }, 10);
+
+  setTimeout(() => {
+    toast.classList.remove("visible");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
 }
 
 function actualizarContador() {
