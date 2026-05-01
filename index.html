@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -2680,12 +2680,11 @@ window.toggleBuy = function(btn) {
   const card = btn.closest('.product-card');
   if (!card) return;
 
-  // ocultar el dropdown actual y reutilizar el modal de selector de envío del carrito
   document.querySelectorAll('.buy-options.show').forEach(o => o.classList.remove('show'));
   const nombre = card.querySelector('.product-name')?.textContent.trim() || '';
   const precio = card.querySelector('.price-new')?.textContent.trim() || '';
   if (typeof mostrarSelectorEntrega === 'function') {
-    mostrarSelectorEntrega(nombre, precio);
+    mostrarSelectorEntrega(nombre, precio, 'direct');
   }
 };
 
@@ -2965,26 +2964,61 @@ window.setTipoEntrega = function(tipo) {
 function _getCarrito() { return JSON.parse(localStorage.getItem("carritoCandy")) || []; }
 function _setCarrito(c) { localStorage.setItem("carritoCandy", JSON.stringify(c)); }
 
-window.mostrarSelectorEntrega = function(nombre, precio) {
+window.mostrarSelectorEntrega = function(nombre, precio, flow = 'cart') {
   window._currentProductName = nombre;
   window._currentProductPrice = precio;
-  if (window._tipoEntregaBloqueado) {
-    agregarAlCarrito(window._currentProductName, window._currentProductPrice);
-    return;
-  }
+  window._deliveryFlow = flow;
   const backdrop = document.getElementById('deliverySelectorBackdrop');
   if (backdrop) backdrop.classList.add('open');
 };
 
-window.selectDeliveryType = function(tipo, productName, productPrice) {
+window.selectDeliveryType = function(tipo) {
   const backdrop = document.getElementById('deliverySelectorBackdrop');
   if (backdrop) backdrop.classList.remove('open');
+
+  const tipoEntrega = tipo === 'retirar' ? 'Paso a retirar' : 'Recibir a domicilio';
+
+  if (window._deliveryFlow === 'direct') {
+    enviarProductoWhatsApp(window._currentProductName, tipoEntrega);
+    return;
+  }
+
   const c = _getCarrito();
   if (c.length === 0) {
     window._tipoEntrega = tipo;
     window._tipoEntregaBloqueado = true;
   }
-  agregarAlCarrito(window._currentProductName, window._currentProductPrice);
+
+  if (window._currentProductName) {
+    agregarAlCarrito(window._currentProductName, window._currentProductPrice);
+  }
+
+  window.enviarCarritoWhatsAppItems(_getCarrito(), tipoEntrega);
+};
+
+window.enviarProductoWhatsApp = function(nombreProducto, tipoEntrega) {
+  const mensaje = `Hola Stefy! Quisiera encargarte estos productos:\n\n• ${nombreProducto}\nEntrega: ${tipoEntrega}`;
+  const url = `https://wa.me/5492396512544?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+};
+
+window.armarMensajeCarrito = function(items, tipoEntrega) {
+  let mensaje = 'Hola Stefy! Quisiera encargarte estos productos:\n\n';
+  items.forEach(item => {
+    mensaje += `• ${item.nombre} x${item.cantidad || 1}`;
+    if (item.precio) {
+      mensaje += ` - ${item.precio}`;
+    }
+    mensaje += '\n';
+  });
+  mensaje += `\nEntrega: ${tipoEntrega}`;
+  return mensaje;
+};
+
+window.enviarCarritoWhatsAppItems = function(items, tipoEntrega) {
+  const mensaje = window.armarMensajeCarrito(items, tipoEntrega);
+  const url = `https://wa.me/5492396512544?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
 };
 
 function agregarAlCarrito(nombre, precio) {
@@ -3019,15 +3053,11 @@ function animarCarrito() {
   btn.style.animation = "carritoZoom 0.25s ease";
 }
 
-function enviarCarritoWhatsApp() {
+function enviarCarritoWhatsAppFinal() {
   const c = _getCarrito();
   if (c.length === 0) { alert("El carrito está vacío"); return; }
-  const esEnvio = window._tipoEntrega === 'domicilio';
-  let msg = "Hola Stefi! Quiero comprar:%0A%0A";
-  c.forEach((p, i) => { msg += `${i+1}. ${p.nombre} x${p.cantidad||1} - ${p.precio}%0A`; });
-  if (esEnvio) msg += `%0A🚚 Modalidad: Recibir a Domicilio (+$${COSTO_ENVIO.toLocaleString()} envío)`;
-  else msg += `%0A🏠 Modalidad: Paso a Retirar`;
-  window.open(`https://wa.me/5492396512544?text=${msg}`, "_blank");
+  const tipoEntrega = window._tipoEntrega === 'domicilio' ? 'Recibir a domicilio' : 'Paso a retirar';
+  window.enviarCarritoWhatsAppItems(c, tipoEntrega);
 }
 
 function vaciarCarrito() { _setCarrito([]); actualizarContador(); }
@@ -3115,8 +3145,8 @@ function abrirCarrito() {
   if (m) m.style.display = "none";
 }
 function cerrarCarrito() { closeCurtain("carrito"); }
-function finalizarCompra() { enviarCarritoWhatsApp(); }
-function finalizarCompraCurtain() { enviarCarritoWhatsApp(); closeCurtain("carrito"); }
+function finalizarCompra() { enviarCarritoWhatsAppFinal(); }
+function finalizarCompraCurtain() { enviarCarritoWhatsAppFinal(); closeCurtain("carrito"); }
 
 function eliminarProducto(index) {
   let c = _getCarrito(); c.splice(index, 1); _setCarrito(c);
