@@ -93,11 +93,6 @@ p, li, label, span, div {
   font-weight: 400;
   line-height: 1.65;
 }
-h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-title, .social-section h2, .catalog-modal-head h2, .write-box h2, .success-box h3, .info-head h3, .curtain-head h2 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 /* ===== HEADER ===== */
 .header {
@@ -240,11 +235,9 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   padding: 13px 18px;
   border-radius: 10px;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   transition: var(--transition);
   text-transform: uppercase;
 }
@@ -258,12 +251,9 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 /* ===== RIGHT CURTAIN ===== */
 .curtain {
   position: fixed;
-  top: 50%;
-  right: -110%;
-  transform: translateY(-50%);
+  top: 0; right: -110%;
   width: min(420px, 100vw);
-  height: auto;
-  max-height: 90dvh;
+  height: 100dvh;
   background: var(--white);
   color: var(--black);
   z-index: 1300;
@@ -271,17 +261,15 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   display: flex;
   flex-direction: column;
   box-shadow: -12px 0 60px rgba(0,0,0,0.18);
-  border-radius: 16px;
 }
 .curtain.open { right: 0; }
 .curtain-head {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 22px 22px 18px;
   border-bottom: 2px solid var(--black);
   flex-shrink: 0;
-  position: relative;
 }
 /* CAMBIO 2: Lucky Bones en curtain head */
 .curtain-head h2 {
@@ -304,10 +292,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   align-items: center;
   justify-content: center;
   transition: var(--transition);
-  position: absolute;
-  right: 22px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 .curtain-close:hover { background: #222; transform: scale(1.06); }
 /* CAMBIO 3: glass style en curtain-body + CAMBIO 2: Lucky Bones */
@@ -323,10 +307,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   background: rgba(255,255,255,0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .curtain-body ol { padding-left: 22px; }
 .curtain-body ol li { margin-bottom: 12px; padding-left: 4px; }
@@ -369,9 +349,9 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   backdrop-filter: blur(8px);
   z-index: 1400;
   display: none;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
   overflow-y: auto;
 }
 .modal-backdrop.open { display: flex; }
@@ -381,7 +361,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 20px;
-  width: min(100%, 960px);
+  width: 100%;
   max-width: 960px;
   margin: auto;
   overflow: hidden;
@@ -396,13 +376,8 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   padding: 20px 26px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  justify-content: space-between;
   border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.catalog-modal-close {
-  position: absolute;
-  right: 22px;
 }
 /* CAMBIO 2: Lucky Bones en catalog modal */
 .catalog-modal-head h2 {
@@ -430,7 +405,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 .catalog-modal-body {
   padding: 28px 22px 36px;
   overflow-y: auto;
-  max-height: 86vh;
+  max-height: 80vh;
 }
 /* CAMBIO 2: Lucky Bones en catalog section title */
 .catalog-section-title {
@@ -458,8 +433,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   align-items: center;
   padding: 56px 20px;
   cursor: pointer;
-  max-width: 420px;
-  margin: 0 auto;
 }
 .mensaje-hint {
   background: var(--white);
@@ -511,9 +484,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   padding: 0 18px;
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .section-heading {
   font-family: 'Glacial Indifference', sans-serif;
@@ -542,28 +512,23 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 /* ===== PRODUCTS GRID ===== */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  margin-bottom: 48px;
-  width: 100%;
-  max-width: 1260px;
-  margin-inline: auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 56px;
 }
 
 /* ===== PRODUCT CARD ===== */
 .product-card {
   background: var(--white);
   border-radius: var(--radius-card);
-  border: 1.2px solid rgba(0,0,0,0.08);
-  padding: 10px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  padding: 16px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-card);
   transition: var(--transition);
   position: relative;
   overflow: hidden;
-  min-height: 100%;
-  min-width: 0;
 }
 .product-card::after {
   content: '';
@@ -581,12 +546,10 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 .product-card img {
   width: 100%;
   aspect-ratio: 1 / 1;
-  max-height: 170px;
   object-fit: cover;
-  object-position: center;
   border-radius: 12px;
   border: 1.5px solid rgba(0,0,0,0.08);
-  margin-bottom: 6px;
+  margin-bottom: 12px;
   display: block;
   transition: var(--transition);
 }
@@ -595,33 +558,27 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 .product-name {
   font-family: 'Glacial Indifference', sans-serif;
   font-weight: 700;
-  font-size: 11px;
+  font-size: clamp(12px, 2.8vw, 15px);
   color: var(--black);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   letter-spacing: 0.5px;
-  line-height: 1.2;
+  line-height: 1.25;
   text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .product-status {
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 400;
   color: #999;
-  margin-bottom: 6px;
-  line-height: 1.2;
+  margin-bottom: 10px;
+  line-height: 1.4;
   letter-spacing: 0.3px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .product-prices {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
 }
 .price-old {
@@ -634,19 +591,18 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 .price-new {
   font-family: 'Glacial Indifference', sans-serif;
   font-weight: 700;
-  font-size: clamp(12px, 3vw, 16px);
+  font-size: clamp(14px, 3.2vw, 18px);
   color: var(--black);
   letter-spacing: 0.3px;
 }
 .product-actions {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
-  gap: 8px;
+  gap: 7px;
   margin-top: auto;
 }
-.product-actions > button:nth-child(3) {
-  grid-column: 1 / -1;
-}
+.product-actions > button { width: 100% !important; }
+.product-actions > button:nth-child(3) { grid-column: 1 / -1 !important; }
 
 .btn-carrito {
   display: flex !important;
@@ -658,12 +614,12 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   background: #50e03e;
   color: #ffffff !important;
   border: none;
-  padding: 8px 10px;
-  border-radius: 14px;
+  padding: 10px 6px;
+  border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.8px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
@@ -671,10 +627,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: normal;
-  line-height: 1.2;
-  min-height: 34px;
-  overflow: visible;
 }
 .btn-comprar:hover {
   background: #3ed42d;
@@ -686,12 +638,12 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   background: #ffffff;
   color: #000000 !important;
   border: 1px solid rgba(0,0,0,0.18);
-  padding: 8px 10px;
-  border-radius: 14px;
+  padding: 10px 6px;
+  border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.8px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
@@ -699,10 +651,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: normal;
-  line-height: 1.2;
-  min-height: 34px;
-  overflow: visible;
 }
 .btn-info:hover {
   background: #f5f5f5;
@@ -715,25 +663,20 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   background: #0a0a0a;
   color: #ffffff !important;
   border: none;
-  padding: 8px 12px;
-  border-radius: 14px;
+  padding: 10px 6px;
+  border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.8px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: normal;
-  line-height: 1.2;
-  gap: 5px;
-  min-height: 34px;
-  overflow: visible;
-  grid-column: 1 / -1;
 }
 .btn-carrito:hover {
   background: #222;
@@ -744,8 +687,8 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 .buy-options {
   display: none;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  margin-top: 6px;
+  gap: 7px;
+  margin-top: 8px;
   width: 100%;
 }
 .buy-options.show { display: grid; }
@@ -754,23 +697,20 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   background: #0a0a0a;
   color: #ffffff !important;
   border: none;
-  padding: 10px 4px;
+  padding: 9px 4px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
-  line-height: 1.2;
+  line-height: 1.3;
   letter-spacing: 0.3px;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: normal;
-  min-height: 30px;
-  overflow: visible;
 }
 .btn-retirar:hover { background: #222; transform: translateY(-2px); }
 
@@ -778,31 +718,40 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   background: #50e03e;
   color: #ffffff !important;
   border: none;
-  padding: 10px 4px;
+  padding: 9px 4px;
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
-  line-height: 1.2;
+  line-height: 1.3;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  white-space: normal;
-  min-height: 30px;
-  overflow: visible;
 }
 .btn-domicilio:hover { background: #3ed42d; transform: translateY(-2px); }
 
 /* ===== STEFI MODALS — CAMBIO 1: centrado + CAMBIO 3: glass ===== */
-.stefi-backdrop,
-.stefy-backdrop,
-.info-backdrop,
-.write-backdrop,
-.success-backdrop {
+.stefi-backdrop {
+  position: fixed;
+  inset: 0;
+  /* CAMBIO 1: centrado correcto con flex */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 1500;
+  padding: 16px;
+}
+.stefi-backdrop.open { display: flex; }
+
+/* Stefy 2 tiene clase diferente */
+.stefy-backdrop {
   position: fixed;
   inset: 0;
   display: none;
@@ -814,11 +763,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   z-index: 1500;
   padding: 16px;
 }
-.stefi-backdrop.open,
-.stefy-backdrop.open,
-.info-backdrop.open,
-.write-backdrop.open,
-.success-backdrop.open { display: flex; }
+.stefy-backdrop.open { display: flex; }
 
 /* CAMBIO 3: glass style en stefi-box */
 .stefi-box {
@@ -836,8 +781,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   padding: 32px 26px;
   position: relative;
   box-shadow: 0 40px 100px rgba(0,0,0,0.4);
-  display: flex;
-  flex-direction: column;
 }
 /* CAMBIO 2: Lucky Bones en stefi-box */
 .stefi-box h2 {
@@ -860,29 +803,29 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   color: #444;
 }
 /* CAMBIO 1: botón cerrar centrado + funcional */
-.stefi-close,
-.stefy-close {
+.stefi-close {
   display: flex;
   justify-content: center;
   margin-top: 28px;
-  position: static;
-  bottom: auto;
+  position: sticky;
+  bottom: 0;
   background: transparent;
-  padding-top: 0;
+  padding-top: 12px;
 }
 .stefi-close-btn {
   background: var(--black);
   color: var(--white);
   border: none;
-  padding: 11px 30px;
+  padding: 13px 52px;
   border-radius: var(--radius-pill);
   font-family: var(--font-modal);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
+  /* CAMBIO 4: centrado */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -895,10 +838,10 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   display: flex;
   justify-content: center;
   margin-top: 28px;
-  position: static;
-  bottom: auto;
+  position: sticky;
+  bottom: 0;
   background: transparent;
-  padding-top: 0;
+  padding-top: 12px;
 }
 
 /* ===== INFO PRODUCT CURTAIN ===== */
@@ -1015,27 +958,25 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
-  max-width: 340px;
-  margin: 0 auto 12px;
+  max-width: 320px;
+  margin: 0 auto 8px;
   justify-items: center;
 }
 .avatar-vermás-btn {
-  display: inline-flex;
-  margin: 0 auto 22px;
+  display: block;
+  margin: 0 auto 24px;
   background: none;
-  border: 1px solid rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.15);
   color: #555;
   font-family: 'Glacial Indifference', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  padding: 8px 16px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  padding: 6px 16px;
   border-radius: var(--radius-pill);
   cursor: pointer;
   transition: var(--transition);
   text-transform: uppercase;
-  min-width: 180px;
-  justify-content: center;
 }
 .avatar-vermás-btn:hover {
   background: var(--black);
@@ -1221,15 +1162,15 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   font-family: 'Glacial Indifference', sans-serif;
   font-weight: 700;
   margin-bottom: 8px;
-  color: var(--black) !important;
-  font-size: 12px;
+  color: var(--black);
+  font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 .form-input {
   width: 100%;
   padding: 13px 16px;
-  border: 1px solid rgba(0,0,0,0.18);
+  border: 1px solid rgba(0,0,0,0.12);
   border-radius: var(--radius-btn);
   font-family: 'Glacial Indifference', sans-serif;
   font-size: 14px;
@@ -1237,17 +1178,16 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   transition: var(--transition);
   outline: none;
   background: #ffffff;
-  color: #000;
 }
 .form-input:focus {
   border-color: var(--black);
   box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
 }
 
-.stars-row { display: flex; gap: 12px; justify-content: center; margin: 16px 0; }
-.star-btn { font-size: 44px; cursor: pointer; color: #d1d1d1; transition: var(--transition); background: none; border: none; line-height: 1; padding: 0; }
+.stars-row { display: flex; gap: 10px; justify-content: center; margin: 16px 0; }
+.star-btn { font-size: 32px; cursor: pointer; color: #e0e0e0; transition: var(--transition); background: none; border: none; line-height: 1; }
 .star-btn.lit { color: #f5a623; }
-.star-btn:hover { transform: scale(1.15); }
+.star-btn:hover { transform: scale(1.2); }
 
 /* ===== WRITE MODAL — CAMBIO 3: glass ===== */
 .write-backdrop {
@@ -1493,7 +1433,19 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 
 /* ===== WHATSAPP FLOAT ===== */
 .wa-float {
-  display: none !important;
+  position: fixed;
+  bottom: 24px; right: 20px;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 900;
+  box-shadow: none;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
 }
 .wa-float:hover { transform: scale(1.12) translateY(-3px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 .wa-float img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -1565,7 +1517,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 }
 .avatar-drawer-opt.selected img { border-color: var(--black); box-shadow: 0 0 0 4px rgba(0,0,0,0.12); }
 
-.avatar-opt { cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+.avatar-opt { cursor: pointer; transition: var(--transition); }
 .avatar-opt img {
   width: 62px; height: 62px;
   border-radius: 50%;
@@ -1658,9 +1610,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
   display: flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .delivery-option-btn:hover {
   border-color: var(--black);
@@ -1678,55 +1627,21 @@ h1, h2, h3, h4, h5, h6, .section-heading, .catalog-section-title, .comments-titl
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .product-card { padding: 8px; }
-  .product-card img { max-height: 160px; margin-bottom: 6px; }
-  .product-name { font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .product-status { font-size: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .price-new { font-size: 12px; }
-  .btn-comprar, .btn-info, .btn-carrito { font-size: 9px; padding: 7px 8px; }
-  .product-actions { gap: 6px; width: 100%; }
-  .section-heading { font-size: 16px; margin: 34px 0 20px; }
-  .comments-section { padding: 24px 14px; }
-  .social-section { padding: 28px 14px; }
-  .avatars-row { gap: 10px; max-width: 100%; }
-  .avatar-vermás-btn { min-width: 140px; padding: 7px 12px; font-size: 10px; }
-  .mensaje-section { padding: 42px 18px; }
-  .mensaje-img { width: 140px; height: 140px; }
-  .catalog-modal { width: min(100%, 92vw); margin: 0 12px; }
-  .catalog-modal-body { padding: 22px 18px 28px; }
-}
-
-@media (max-width: 600px) {
-  .products-grid { gap: 8px; }
-  .product-card img { max-height: 150px; }
-  .btn-comprar, .btn-info, .btn-carrito { font-size: 9px; padding: 6px 8px; min-height: 32px; }
-  .product-actions { grid-template-columns: 1fr 1fr; gap: 6px; }
-  .avatars-row { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-  .avatar-opt img { width: 54px; height: 54px; }
-  .mensaje-section { padding: 34px 16px; }
-  .mensaje-img { width: 128px; height: 128px; }
-  .section-heading { margin: 30px 0 18px; }
-}
-
 @media (max-width: 420px) {
-  .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  .product-card { padding: 6px; }
-  .product-card img { max-height: 140px; }
-  .product-name { font-size: 9px; }
-  .product-status { font-size: 8px; }
-  .price-new { font-size: 11px; }
-  .btn-comprar, .btn-info, .btn-carrito { font-size: 8px; padding: 6px 6px; }
-  .product-actions { gap: 5px; }
-  .section-heading { font-size: 14px; margin: 28px 0 16px; }
-  .comments-section { padding: 20px 12px; }
-  .social-section { padding: 24px 12px; }
-  .avatars-row { gap: 8px; }
-  .avatar-vermás-btn { min-width: 130px; padding: 6px 10px; font-size: 9px; }
-  .mensaje-section { padding: 30px 14px; }
-  .mensaje-img { width: 120px; height: 120px; }
-  .catalog-modal-body { padding: 18px 16px 22px; }
+  .products-grid { gap: 12px; }
+  .product-card { padding: 12px; }
+  .product-card img { margin-bottom: 8px; }
+  .product-name { font-size: 11px; }
+  .price-new { font-size: 13px; }
+  .btn-comprar, .btn-info, .btn-carrito { font-size: 10px; padding: 8px 4px; }
+  .section-heading { font-size: 15px; margin: 36px 0 20px; }
+  .comments-section { padding: 28px 16px; }
+  .social-section { padding: 32px 16px; }
+  /* CAMBIO 1: modal centrado en mobile */
+  .stefi-box, .write-box, .success-box, .delivery-selector-box {
+    width: 95%;
+    padding: 24px 16px;
+  }
 }
 
 /* FIXES */
@@ -1945,7 +1860,7 @@ button {
   text-align: center !important;
 }
 
-/* Display flex solo para botones que no están en grids */
+/* Display flex solo para botones que no forman parte de grids de producto */
 .curtain-action-btn,
 .write-comment-btn,
 .write-send-btn,
@@ -2079,19 +1994,6 @@ button > span, button > svg, button > img {
 }
 /* Labels en modales glass */
 .form-label { color: rgba(255,255,255,0.85) !important; }
-
-/* Override: Labels en sección de comentarios */
-.comments-section .form-label {
-  color: var(--black) !important;
-}
-.comments-section .form-input {
-  background: #ffffff !important;
-  border-color: rgba(0,0,0,0.14) !important;
-  color: #000000 !important;
-}
-.comments-section .form-input::placeholder {
-  color: rgba(0,0,0,0.35) !important;
-}
 </style>
 </head>
 <body>
@@ -2121,7 +2023,7 @@ button > span, button > svg, button > img {
     <button class="sidebar-btn" onclick="openCurtain('comprar')">Cómo Comprar</button>
     <button class="sidebar-btn" onclick="openCurtain('encargo')">Cómo hacer un encargue</button>
     <button class="sidebar-btn" onclick="openCatalog()">Ir a la tienda</button>
-    <button class="sidebar-btn" onclick="window.open('https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta.', '_blank'); closeSidebar();">Contacto</button>
+    <a class="sidebar-btn" href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank">💬 Contacto</a>
     <button class="sidebar-btn" onclick="scrollToSocial()">Seguinos en redes</button>
   </div>
 </nav>
@@ -2155,7 +2057,7 @@ button > span, button > svg, button > img {
   </div>
   <div class="curtain-body">
     <ol>
-      <li>Entrá al catálogo de productos por encargue.</li>
+      <li>Entrá al catálogo de Tortas.</li>
       <li>Elegí el producto.</li>
       <li>Hacé clic en <strong>Hacer pedido</strong>.</li>
       <li>Pagá la seña del 50%.</li>
@@ -2391,7 +2293,10 @@ button > span, button > svg, button > img {
   </div>
 </footer>
 
-
+<!-- WA FLOAT -->
+<a href="https://wa.me/5492396512544?text=Hola!%20Quiero%20hacer%20una%20consulta." target="_blank" class="wa-float" aria-label="WhatsApp">
+  <img src="whatsappweb.png" alt="WhatsApp">
+</a>
 
 <!-- CARRITO FLOTANTE -->
 <div onclick="abrirCarrito()" style="position:fixed;bottom:100px;right:20px;display:flex;flex-direction:column;align-items:center;z-index:999;cursor:pointer;">
