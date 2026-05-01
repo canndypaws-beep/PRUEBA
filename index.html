@@ -2127,43 +2127,58 @@ button > span, button > svg, button > img {
 }
 
 /* =========================
-   FIX CATÁLOGO (FONDO OSCURO)
+   FIX CATÁLOGO FLOTANTE
    ========================= */
 .catalog-modal {
-  color: #ffffff !important;
+  background: #f5e6d3 !important;
+  color: #000 !important;
+}
+
+.catalog-modal-head,
+.catalog-modal-body {
+  background: transparent !important;
+  color: #000 !important;
 }
 
 .catalog-modal-head h2,
-.catalog-section-title {
-  color: #ffffff !important;
-}
-
-.catalog-modal-body {
-  color: #eeeeee !important;
-}
-
+.catalog-section-title,
 .catalog-modal-body p,
 .catalog-modal-body span,
-.catalog-modal-body div {
-  color: #dddddd !important;
-}
-
+.catalog-modal-body div,
 .catalog-modal button {
-  color: #ffffff !important;
+  color: #000 !important;
 }
 
-.product-name {
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
-  white-space: normal !important;
+.catalog-modal .product-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.product-status {
+.catalog-modal .product-card img {
+  width: 100% !important;
+  max-height: 140px !important;
+  object-fit: contain !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 10px !important;
+}
+
+.catalog-modal .product-name,
+.catalog-modal .product-price,
+.catalog-modal .product-description,
+.catalog-modal .price-new,
+.catalog-modal .price-old,
+.catalog-modal .product-status {
+  color: #000 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.catalog-modal .product-name {
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+  font-size: 13px !important;
 }
 
 /* =========================
