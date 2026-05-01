@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -2952,6 +2952,7 @@ initCommentsListener();
 <script>
 window._tipoEntrega = 'retirar';
 window._tipoEntregaBloqueado = false;
+window.tipoEntregaSeleccionado = null;
 window._currentProductName = '';
 window._currentProductPrice = '';
 const COSTO_ENVIO = 1500;
@@ -2968,6 +2969,13 @@ window.mostrarSelectorEntrega = function(nombre, precio, flow = 'cart') {
   window._currentProductName = nombre;
   window._currentProductPrice = precio;
   window._deliveryFlow = flow;
+
+  if (window.tipoEntregaSeleccionado) {
+    agregarAlCarrito(nombre, precio);
+    renderizarCurtainCarrito();
+    return;
+  }
+
   const backdrop = document.getElementById('deliverySelectorBackdrop');
   if (backdrop) backdrop.classList.add('open');
 };
@@ -2978,22 +2986,19 @@ window.selectDeliveryType = function(tipo) {
 
   const tipoEntrega = tipo === 'retirar' ? 'Paso a retirar' : 'Recibir a domicilio';
 
-  if (window._deliveryFlow === 'direct') {
-    enviarProductoWhatsApp(window._currentProductName, tipoEntrega);
-    return;
-  }
-
-  const c = _getCarrito();
-  if (c.length === 0) {
+  if (!window.tipoEntregaSeleccionado) {
     window._tipoEntrega = tipo;
     window._tipoEntregaBloqueado = true;
+    window.tipoEntregaSeleccionado = tipoEntrega;
   }
 
   if (window._currentProductName) {
     agregarAlCarrito(window._currentProductName, window._currentProductPrice);
+    window._currentProductName = '';
+    window._currentProductPrice = '';
   }
 
-  window.enviarCarritoWhatsAppItems(_getCarrito(), tipoEntrega);
+  renderizarCurtainCarrito();
 };
 
 window.enviarProductoWhatsApp = function(nombreProducto, tipoEntrega) {
@@ -3001,6 +3006,23 @@ window.enviarProductoWhatsApp = function(nombreProducto, tipoEntrega) {
   const url = `https://wa.me/5492396512544?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 };
+
+function parsePrice(precio) {
+  if (!precio) return 0;
+  const normalized = precio.toString().replace(/[^0-9,\.]/g, '').replace(/\./g, '').replace(/,/g, '.');
+  return Number(normalized) || 0;
+}
+
+function calcularTotal(carrito, tipoEntrega) {
+  let total = 0;
+  carrito.forEach(item => {
+    total += parsePrice(item.precio) * (item.cantidad || 1);
+  });
+  if (tipoEntrega === 'Recibir a domicilio') {
+    total += COSTO_ENVIO;
+  }
+  return total;
+}
 
 window.armarMensajeCarrito = function(items, tipoEntrega) {
   let mensaje = 'Hola Stefy! Quisiera encargarte estos productos:\n\n';
@@ -3012,6 +3034,11 @@ window.armarMensajeCarrito = function(items, tipoEntrega) {
     mensaje += '\n';
   });
   mensaje += `\nEntrega: ${tipoEntrega}`;
+  if (tipoEntrega === 'Recibir a domicilio') {
+    mensaje += ' (+ $1500 envío)';
+  }
+  const total = calcularTotal(items, tipoEntrega);
+  mensaje += `\nTotal: $${total}`;
   return mensaje;
 };
 
@@ -3056,16 +3083,17 @@ function animarCarrito() {
 function enviarCarritoWhatsAppFinal() {
   const c = _getCarrito();
   if (c.length === 0) { alert("El carrito está vacío"); return; }
-  const tipoEntrega = window._tipoEntrega === 'domicilio' ? 'Recibir a domicilio' : 'Paso a retirar';
+  const tipoEntrega = window.tipoEntregaSeleccionado || (window._tipoEntrega === 'domicilio' ? 'Recibir a domicilio' : 'Paso a retirar');
   window.enviarCarritoWhatsAppItems(c, tipoEntrega);
 }
 
-function vaciarCarrito() { _setCarrito([]); actualizarContador(); }
+function vaciarCarrito() { _setCarrito([]); actualizarContador(); window.tipoEntregaSeleccionado = null; window._tipoEntregaBloqueado = false; window._tipoEntrega = 'retirar'; }
 
 function vaciarCarritoModal() {
   _setCarrito([]);
   window._tipoEntrega = 'retirar';
   window._tipoEntregaBloqueado = false;
+  window.tipoEntregaSeleccionado = null;
   actualizarContador();
   renderizarCurtainCarrito();
 }
@@ -3099,8 +3127,8 @@ function _renderLista(containerId, totalId, conEliminar) {
     }).join("");
 
     if (totalEl) {
-      const esEnvio = window._tipoEntrega === 'domicilio';
-      const totalFinal = suma + (esEnvio ? COSTO_ENVIO : 0);
+      const tipoEntregaActual = window._tipoEntrega === 'domicilio' ? 'Recibir a domicilio' : 'Paso a retirar';
+      const totalFinal = calcularTotal(c, tipoEntregaActual);
 
       let totalHTML = `
         <div style="border-top:1.5px solid rgba(0,0,0,0.08);margin-top:4px;padding-top:14px;">
@@ -3109,7 +3137,7 @@ function _renderLista(containerId, totalId, conEliminar) {
             <span>$${suma.toLocaleString()}</span>
           </div>`;
 
-      if (esEnvio) {
+      if (window._tipoEntrega === 'domicilio') {
         totalHTML += `
           <div style="display:flex;justify-content:space-between;font-family:'Glacial Indifference',sans-serif;font-size:13px;color:#50e03e;font-weight:700;margin-bottom:10px;">
             <span>🚚 Envío a domicilio</span>
@@ -3126,7 +3154,7 @@ function _renderLista(containerId, totalId, conEliminar) {
       totalHTML += `
           <div style="display:flex;justify-content:space-between;font-family:'Glacial Indifference',sans-serif;font-size:16px;font-weight:700;color:#111;border-top:1px solid rgba(0,0,0,0.06);padding-top:10px;">
             <span>TOTAL</span>
-            <span>$${totalFinal.toLocaleString()}${esEnvio ? ' <span style="font-size:11px;font-weight:400;color:#888;">(incl. envío)</span>' : ''}</span>
+            <span>$${totalFinal.toLocaleString()}${window._tipoEntrega === 'domicilio' ? ' <span style="font-size:11px;font-weight:400;color:#888;">(incl. envío)</span>' : ''}</span>
           </div>
         </div>`;
 
