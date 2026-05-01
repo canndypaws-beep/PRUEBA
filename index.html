@@ -2398,8 +2398,29 @@ button,
   font-size: 10px !important;
   letter-spacing: 0.4px !important;
 
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding: 6px 8px !important;
+}
+
+/* ===== FIX REAL BOTONES (NO SE SALE EL TEXTO) ===== */
+
+.product-card .product-actions button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  height: 34px !important;
+
+  padding: 0 8px !important;
+
+  font-size: 11px !important;
+  line-height: 1 !important;
+
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+
+  box-sizing: border-box !important;
 }
 
 </style>
