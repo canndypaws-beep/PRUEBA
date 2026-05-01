@@ -2288,32 +2288,25 @@ button > span, button > svg, button > img {
   color: #000 !important;
 }
 
-button {
-  box-sizing: border-box !important;
+.product-card .btn-comprar,
+.product-card .btn-info,
+.product-card .btn-carrito {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+
   text-align: center !important;
-  font-size: 10px !important;
   line-height: 1 !important;
-  letter-spacing: 0.3px !important;
-}
 
-button > * {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.btn-comprar,
-.btn-info,
-.btn-carrito,
-.btn-retirar,
-.btn-domicilio {
   font-size: 10px !important;
-  letter-spacing: 0.3px !important;
-  line-height: 1 !important;
+  letter-spacing: 0.4px !important;
+
+  padding: 8px 6px !important;
   white-space: nowrap !important;
+}
+
+.product-card button {
+  line-height: 1 !important;
 }
 
 /* =========================
@@ -2409,17 +2402,6 @@ button,
   padding-bottom: 0 !important;
 }
 
-/* Asegura que el contenido interno también esté centrado */
-button * {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* Corrección óptica por fuente (ajuste fino) */
-button {
-  transform: translateY(-0.5px);
-}
 </style>
 </head>
 <body>
