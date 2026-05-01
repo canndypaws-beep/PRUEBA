@@ -2092,11 +2092,9 @@ button > span, button > svg, button > img {
   text-overflow: ellipsis !important;
 }
 
-/* =========================================
-   FIX SOLO COLORES EN MODALES (NO TOCAR NADA MÁS)
-   ========================================= */
+/* ===== FORZAR COLORES EN MODALES ===== */
 
-/* 🔹 MODALES CLAROS → TEXTO NEGRO */
+/* MODALES CLAROS → TEXTO NEGRO */
 .stefi-box *,
 .info-box *,
 .write-box *,
@@ -2105,9 +2103,15 @@ button > span, button > svg, button > img {
   color: #000 !important;
 }
 
-/* 🔹 EXCEPCIÓN: Catálogo oscuro */
+/* EXCEPCIÓN: CATÁLOGO OSCURO → TEXTO BLANCO */
 .catalog-modal,
 .catalog-modal * {
+  color: #fff !important;
+}
+
+/* EXCEPCIÓN: MODALES OSCUROS (ej: imagen mensajeweb.png) → TEXTO BLANCO */
+[style*="background: black"],
+[style*="background-color: black"] * {
   color: #fff !important;
 }
 </style>
