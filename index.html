@@ -51,14 +51,18 @@
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; width: 100%; max-width: 100%; }
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
 
 body {
   font-family: 'Glacial Indifference', 'Segoe UI', sans-serif;
   background: none;
   color: var(--white);
   min-height: 100vh;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-weight: 400;
