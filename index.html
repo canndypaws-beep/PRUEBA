@@ -1542,7 +1542,13 @@ p, li, label, span, div {
   justify-content: center;
   pointer-events: none;
 }
-#btnCarritoWrap { position: relative; display: inline-block; }
+#btnCarritoWrap {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  display: inline-block !important;
+}
 @keyframes carritoZoom {
   0%   { transform: scale(1); }
   40%  { transform: scale(1.25); }
@@ -2000,7 +2006,73 @@ button > span, button > svg, button > img {
 .star-btn { color: #ccc !important; }
 .star-btn.lit { color: #FFD700 !important; }
 .wa-float { display: none !important; }
-.product-name,
+
+/* =========================
+   FIX COLORES MODALES
+   ========================= */
+.stefi-box,
+.write-box,
+.success-box,
+.info-box,
+.delivery-selector-box {
+  color: #000000 !important;
+}
+
+.stefi-box h2,
+.write-box h2,
+.success-box h3,
+.info-head h3,
+.delivery-selector-box h3 {
+  color: #000000 !important;
+}
+
+.stefi-box p,
+.info-content,
+.write-box p,
+.success-box p {
+  color: #333333 !important;
+}
+
+.write-box input,
+.write-box textarea {
+  color: #000000 !important;
+  background: #ffffff !important;
+}
+
+/* =========================
+   FIX CATÁLOGO (FONDO OSCURO)
+   ========================= */
+.catalog-modal {
+  color: #ffffff !important;
+}
+
+.catalog-modal-head h2,
+.catalog-section-title {
+  color: #ffffff !important;
+}
+
+.catalog-modal-body {
+  color: #eeeeee !important;
+}
+
+.catalog-modal-body p,
+.catalog-modal-body span,
+.catalog-modal-body div {
+  color: #dddddd !important;
+}
+
+.catalog-modal button {
+  color: #ffffff !important;
+}
+
+.product-name {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  white-space: normal !important;
+}
+
 .product-status {
   white-space: nowrap !important;
   overflow: hidden !important;
