@@ -1807,19 +1807,15 @@ p, li, label, span, div {
 
 /* Catálogo flotante */
 .catalog-modal {
-  background: rgba(255,255,255,0.08) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
+  background: #f5e6d3 !important;
   border-radius: 18px !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
+  border: none !important;
 }
 .catalog-modal-head {
-  background: rgba(0,0,0,0.55) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
+  background: transparent !important;
 }
 .catalog-modal-body {
-  background: rgba(255,255,255,0.06) !important;
+  background: transparent !important;
 }
 
 /* Carrito lateral */
@@ -2144,13 +2140,12 @@ button > span, button > svg, button > img {
 .catalog-section-title,
 .catalog-modal-body p,
 .catalog-modal-body span,
-.catalog-modal-body div,
-.catalog-modal button {
+.catalog-modal-body div {
   color: #000 !important;
 }
 
 .catalog-modal .product-card {
-  background: transparent !important;
+  background: #f5e6d3 !important;
   border: none !important;
   box-shadow: none !important;
 }
@@ -2159,8 +2154,8 @@ button > span, button > svg, button > img {
   width: 100% !important;
   max-height: 140px !important;
   object-fit: contain !important;
-  border: 1px solid #ffffff !important;
-  border-radius: 10px !important;
+  border: none !important;
+  background: transparent !important;
 }
 
 .catalog-modal .product-name,
@@ -2179,6 +2174,37 @@ button > span, button > svg, button > img {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   font-size: 13px !important;
+}
+
+.catalog-modal .btn-carrito {
+  color: #ffffff !important;
+}
+
+.catalog-modal .product-actions {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.catalog-modal .product-actions > button {
+  width: auto !important;
+}
+
+.catalog-modal .product-actions > button:nth-child(3) {
+  grid-column: auto !important;
+}
+
+.catalog-modal .product-actions .btn-comprar,
+.catalog-modal .product-actions .btn-info {
+  flex: 1 1 0 !important;
+  text-align: center !important;
+}
+
+.catalog-modal .btn-carrito {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 8px !important;
 }
 
 /* =========================
@@ -2238,14 +2264,14 @@ button > span, button > svg, button > img {
   color: #000 !important;
 }
 
-/* ⚪ CATÁLOGO OSCURO */
+/* ⚪ CATÁLOGO FLOTANTE */
 .catalog-modal {
-  background: #000 !important;
-  color: #fff !important;
+  background: #f5e6d3 !important;
+  color: #000 !important;
 }
 
 .catalog-modal * {
-  color: #fff !important;
+  color: #000 !important;
 }
 
 /* =========================
