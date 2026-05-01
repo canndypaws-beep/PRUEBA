@@ -599,14 +599,30 @@ p, li, label, span, div {
   color: var(--black);
   letter-spacing: 0.3px;
 }
-.product-actions {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 7px;
+.product-card .product-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
   margin-top: auto;
 }
-.product-actions > button { width: 100% !important; }
-.product-actions > button:nth-child(3) { grid-column: 1 / -1 !important; }
+.product-card .product-actions > button {
+  flex: 1 1 calc(50% - 4px) !important;
+  max-width: calc(50% - 4px) !important;
+  min-width: 110px !important;
+  text-align: center !important;
+  font-size: 11px !important;
+  padding: 7px 10px !important;
+  line-height: 1.2 !important;
+}
+.product-card .product-actions > button:nth-child(3) {
+  flex: 1 1 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-top: 8px !important;
+}
 
 /* Catálogo “Nuestra tienda” - ajustes estéticos puntuales */
 .catalog-modal {
@@ -2182,22 +2198,32 @@ button > span, button > svg, button > img {
 
 .catalog-modal .product-actions {
   display: flex !important;
-  justify-content: center !important;
-  gap: 8px !important;
   flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
 }
 
 .catalog-modal .product-actions > button {
-  width: auto !important;
+  flex: 1 1 calc(50% - 4px) !important;
+  max-width: calc(50% - 4px) !important;
+  min-width: 110px !important;
+  text-align: center !important;
+  font-size: 11px !important;
+  padding: 7px 10px !important;
+  line-height: 1.2 !important;
 }
 
 .catalog-modal .product-actions > button:nth-child(3) {
-  grid-column: auto !important;
+  flex: 1 1 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin-top: 8px !important;
 }
 
 .catalog-modal .product-actions .btn-comprar,
 .catalog-modal .product-actions .btn-info {
-  flex: 1 1 0 !important;
   text-align: center !important;
 }
 
