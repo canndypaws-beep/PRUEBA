@@ -608,6 +608,45 @@ p, li, label, span, div {
 .product-actions > button { width: 100% !important; }
 .product-actions > button:nth-child(3) { grid-column: 1 / -1 !important; }
 
+/* Catálogo “Nuestra tienda” - ajustes estéticos puntuales */
+.catalog-modal {
+  background: #f5f1e8 !important;
+}
+.catalog-modal .product-card {
+  background: #f5f1e8 !important;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.catalog-modal .product-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+}
+.catalog-modal .product-actions > button,
+.catalog-modal .buy-options > button {
+  width: min(240px, 100%) !important;
+}
+.catalog-modal .product-name {
+  color: #000 !important;
+}
+.catalog-modal .price-new {
+  color: #000 !important;
+}
+.catalog-modal .price-old {
+  color: #999 !important;
+  text-decoration: line-through !important;
+}
+.catalog-modal .product-status {
+  color: #999 !important;
+}
+
 .btn-carrito {
   display: flex !important;
   grid-column: 1 / -1 !important;
