@@ -3096,5 +3096,37 @@ function seleccionarAvatarExtra(img, el) {
     <button class="curtain-action-btn" onclick="vaciarCarritoModal();renderizarCurtainCarrito();" style="background:#e74c3c;">🗑️ Vaciar carrito</button>
   </div>
 </div>
+<script>
+function forzarColoresModales() {
+  const modalesClaros = document.querySelectorAll(
+    ".stefi-box, .info-box, .write-box, .success-box, .delivery-selector-box"
+  );
+
+  modalesClaros.forEach(modal => {
+    modal.querySelectorAll("*").forEach(el => {
+      el.style.setProperty("color", "#000", "important");
+    });
+  });
+
+  const catalogos = document.querySelectorAll(".catalog-modal");
+  catalogos.forEach(modal => {
+    modal.querySelectorAll("*").forEach(el => {
+      el.style.setProperty("color", "#fff", "important");
+    });
+  });
+
+  const modalesOscuros = document.querySelectorAll("[style*='background'], [class*='modal']");
+  modalesOscuros.forEach(modal => {
+    const bg = window.getComputedStyle(modal).backgroundColor;
+    if (bg.includes("0, 0, 0")) {
+      modal.querySelectorAll("*").forEach(el => {
+        el.style.setProperty("color", "#fff", "important");
+      });
+    }
+  });
+}
+
+setInterval(forzarColoresModales, 500);
+</script>
 </body>
 </html>
