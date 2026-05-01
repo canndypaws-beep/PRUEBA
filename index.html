@@ -1979,21 +1979,33 @@ button > span, button > svg, button > img {
   align-items: center;
 }
 /* Inputs y textareas en modales glass con color legible */
-.write-textarea, .form-input {
-  background: rgba(255,255,255,0.15) !important;
-  border-color: rgba(255,255,255,0.25) !important;
-  color: #fff !important;
+.write-box .write-textarea,
+.write-box .form-input {
+  background: #ffffff !important;
+  border: 1px solid rgba(0,0,0,0.2) !important;
+  color: #000000 !important;
 }
-.write-textarea::placeholder, .form-input::placeholder {
-  color: rgba(255,255,255,0.45) !important;
+.write-box .write-textarea::placeholder,
+.write-box .form-input::placeholder {
+  color: #666 !important;
 }
-.write-textarea:focus, .form-input:focus {
-  border-color: rgba(255,255,255,0.5) !important;
-  background: rgba(255,255,255,0.20) !important;
-  box-shadow: 0 0 0 3px rgba(255,255,255,0.08) !important;
+.write-box .write-textarea:focus,
+.write-box .form-input:focus {
+  border-color: rgba(0,0,0,0.35) !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08) !important;
 }
 /* Labels en modales glass */
-.form-label { color: rgba(255,255,255,0.85) !important; }
+.form-label { color: #000000 !important; }
+.star-btn { color: #ccc !important; }
+.star-btn.lit { color: #FFD700 !important; }
+.wa-float { display: none !important; }
+.product-name,
+.product-status {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
 </style>
 </head>
 <body>
@@ -2150,6 +2162,10 @@ button > span, button > svg, button > img {
 <div class="write-backdrop" id="writeBackdrop">
   <div class="write-box">
     <h2>ESCRIBIR COMENTARIO</h2>
+    <div class="form-group">
+      <label class="form-label">Nombre</label>
+      <input type="text" id="commentName" class="form-input" placeholder="Tu nombre">
+    </div>
     <textarea
       class="write-textarea"
       id="comentarioText"
@@ -2234,11 +2250,6 @@ button > span, button > svg, button > img {
       <h3 style="text-align:center;margin-bottom:14px;font-family:'Glacial Indifference',sans-serif;font-size:11px;color:#aaa;font-weight:400;letter-spacing:2px;text-transform:uppercase;">ELEGÍ TU AVATAR</h3>
       <div class="avatars-row" id="avatarsRow"></div>
       <button class="avatar-vermás-btn" onclick="abrirAvatarDrawer()">+ ver más avatares</button>
-
-      <div class="form-group">
-        <label class="form-label">Tu nombre:</label>
-        <input type="text" id="nombreInput" class="form-input" placeholder="Escribe tu nombre">
-      </div>
 
       <div class="form-group">
         <label class="form-label" style="text-align:center;display:block;">Calificación:</label>
@@ -2565,6 +2576,11 @@ function updateStars() {
 
 /* WRITE MODAL */
 window.openWriteModal = function() {
+  const commentName = document.getElementById('commentName');
+  if (commentName) {
+    const fallbackName = document.getElementById('nombreInput');
+    commentName.value = fallbackName ? fallbackName.value : '';
+  }
   document.getElementById('comentarioText').value = '';
   document.getElementById('writeBackdrop').classList.add('open');
 };
@@ -2579,7 +2595,7 @@ document.getElementById('writeBackdrop').addEventListener('click', function(e) {
 
 /* SUBMIT COMMENT */
 window.submitComment = async function() {
-  const nombre = (document.getElementById('nombreInput').value || 'Anónimo').trim();
+  const nombre = (document.getElementById('commentName')?.value || document.getElementById('nombreInput')?.value || 'Anónimo').trim();
   const comentario = (document.getElementById('comentarioText').value || '').trim();
   if (comentario.length < 5) { alert('Por favor escribí un comentario más largo.'); return; }
   const recaptchaResponse = grecaptcha.getResponse();
