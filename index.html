@@ -1782,10 +1782,10 @@ p, li, label, span, div {
   -webkit-backdrop-filter: blur(14px) !important;
   border-radius: 18px !important;
   border: 1px solid rgba(255,255,255,0.15) !important;
-  color: #fff !important;
+  color: #000 !important;
 }
-.stefi-box h2 { color: #fff !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
-.stefi-box p { color: rgba(255,255,255,0.88) !important; }
+.stefi-box h2 { color: #000 !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
+.stefi-box p { color: rgba(0,0,0,0.88) !important; }
 
 /* Modal write-comment */
 .write-box {
@@ -1794,9 +1794,9 @@ p, li, label, span, div {
   -webkit-backdrop-filter: blur(14px) !important;
   border-radius: 18px !important;
   border: 1px solid rgba(255,255,255,0.15) !important;
-  color: #fff !important;
+  color: #000 !important;
 }
-.write-box h2 { color: #fff !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
+.write-box h2 { color: #000 !important; border-bottom-color: rgba(255,255,255,0.15) !important; }
 
 /* Modal success */
 .success-box {
@@ -1805,10 +1805,10 @@ p, li, label, span, div {
   -webkit-backdrop-filter: blur(14px) !important;
   border-radius: 18px !important;
   border: 1px solid rgba(255,255,255,0.15) !important;
-  color: #fff !important;
+  color: #000 !important;
 }
-.success-box h3 { color: #fff !important; }
-.success-box p { color: rgba(255,255,255,0.85) !important; }
+.success-box h3 { color: #000 !important; }
+.success-box p { color: rgba(0,0,0,0.85) !important; }
 
 /* Modal info producto */
 .info-box {
@@ -1817,7 +1817,7 @@ p, li, label, span, div {
   -webkit-backdrop-filter: blur(14px) !important;
   border-radius: 18px !important;
   border: 1px solid rgba(255,255,255,0.15) !important;
-  color: #fff !important;
+  color: #000 !important;
 }
 .info-head {
   background: rgba(0,0,0,0.50) !important;
@@ -1826,7 +1826,7 @@ p, li, label, span, div {
   border-bottom-color: rgba(255,255,255,0.10) !important;
 }
 .info-head h3 { color: #fff !important; }
-.info-content { color: rgba(255,255,255,0.88) !important; }
+.info-content { color: rgba(0,0,0,0.88) !important; }
 
 /* Modal delivery selector */
 .delivery-selector-box {
@@ -1835,9 +1835,9 @@ p, li, label, span, div {
   -webkit-backdrop-filter: blur(14px) !important;
   border-radius: 18px !important;
   border: 1px solid rgba(255,255,255,0.15) !important;
-  color: #fff !important;
+  color: #000 !important;
 }
-.delivery-selector-box h3 { color: #fff !important; }
+.delivery-selector-box h3 { color: #000 !important; }
 
 /* Curtains laterales (Cómo Comprar, Encargue, Info, Comentarios) */
 .curtain {
@@ -2098,47 +2098,18 @@ button > span, button > svg, button > img {
    ========================================= */
 
 /* 🔹 MODALES CLAROS → TEXTO NEGRO */
-.stefi-box,
-.info-box,
-.write-box,
-.success-box,
-.delivery-selector-box {
-  color: #000 !important;
-}
-
-/* títulos */
-.stefi-box h2,
-.info-box h3,
-.write-box h2,
-.success-box h3,
-.delivery-selector-box h3 {
-  color: #000 !important;
-}
-
-/* textos internos */
-.stefi-box p,
-.info-content,
-.write-box p,
-.success-box p {
-  color: #000 !important;
-}
-
-/* 🔹 FORMULARIOS dentro de modales */
-.write-box input,
-.write-box textarea {
-  color: #000 !important;
-}
-
-/* 🔹 CARRITO - OPCIONES DE ENVÍO */
-.delivery-selector-box label,
-.delivery-selector-box span,
-.delivery-selector-box div {
-  color: #000 !important;
-}
-
-/* 🔹 TEXTO GRIS PROBLEMÁTICO (forzado a negro) */
+.stefi-box *,
+.info-box *,
+.write-box *,
+.success-box *,
 .delivery-selector-box * {
   color: #000 !important;
+}
+
+/* 🔹 EXCEPCIÓN: Catálogo oscuro */
+.catalog-modal,
+.catalog-modal * {
+  color: #fff !important;
 }
 </style>
 </head>
