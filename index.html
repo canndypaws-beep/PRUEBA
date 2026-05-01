@@ -2382,6 +2382,44 @@ button > * {
 .sidebar a.active {
   color: #000 !important;
 }
+
+/* ===== FIX DEFINITIVO BOTONES ===== */
+
+button,
+.btn-comprar,
+.btn-info,
+.btn-carrito,
+.btn-retirar,
+.btn-domicilio {
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  text-align: center !important;
+
+  line-height: 1 !important;
+  white-space: nowrap !important;
+
+  font-size: 10px !important;
+  letter-spacing: 0.4px !important;
+
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Asegura que el contenido interno también esté centrado */
+button * {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Corrección óptica por fuente (ajuste fino) */
+button {
+  transform: translateY(-0.5px);
+}
 </style>
 </head>
 <body>
