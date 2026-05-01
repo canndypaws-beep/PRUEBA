@@ -1761,7 +1761,7 @@ p, li, label, span, div {
   -webkit-backdrop-filter: blur(10px) !important;
   border-bottom: 1px solid rgba(255,255,255,0.10) !important;
 }
-#curtain-carrito .curtain-head h2 { color: #fff !important; }
+#curtain-carrito .curtain-head h2 { color: #000 !important; }
 #curtain-carrito .curtain-body {
   background: transparent !important;
 }
@@ -1850,10 +1850,10 @@ p, li, label, span, div {
   -webkit-backdrop-filter: blur(8px) !important;
   border-bottom-color: rgba(255,255,255,0.10) !important;
 }
-.curtain-head h2 { color: #fff !important; }
+.curtain-head h2 { color: #000 !important; }
 .curtain-body {
   background: rgba(255,255,255,0.04) !important;
-  color: rgba(255,255,255,0.90) !important;
+  color: #000 !important;
 }
 .curtain-footer {
   background: rgba(255,255,255,0.06) !important;
@@ -2092,26 +2092,70 @@ button > span, button > svg, button > img {
   text-overflow: ellipsis !important;
 }
 
-/* ===== FORZAR COLORES EN MODALES ===== */
+/* =========================
+   🎨 SISTEMA DE COLORES LIMPIO
+   ========================= */
 
-/* MODALES CLAROS → TEXTO NEGRO */
-.stefi-box *,
-.info-box *,
-.write-box *,
-.success-box *,
-.delivery-selector-box * {
-  color: #000 !important;
+/* 🧾 MODALES CLAROS */
+.stefi-box,
+.info-box,
+.write-box,
+.success-box,
+.delivery-selector-box {
+  background: rgba(255,255,255,0.95);
+  color: #000;
 }
 
-/* EXCEPCIÓN: CATÁLOGO OSCURO → TEXTO BLANCO */
-.catalog-modal,
-.catalog-modal * {
+.stefi-box h2,
+.info-box h3,
+.write-box h2,
+.success-box h3 {
+  color: #000;
+}
+
+.stefi-box p,
+.info-content,
+.write-box p,
+.success-box p {
+  color: #333;
+}
+
+/* 🛒 CARRITO (ENVÍO) */
+.delivery-selector-box * {
+  color: #000;
+}
+
+/* 🌙 MODAL MENSAJE WEB */
+.stefi-backdrop,
+.stefy-backdrop {
+  background: #f5e6d3 !important;
+}
+
+.stefi-backdrop .stefi-box,
+.stefy-backdrop .stefi-box {
+  background: #f5e6d3 !important;
   color: #fff !important;
 }
 
-/* EXCEPCIÓN: MODALES OSCUROS (ej: imagen mensajeweb.png) → TEXTO BLANCO */
-[style*="background: black"],
-[style*="background-color: black"] * {
+.stefi-backdrop .stefi-box h2,
+.stefy-backdrop .stefi-box h2 {
+  color: #000 !important;
+}
+
+/* 📋 MENÚ */
+.header,
+.sidebar {
+  background: #f5e6d3 !important;
+  color: #000 !important;
+}
+
+/* ⚪ CATÁLOGO OSCURO */
+.catalog-modal {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.catalog-modal * {
   color: #fff !important;
 }
 </style>
@@ -3096,37 +3140,5 @@ function seleccionarAvatarExtra(img, el) {
     <button class="curtain-action-btn" onclick="vaciarCarritoModal();renderizarCurtainCarrito();" style="background:#e74c3c;">🗑️ Vaciar carrito</button>
   </div>
 </div>
-<script>
-function forzarColoresModales() {
-  const modalesClaros = document.querySelectorAll(
-    ".stefi-box, .info-box, .write-box, .success-box, .delivery-selector-box"
-  );
-
-  modalesClaros.forEach(modal => {
-    modal.querySelectorAll("*").forEach(el => {
-      el.style.setProperty("color", "#000", "important");
-    });
-  });
-
-  const catalogos = document.querySelectorAll(".catalog-modal");
-  catalogos.forEach(modal => {
-    modal.querySelectorAll("*").forEach(el => {
-      el.style.setProperty("color", "#fff", "important");
-    });
-  });
-
-  const modalesOscuros = document.querySelectorAll("[style*='background'], [class*='modal']");
-  modalesOscuros.forEach(modal => {
-    const bg = window.getComputedStyle(modal).backgroundColor;
-    if (bg.includes("0, 0, 0")) {
-      modal.querySelectorAll("*").forEach(el => {
-        el.style.setProperty("color", "#fff", "important");
-      });
-    }
-  });
-}
-
-setInterval(forzarColoresModales, 500);
-</script>
 </body>
 </html>
