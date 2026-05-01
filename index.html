@@ -2008,29 +2008,39 @@ button > span, button > svg, button > img {
 .wa-float { display: none !important; }
 
 /* =========================
-   FIX COLORES MODALES
+   FIX TEXTO MODALES (SOLO COLOR)
    ========================= */
+/* 🧾 TODOS LOS MODALES CON FONDO CLARO → TEXTO NEGRO */
 .stefi-box,
+.info-box,
 .write-box,
 .success-box,
-.info-box,
 .delivery-selector-box {
   color: #000000 !important;
 }
 
+/* títulos */
 .stefi-box h2,
+.info-box h3,
 .write-box h2,
 .success-box h3,
-.info-head h3,
 .delivery-selector-box h3 {
   color: #000000 !important;
 }
 
+/* párrafos y contenido */
 .stefi-box p,
 .info-content,
 .write-box p,
 .success-box p {
-  color: #333333 !important;
+  color: #000000 !important;
+}
+
+/* 🛒 OPCIONES DE ENVÍO (carrito) */
+.delivery-selector-box label,
+.delivery-selector-box span,
+.delivery-selector-box div {
+  color: #000000 !important;
 }
 
 .write-box input,
