@@ -610,10 +610,14 @@ p, li, label, span, div {
 
 /* Catálogo “Nuestra tienda” - ajustes estéticos puntuales */
 .catalog-modal {
-  background: #f5f1e8 !important;
+  background: #f5e6d3 !important;
+  color: #000 !important;
+}
+.catalog-modal * {
+  color: #000 !important;
 }
 .catalog-modal .product-card {
-  background: #f5f1e8 !important;
+  background: #f5e6d3 !important;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -633,10 +637,24 @@ p, li, label, span, div {
 .catalog-modal .buy-options > button {
   width: min(240px, 100%) !important;
 }
-.catalog-modal .product-name {
-  color: #000 !important;
+.catalog-modal .product-name,
+.catalog-modal .price-new,
+.catalog-modal .product-status,
+.catalog-modal .price-old {
+  background: transparent !important;
+  border: none !important;
 }
-.catalog-modal .price-new {
+.catalog-modal .product-actions button,
+.catalog-modal .btn-comprar,
+.catalog-modal .btn-info,
+.catalog-modal .btn-carrito {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.catalog-modal .btn-info,
+.catalog-modal .btn-carrito,
+.catalog-modal .btn-comprar {
   color: #000 !important;
 }
 .catalog-modal .price-old {
@@ -3009,7 +3027,7 @@ window.mostrarSelectorEntrega = function(nombre, precio, flow = 'cart') {
   window._currentProductPrice = precio;
   window._deliveryFlow = flow;
 
-  if (window.tipoEntregaSeleccionado) {
+  if (flow !== 'direct' && window.tipoEntregaSeleccionado) {
     agregarAlCarrito(nombre, precio);
     renderizarCurtainCarrito();
     return;
@@ -3025,10 +3043,17 @@ window.selectDeliveryType = function(tipo) {
 
   const tipoEntrega = tipo === 'retirar' ? 'Paso a retirar' : 'Recibir a domicilio';
 
-  if (!window.tipoEntregaSeleccionado) {
+  if (window._deliveryFlow !== 'direct' && !window.tipoEntregaSeleccionado) {
     window._tipoEntrega = tipo;
     window._tipoEntregaBloqueado = true;
     window.tipoEntregaSeleccionado = tipoEntrega;
+  }
+
+  if (window._deliveryFlow === 'direct') {
+    enviarProductoWhatsApp(window._currentProductName, tipoEntrega);
+    window._currentProductName = '';
+    window._currentProductPrice = '';
+    return;
   }
 
   if (window._currentProductName) {
