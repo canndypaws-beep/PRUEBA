@@ -2678,8 +2678,15 @@ function buildCatalogModal() {
 
 window.toggleBuy = function(btn) {
   const card = btn.closest('.product-card');
-  const opts = card.querySelector('.buy-options');
-  if (opts) opts.classList.toggle('show');
+  if (!card) return;
+
+  // ocultar el dropdown actual y reutilizar el modal de selector de envío del carrito
+  document.querySelectorAll('.buy-options.show').forEach(o => o.classList.remove('show'));
+  const nombre = card.querySelector('.product-name')?.textContent.trim() || '';
+  const precio = card.querySelector('.price-new')?.textContent.trim() || '';
+  if (typeof mostrarSelectorEntrega === 'function') {
+    mostrarSelectorEntrega(nombre, precio);
+  }
 };
 
 window.sendWA = function(nombre, tipo) {
