@@ -2088,6 +2088,54 @@ button > span, button > svg, button > img {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
+
+/* =========================================
+   FIX SOLO COLORES EN MODALES (NO TOCAR NADA MÁS)
+   ========================================= */
+
+/* 🔹 MODALES CLAROS → TEXTO NEGRO */
+.stefi-box,
+.info-box,
+.write-box,
+.success-box,
+.delivery-selector-box {
+  color: #000 !important;
+}
+
+/* títulos */
+.stefi-box h2,
+.info-box h3,
+.write-box h2,
+.success-box h3,
+.delivery-selector-box h3 {
+  color: #000 !important;
+}
+
+/* textos internos */
+.stefi-box p,
+.info-content,
+.write-box p,
+.success-box p {
+  color: #000 !important;
+}
+
+/* 🔹 FORMULARIOS dentro de modales */
+.write-box input,
+.write-box textarea {
+  color: #000 !important;
+}
+
+/* 🔹 CARRITO - OPCIONES DE ENVÍO */
+.delivery-selector-box label,
+.delivery-selector-box span,
+.delivery-selector-box div {
+  color: #000 !important;
+}
+
+/* 🔹 TEXTO GRIS PROBLEMÁTICO (forzado a negro) */
+.delivery-selector-box * {
+  color: #000 !important;
+}
 </style>
 </head>
 <body>
@@ -3071,4 +3119,4 @@ function seleccionarAvatarExtra(img, el) {
   </div>
 </div>
 </body>
-</html>
+</html
